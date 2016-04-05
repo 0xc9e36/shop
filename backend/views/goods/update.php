@@ -318,7 +318,7 @@
 <?php foreach ($imageList as $k => $v) { ?>
                                                          <span class='imgarea'>
                                                              <span class='s1'><img src="<?php echo $v['small_img']; ?>"/></span>
-                                                             <a class='deleteImg'  href='javascript:(0)'>[-]</a>
+                                                             <a class='deleteImg'  href='#'>[-]</a>
                                                              <input id='small' type='hidden' name='simg[]'  value="<?php echo $v['small_img']; ?> "/>
                                                              <input type='hidden' id='big' name='bimg[]' value="<?php echo $v['big_img']; ?>"/>
                                                              <input type='hidden'  id='medium'  name='mimg[]'  value="<?php echo $v['medium_img']; ?>"/> 

@@ -6,7 +6,7 @@
 <div id='primary'><?php echo $dir['primary']; ?></div>
 <script src="/Js/jquery.min.js"></script>
 <script>
-     var newBox = $( "<span class='imgarea'><span class='s1'></span><a class='deleteImg'  href='javascript:(0)'>[-]</a> <input id='small' type='hidden' name='simg[]' /><input type='hidden' id='big' name='bimg[]'/> <input type='hidden'  id='medium'  name='mimg[]' /> <input type='hidden' id='primary'  name='pimg[]' /></span>");
+     var newBox = $( "<span class='imgarea'><span class='s1'></span><a class='deleteImg'  href='#'>[-]</a> <input id='small' type='hidden' name='simg[]' /><input type='hidden' id='big' name='bimg[]'/> <input type='hidden'  id='medium'  name='mimg[]' /> <input type='hidden' id='primary'  name='pimg[]' /></span>");
      img = $('#small').html();
      s = $('#s').html();
      medium = $('#medium').html();
