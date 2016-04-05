@@ -15,7 +15,7 @@ $view->params['menu']= array(
                 <th>分类名称</th>
                 <th>数量单位</th>
                 <th>是否显示</th>
-                <th>排序</th>
+                 <th>价格分级</th>
                 <th>操作</th>
             </tr>
             <?php foreach($data as $k => $v){ ?>
@@ -32,7 +32,7 @@ $view->params['menu']= array(
                      <img src="/Images/no.gif" />
                      <?php } ?>
                  </td>
-                <td width="20%" align="center"><span><?php echo $v['sort']; ?></span></td>
+                 <td width="15%"><?php echo $v['price_area']; ?></td>
                 <td width="20%" align="center">
                     <a href="/index.php?r=category/update&id=<?php echo $v['id']; ?>">编辑</a> |
                 <a href="/index.php?r=category/delete&id=<?php echo $v['id']; ?>" title="移除" onclick="return confirm('该分类下的商品也将被删除,确定要删除吗?')">移除</a>

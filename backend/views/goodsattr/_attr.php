@@ -18,7 +18,7 @@ foreach ($data as $k => $v) {
           }
      } else {
           //单选属性
-          echo "<td class=\"label\"><a href='javascript:(0)'  onclick='addAttr(this)'>[+]</a>{$v['attr_name']}：<input type='hidden' name='radio_attr_id'  value=\"{$v['id']}\"/></td>";
+          echo "<td class=\"label\"><a href='#'  onclick='addAttr(this)'>[+]</a>{$v['attr_name']}：<input type='hidden' name='radio_attr_id'  value=\"{$v['id']}\"/></td>";
           echo "<td><select name=\"radio_attr_value[{$v['id']}][]\">";
           $attr_arr = explode(',', $v['attr_value']);
           foreach ($attr_arr as $k1 => $v1) {

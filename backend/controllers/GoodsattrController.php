@@ -99,7 +99,7 @@ class GoodsattrController extends PublicController {
           }
      }
 
-     //添加商品时获取属性
+     //添加商品时获取属性接口
      public function actionGetattr() {
           $id = intval($_POST['id']);
           $sql = "SELECT id,attr_type,attr_name,attr_value FROM shop_goodsattr WHERE goodstype_id={$id}";
@@ -114,7 +114,7 @@ class GoodsattrController extends PublicController {
           }
      }
 
-     //修改商品时获取属性
+     //修改商品时获取属性接口
      public function actionEditattr() {
           $id = intval($_POST['id']);
           $goods_id = intval($_POST['goods_id']);

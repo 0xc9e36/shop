@@ -64,7 +64,7 @@ $view->params['menu'] = array(
                 ?>
                 <td><input type="text" size="15" class='sn' name="sn[]" value="<?php echo $value['product_sn']; ?>"></th>
                 <td><input type="text" size="5" class='num' name="num[]" value="<?php echo $value['count']; ?>"></th>
-                <td><a href="javascript:(0)" class="add" ><?php echo $a; ?></a></th>
+                <td><a href="#" class="add" ><?php echo $a; ?></a></th>
             </tr>
             
             <?php } ?>
@@ -83,7 +83,7 @@ $view->params['menu'] = array(
                 ?>
                 <td><input type="text" size="15" class='sn' name="sn[]" ></th>
                 <td><input type="text" size="5" class='num' name="num[]" ></th>
-                <td><a href="javascript:(0)" class="add" >[+]</a></th>
+                <td><a href="#" class="add" >[+]</a></th>
             </tr>
             
             <?php } ?>

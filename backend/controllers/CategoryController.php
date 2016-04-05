@@ -12,8 +12,6 @@ class CategoryController extends PublicController {
           $model = new Category();
           //查询分类数据
           $data = $model->getTreeList();
-          //根据字段排序
-          /******************/
 //          echo "<pre>";
 //          print_r($data);
 //          echo "</pre>";
@@ -24,7 +22,6 @@ class CategoryController extends PublicController {
 
      public function actionAdd() {
           $model = new Category();
-          //$model->setScenario('add');
           if ($model->load(Yii::$app->request->post()) && $model->save()) {
                return $this->redirect(['index']);
           } else {

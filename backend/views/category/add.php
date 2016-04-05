@@ -52,12 +52,6 @@ use yii\widgets\ActiveForm;
                 </td>
             </tr>
             
-            <tr>
-                <td class="label">排序:</td>
-                <td>
-                   <?= $form->field($model, 'sort')->textInput([ 'style'  => 'width:80px;', 'value' => 50])->hint('该分类在同一级别分类下的排序')->label("")?>
-                </td>
-            </tr>
             
             <tr>
                 <td class="label">价格区间个数:</td>

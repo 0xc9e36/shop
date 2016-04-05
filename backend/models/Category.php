@@ -11,7 +11,6 @@ use Yii;
  * @property string $cat_name
  * @property integer $pid
  * @property string $unit
- * @property integer $sort
  * @property integer $is_show
  * @property integer $price_area
  * @property string $des
@@ -30,8 +29,8 @@ class Category extends \yii\db\ActiveRecord {
       */
      public function rules() {
           return [
-              [['cat_name', 'pid', 'sort', 'is_show', 'price_area'], 'required'],
-              [['pid', 'sort', 'is_show', 'price_area'], 'integer'],
+              [['cat_name', 'pid', 'is_show', 'price_area'], 'required'],
+              [['pid', 'is_show', 'price_area'], 'integer'],
               [['cat_name'], 'string', 'max' => 30],
               [['unit'], 'string', 'max' => 10],
               [['des'], 'string', 'max' => 100],
@@ -48,7 +47,6 @@ class Category extends \yii\db\ActiveRecord {
               'cat_name' => '分类名称',
               'pid' => '上级分类',
               'unit' => '单位',
-              'sort' => '排序',
               'is_show' => '是否显示',
               'price_area' => '价格区间',
               'des' => '分类描述',
@@ -127,7 +125,7 @@ class Category extends \yii\db\ActiveRecord {
       * @return type
       */
      public function getTreeList($p_id = 0) {
-          $sql = "SELECT *FROM shop_category order by id asc";
+          $sql = "SELECT *FROM shop_category WHERE 1";
           $list = Category::findBySql($sql)->asArray()->all();
           return $this->getTree($list, $p_id, 0);
      }

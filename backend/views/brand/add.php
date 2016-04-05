@@ -59,7 +59,7 @@
             </tr>            
             
              <tr>
-                 <td colspan="2" align='center'> <div id="logoimg"><img src="<?php echo $model->brand_logo; ?>" /></div></td>
+                 <td colspan="2" align='center'> <div id="logoimg"></div></td>
             </tr>
             
             <tr>

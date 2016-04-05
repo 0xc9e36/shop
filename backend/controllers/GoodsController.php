@@ -105,7 +105,6 @@ class GoodsController extends Controller {
                                    }
                               } else {
                                    $value = $attr_value[$k][0];
-
                                    $price = 0.00;
                                    $sql = "INSERT INTO shop_attrprice VALUES(NULL,$goods_id,$k,'$value',$price)";
                                    $command = $connection->createCommand($sql);

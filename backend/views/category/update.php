@@ -53,13 +53,6 @@ use yii\widgets\ActiveForm;
             </tr>
             
             <tr>
-                <td class="label">排序:</td>
-                <td>
-                   <?= $form->field($model, 'sort')->textInput([ 'style'  => 'width:80px;', 'value' => 50])->hint('该分类在同一级别分类下的排序')->label("")?>
-                </td>
-            </tr>
-            
-            <tr>
                 <td class="label">价格区间个数:</td>
                 <td>
                      <?= $form->field($model, 'price_area')->textInput([ 'style'  => 'width:400px;', 'value'  => 0])->hint('该选项表示该分类下商品最低价与最高价之间的划分的等级个数，默认为0表示不做分级，最多不能超过10个。')->label("") ?>

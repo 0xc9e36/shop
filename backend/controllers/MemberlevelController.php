@@ -21,10 +21,12 @@ class MemberlevelController extends PublicController
     public function actionIndex()
     {
           $sql = "SELECT *FROM shop_memberlevel WHERE 1";
-          $data = Memberlevel::findBySql( $sql)->asArray()->all();
+          $data = Memberlevel::findBySql( $sql)
+                  ->asArray()
+                  ->all();
           return $this->render('index', [
               'data'     =>   $data,
-          ]);        
+          ]);     
     }
 
     /**
@@ -36,7 +38,7 @@ class MemberlevelController extends PublicController
     {
         $model = new Memberlevel();
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index']);
+           return $this->redirect(['index']);
         } else {
             return $this->render('add', [
                 'model' => $model,
@@ -91,8 +93,4 @@ class MemberlevelController extends PublicController
         }
     }
     
-    public function actionTest()
-    {
-         return $this->render('index');
-    }
 }
