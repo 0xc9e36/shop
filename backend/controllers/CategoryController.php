@@ -10,8 +10,10 @@ class CategoryController extends PublicController {
 
      public function actionIndex() {
           $model = new Category();
-          //查询分类数据
+          //查询树状分类数据
           $data = $model->getTreeList();
+          
+          
 //          echo "<pre>";
 //          print_r($data);
 //          echo "</pre>";
@@ -62,14 +64,12 @@ class CategoryController extends PublicController {
                }
                $pid = Category::findBySql("SELECT pid FROM shop_category WHERE id=$id")->asArray()->all();
                $res = Category::findBySql("SELECT id,cat_name FROM shop_category WHERE id={$pid[0]['pid']}")->asArray()->all();
-               
                if ($res) {
                     $pid['cat_name'] = $res[0]['cat_name'];
                     $pid['id'] = $res[0]['id'];
                } else {
                     $pid['id'] = 0;
                }
-               
                return $this->render('update', [
                            'model' => $model,
                            'data' => $data,
@@ -112,6 +112,8 @@ class CategoryController extends PublicController {
           if (($model = Category::findOne($id)) !== null) {
                return $model;
           } else {
+               echo '对象不存在';
+               die;
                throw new NotFoundHttpException('The requested page does not exist.');
           }
      }

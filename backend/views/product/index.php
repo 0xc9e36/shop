@@ -15,7 +15,6 @@ $view->params['menu'] = array(
     <form action="index.php?r=product/add" method="post">
         <input type="hidden" name="goods_id" value="<?php echo $id; ?>">
         <table cellpadding="3" cellspacing="1" id="form">
-
             <tr>
                 <?php
                 $has = array();
@@ -31,11 +30,12 @@ $view->params['menu'] = array(
                 <th>货号</th>
                 <th colspan="2">库存</th>
             </tr>
-<?php foreach ($has as $k3 => $v3)
-{
-	echo '<input type="hidden" name="attrid[]" value="'.$v3['attr_id'].'" />';
-}
-?>
+            
+            <?php
+            foreach ($has as $k3 => $v3) {
+                 echo '<input type="hidden" name="attrid[]" value="' . $v3['attr_id'] . '" />';
+            }
+            ?>
             <!------------------------------------------循环货品列表-------------------------------------------------------------------->
             <?php  $first = false;   foreach($product as $key => $value){  
                          if($first){
@@ -68,7 +68,6 @@ $view->params['menu'] = array(
             </tr>
             
             <?php } ?>
-          <!---------------------------------------------------------------------------------------------------------------------------------------------------->  
             
             <?php  if(!$product){ ?>
                         <tr>

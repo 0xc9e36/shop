@@ -118,10 +118,12 @@ class GoodsattrController extends PublicController {
      public function actionEditattr() {
           $id = intval($_POST['id']);
           $goods_id = intval($_POST['goods_id']);
+
           $sql = "SELECT id,attr_type,attr_name,attr_value FROM shop_goodsattr WHERE goodstype_id={$id}";
           $data = Goodsattr::findBySql($sql)->asArray()->all();
           $sql = "SELECT* FROM shop_attrprice WHERE goods_id={$goods_id}";
           $attrprice = \backend\models\Attrprice::findBySql($sql)->asArray()->all();
+          
           if ($data) {
                return $this->renderPartial('edit', [
                            'data' => $data,

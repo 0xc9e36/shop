@@ -53,6 +53,7 @@ class GoodsController extends Controller {
                     }
                     //添加商品
                     if ($model->save()) {
+                         //商品id
                          $goods_id = $model->getPrimaryKey();
                          //连接数据库
                          $connection = Yii::$app->db;

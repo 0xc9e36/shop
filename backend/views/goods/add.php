@@ -17,6 +17,36 @@
                 cursor: pointer ;                            
             }
         </style>
+        <script>
+
+             //页面初始化操作
+             function init() {
+                 //初始化tab选项卡
+                 changeTab('general-tab', 'general-table');
+                 //促销时间初始化
+                 $('#goods-sales_start').attr('disabled', 'disabled');
+                 $('#goods-sales_end').attr('disabled', 'disabled');
+             }
+
+             //切换选项卡
+             function changeTab(id, content)
+             {
+                 $('#general-table').css('display', 'none');
+                 $('#detail-table').css('display', 'none');
+                 $('#other-table').css('display', 'none');
+                 $('#attribute-table').css('display', 'none');
+                 $('#image-table').css('display', 'none');
+                 $('#general-tab').attr('class', 'tab-back')
+                 $('#detail-tab').attr('class', 'tab-back')
+                 $('#other-tab').attr('class', 'tab-back')
+                 $('#attribute-tab').attr('class', 'tab-back')
+                 $('#image-tab').attr('class', 'tab-back')
+
+                 $('#' + content).css('display', 'block');
+                 $("#" + id).attr('class', 'tab-front');
+             }
+
+        </script>
     </head>
     <body onload="init()">
         <iframe  style="display:none" width="1000" height="300" name="iframe"></iframe>
@@ -191,16 +221,14 @@
                                             <td colspan="2" align='center'> <div id="logoimg"></div></td>
                                         </tr>
                                         </table>
-
                                         <!----详细描述---->
                                         <table width="90%" id="detail-table" align="center">
                                             <tr>
                                                 <td>
-                                                  <?= $form->field($model, 'des')->textarea(['rows'=> 20,'cols'  =>100])->label("") ?> 
+                                                    <?= $form->field($model, 'des')->textarea(['rows' => 20, 'cols' => 100])->label("") ?> 
                                                 </td>
                                             </tr>  
                                         </table>
-
                                         <!--其他信息-->
                                         <table width="90%" id="other-table" align="center">
                                             <tr>
@@ -232,7 +260,7 @@
                                                     <input type="radio" name="Goods[post_free]" value="0"/> 否
                                                 </td>
                                             </tr>                           
-                                        </table>
+                                        </table>            
 
                                         <!--商品属性-->
                                         <table width="90%" align="center" id="attribute-table">
@@ -378,15 +406,6 @@
                                                  }
                                              }
 
-                                             //页面初始化操作
-                                             function init() {
-                                                 //初始化tab选项卡
-                                                 changeTab('general-tab', 'general-table');
-                                                 //促销时间初始化
-                                                 $('#goods-sales_start').attr('disabled', 'disabled');
-                                                 $('#goods-sales_end').attr('disabled', 'disabled');
-                                             }
-                                             
                                              $('#sales_price').click(function () {
                                                  if ($(this).is(':checked')) {
                                                      $('#goods-sales_price').removeAttr('disabled');
@@ -398,24 +417,6 @@
                                                      $('#goods-sales_end').attr('disabled', 'disabled');
                                                  }
                                              });
-                                             //切换选项卡
-                                             function changeTab(id, content)
-                                             {
-                                                 $('#general-table').css('display', 'none');
-                                                 $('#detail-table').css('display', 'none');
-                                                 $('#other-table').css('display', 'none');
-                                                 $('#attribute-table').css('display', 'none');
-                                                 $('#image-table').css('display', 'none');
-                                                 $('#general-tab').attr('class', 'tab-back')
-                                                 $('#detail-tab').attr('class', 'tab-back')
-                                                 $('#other-tab').attr('class', 'tab-back')
-                                                 $('#attribute-tab').attr('class', 'tab-back')
-                                                 $('#image-tab').attr('class', 'tab-back')
-
-                                                 $('#' + content).css('display', 'block');
-                                                 $("#" + id).attr('class', 'tab-front');
-                                             }
-
                                              $('#priceArea').on('click', '.changeCount', function () {
                                                  //增加
                                                  if ($(this).text() == '[+]')

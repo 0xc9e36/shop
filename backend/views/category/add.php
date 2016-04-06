@@ -8,9 +8,8 @@ $view->params['menu']= array(
 );
 ?>
 <div class="main-div">
-    <!--
-         <?php
 
+<?php
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
@@ -19,7 +18,6 @@ use yii\widgets\ActiveForm;
 /* @var $model frontend\models\Country */
 /* @var $form yii\widgets\ActiveForm */
 ?>
-     <!--------------->
 <div class="country-form">
 
     <?php $form = ActiveForm::begin([
