@@ -26,7 +26,7 @@ class MemberlevelController extends AdminController
      */
     public function actionIndex()
     {
-          $sql = "SELECT *FROM shop_memberlevel WHERE 1";
+          $sql = "SELECT *FROM shop_memberlevel WHERE 1 ORDER BY id";
           $data = Memberlevel::findBySql( $sql)
                   ->asArray()
                   ->all();

@@ -1,37 +1,76 @@
-<?php
-use yii\helpers\Html;
-?>
-<div class="site-error">
-    <div class="alert alert-danger page-none-alert">
-        <p>
-            <?php if(isset($mes)):?>
-                <span class="glyphicon glyphicon-remove-sign text-danger"></span>
-                <span class="btn-lg text-danger"><?php echo '操作出错啦！' ?></span>
-                <?php echo '<p>'.$errorMessage.'</p>';?>
-            <?php else:?>
-                <span class="glyphicon glyphicon-ok-sign text-success"></span>
-                <span class="btn-lg text-success">恭喜！操作成功！</span>
-            <?php endif;?>
-        </p>
-        <p class="text-muted">该页将在<?php echo $time;?>秒后自动跳转!</p>
-        <p>
-            <?php if(isset($gotoUrl)):?>
-                <a href="<?php echo $gotoUrl?>">立即跳转</a>
-            <?php else:?>
-                <a href="javascript:void(0)" onclick="history.go(-1)">返回</a>
-            <?php endif;?>
-        </p>
-    </div>
-    <style>
-        .page-none-alert{margin: 100px 0 !important;
-            text-align: center !important;
-            font-size: 20px !important;}
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Free error 404 for Website Template | Home :: w3layouts</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <style type="text/css">
+        body{
+            font-family: 'Courgette', cursive;
+        }
+        body{
+            background:#f3f3e1;
+        }
+        .wrap{
+            margin:0 auto;
+            width:1000px;
+        }
+        .logo{
+            margin-top:50px;
+        }
+        .logo h1{
+            font-size:200px;
+            color:#8F8E8C;
+            text-align:center;
+            margin-bottom:1px;
+            text-shadow:1px 1px 6px #fff;
+        }
+        .logo p{
+            color:rgb(228, 146, 162);
+            font-size:20px;
+            margin-top:1px;
+            text-align:center;
+        }
+        .logo p span{
+            color:lightgreen;
+        }
+        .sub a{
+            color:white;
+            background:#8F8E8C;
+            text-decoration:none;
+            padding:7px 120px;
+            font-size:13px;
+            font-family: arial, serif;
+            font-weight:bold;
+            -webkit-border-radius:3em;
+            -moz-border-radius:.1em;
+            -border-radius:.1em;
+        }
+        .footer{
+            color:#8F8E8C;
+            position:absolute;
+            right:10px;
+            bottom:10px;
+        }
+        .footer a{
+            color:rgb(228, 146, 162);
+        }
     </style>
+</head>
+
+
+
+
+<body>
+<div class="wrap">
+    <div class="logo">
+        <h1>404</h1>
+        <p>Error occured! - 页面未找到</p>
+        <div class="sub">
+            <p><a href="#" >主页</a></p>
+        </div>
+    </div>
 </div>
-<script>
-    <?php if(!isset($gotoUrl)):?>
-    setInterval("history.go(-1);",<?php echo $time;?>000);
-    <?php else:?>
-    setInterval("window.location.href='<?php echo  $gotoUrl;?>'",<?php echo $time;?>000);
-    <?php endif;?>
-</script>
+
+
+</body>
+</html>

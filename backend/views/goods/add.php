@@ -10,6 +10,7 @@
         .help-block{  color:red;  }
         .imgarea{ margin-left: 15px;  }
         .changeCount{  cursor: pointer ;  }
+        .error-summary {  color: red; }
     </style>
     <script>
         window.onload=function()//用window的onload事件，窗体加载完毕的时候
@@ -60,6 +61,7 @@
     $form = ActiveForm::begin([
         'options' => ['id' => 'goodsForm'],
     ]);
+        echo $form->errorSummary($model);
     ?>
     <div class="tab-div">
     <!-----选项列表--->

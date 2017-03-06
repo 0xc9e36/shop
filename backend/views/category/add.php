@@ -14,9 +14,6 @@ use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
 
-/* @var $this yii\web\View */
-/* @var $model frontend\models\Country */
-/* @var $form yii\widgets\ActiveForm */
 ?>
 <div class="country-form">
 
@@ -27,7 +24,7 @@ use yii\widgets\ActiveForm;
             <tr>
                 <td class="label">分类名称:</td>
                 <td>
-                   <?= $form->field($model, 'cat_name')->textInput([ 'style'  => 'width:200px;'])->label("") ?> 
+                   <?= $form->field($model, 'cat_name')->textInput([ 'style'  => 'width:200px;'])->label("") ?>
                 </td>
             </tr>
             
@@ -36,9 +33,9 @@ use yii\widgets\ActiveForm;
                 <td>
                     <select name="Category[pid]">
                         <option value="0" selected="selected">顶级分类</option>
-                        <?php foreach($data as $k => $v){ ?>
+                        <?php foreach($data as $k => $v): ?>
                         <option value="<?php echo $v['id']; ?>"><?php echo str_repeat("&nbsp;&nbsp;", $v['deep']).Html::encode($v['cat_name']); ?></option>
-                        <?php } ?>
+                        <?php endforeach; ?>
                     </select>
                 </td>
             </tr>
@@ -80,5 +77,4 @@ use yii\widgets\ActiveForm;
     <?php ActiveForm::end(); ?>
 
 </div>
-    
 </div>

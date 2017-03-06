@@ -15,22 +15,22 @@ $view->params['menu']= array(
                 <th>属性数</th>
                 <th>操作</th>
             </tr>
-            <?php foreach($data as $k => $v) { ?>
+            <?php foreach($data as $k => $v) : ?>
              <tr>
                  <td class="first-cell" align='center'>
-                     <span style="align:center"><?php echo \yii\helpers\Html::encode($v['goodstype_name']); ?></span>
+                     <span style="align:center"><?= \yii\helpers\Html::encode($v['goodstype_name']); ?></span>
                     <span></span>
                 </td>
                 <td align="center">
-                    <a href="" target="_brank"><?php echo $v['num']; ?></a>
+                    <a href="" target="_brank"><?= $v['num']; ?></a>
                 </td>
                 <td align="center">
-                    <a href="/index.php?r=goodsattr/index&id=<?php echo $v['id']; ?>" title="编辑">属性列表</a> |
-                    <a href="/index.php?r=goodstype/update&id=<?php echo $v['id']; ?>" title="编辑">编辑</a> |
-                    <a href="index.php?r=goodstype/delete&id=<?php echo $v['id']; ?>" title="编辑"  onclick="return confirm('该商品类型下的属性也将被删除,确定删除?')">移除</a> 
+                    <a href="/index.php?r=goodsattr/index&id=<?= $v['id']; ?>" title="编辑">属性列表</a> |
+                    <a href="/index.php?r=goodstype/update&id=<?= $v['id']; ?>" title="编辑">编辑</a> |
+                    <a href="index.php?r=goodstype/delete&id=<?= $v['id']; ?>" title="编辑"  onclick="return confirm('该商品类型下的属性也将被删除,确定删除?')">移除</a>
                 </td>
             </tr>
-            <?php } ?>
+            <?php endforeach; ?>
         </table>
     </div>
 </form>

@@ -1,16 +1,22 @@
 <?php
 use yii\helpers\Html;
 ?>
-<div class="site-error">
+<html>
+<head>
+    <style>
+        body{
+            background:#DDEEF2;;
+        }
+    </style>
+</head>
+<div class="site-error" xmlns="http://www.w3.org/1999/html" >
     <div class="alert alert-danger page-none-alert">
         <p>
-                <span class="glyphicon glyphicon-remove-sign text-danger"></span>
-                <?php echo '<h5>'.$msg.'</h5>';?>
+            <span class="glyphicon glyphicon-remove-sign text-danger"><font color = red size="3px"><?php echo $msg ;?></font></span>
         </p>
-        <p class="text-muted" >该页将在<?php echo $time; ?>秒后自动跳转!</p>
-        <p>
+        <p class="text-muted" ><font size="3px"> 该页将在<?php echo $time; ?>秒后自动跳转!</font></p>
             <?php if(isset($gotoUrl)):?>
-                <a href="<?php echo $gotoUrl?>">立即跳转</a>
+                <a href="<?php echo $gotoUrl?>"><font size="3px">立即跳转</font></a>
             <?php else:?>
                 <a href="javascript:void(0)" onclick="history.go(-1)">返回</a>
             <?php endif;?>
@@ -28,4 +34,8 @@ use yii\helpers\Html;
     <?php else:?>
     setInterval("window.location.href='<?php echo  $gotoUrl;?>'",<?php echo $time;?>000);
     <?php endif;?>
+
 </script>
+
+<body>
+</html>

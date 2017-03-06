@@ -28,7 +28,7 @@ class BrandController extends AdminController
     public function actionIndex()
     {
            
-          $sql = "SELECT *FROM shop_brand WHERE 1";
+          $sql = "SELECT *FROM shop_brand WHERE 1 ORDER BY brand_sort ";
           $data = Brand::findBySql( $sql)->asArray()->all();
           return $this->renderPartial('index', [
               'data'     =>   $data
@@ -49,6 +49,7 @@ class BrandController extends AdminController
              return $this->redirect(['index']);
         } else {
             $model->is_show = 1;
+            $model->brand_sort = 50;
             return $this->renderAjax('add', [
                 'model' => $model,
                 'model_upload'     =>   $model_upload ,
@@ -125,7 +126,6 @@ class BrandController extends AdminController
                echo "<script>parent. $(\"#dialog\" ).dialog( \"close\" );</script>";
                echo "<script>parent. $(\"#fileupload\" ).reset('fileupload');</script>";
                echo "<script>parent.document.getElementById('logoimg').innerHTML=\"$str\";</script>";
-                 /************/
             }
         }else{
             $this->jump('图片上传错误');

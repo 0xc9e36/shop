@@ -1,5 +1,6 @@
 <?php          
 use yii;
+use yii\helpers\Html;
 $view=Yii::$app->getView();
 $view->params['title']='属性列表';
 $view->params['menu']= array(
@@ -21,26 +22,26 @@ $view->params['menu']= array(
             <?php foreach ($data as $k => $v): ?>
                          <tr>
                              <td class="first-cell" align='center'>
-                                 <span style="align:center"><?php echo $v['id']; ?></span>
+                                 <span style="align:center"><?= $v['id']; ?></span>
                                  <span></span>
                              </td>
                              <td align="center">
-                                 <a href="" target="_brank"><?php echo $v['attr_name']; ?></a>
+                                 <a href="" target="_brank"><?= Html::encode($v['attr_name']); ?></a>
                              </td>
                              <td align="center">
-                                 <a href="" target="_brank"><?php echo $v['goodstype_name']; ?></a>
+                                 <a href="" target="_brank"><?= Html::encode($v['goodstype_name']); ?></a>
                              </td>       
 
                              <td align="center">
-                                 <a href="" target="_brank"><?php echo $v['attr_type']; ?></a>
+                                 <a href="" target="_brank"><?= Html::encode($v['attr_type']); ?></a>
                              </td>    
                              
                               <td align="center">
-                                 <a href="" target="_brank"><?php echo $v['attr_value']; ?></a>
+                                 <a href="" target="_brank"><?= Html::encode($v['attr_value']); ?></a>
                              </td>                               
                              <td align="center">
-                                 <a href="index.php?r=goodsattr/update&&id=<?php echo $v['id']; ?>&typeid=<?php echo $typeid; ?>" title="编辑">编辑</a> |
-                                 <a href="index.php?r=goodsattr/delete&&id=<?php echo $v['id']; ?>&typeid=<?php echo $typeid; ?>" onclick="return confirm('确定要删除改属性吗?')">移除</a> 
+                                 <a href="index.php?r=goodsattr/update&&id=<?= $v['id']; ?>&typeid=<?= $typeid; ?>" title="编辑">编辑</a> |
+                                 <a href="index.php?r=goodsattr/delete&&id=<?= $v['id']; ?>&typeid=<?= $typeid; ?>" onclick="return confirm('确定要删除改属性吗?')">移除</a>
                              </td>
                          </tr>
             <?php endforeach; ?>

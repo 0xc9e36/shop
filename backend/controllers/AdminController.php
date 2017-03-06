@@ -62,9 +62,7 @@ class AdminController extends Controller
     public function actionIndex()
     {
         $sql = "SELECT *FROM shop_user WHERE 1";
-        $data = Admin::findBySql( $sql)
-            ->asArray()
-            ->all();
+        $data = Admin::findBySql( $sql)->asArray()->all();
         return $this->render('index', [
             'users'     =>   $data,
         ]);
@@ -146,9 +144,7 @@ class AdminController extends Controller
     /*路由错误*/
     public function actionError()
     {
-        $message = '此资源并不存在';
-        $time = 30;
-        return $this->renderPartial('/admin/error', ['mes' => $message, 'time' => $time]);
+        return $this->renderPartial('/admin/error');
     }
 
     /*逻辑错误*/

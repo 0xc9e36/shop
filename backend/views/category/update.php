@@ -8,16 +8,12 @@ $view->params['menu']= array(
 );
 ?>
 <div class="main-div">
-    <!--
-         <?php
+ <?php
 
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
 
-/* @var $this yii\web\View */
-/* @var $model frontend\models\Country */
-/* @var $form yii\widgets\ActiveForm */
 ?>
      <!--------------->
 <div class="country-form">
@@ -38,9 +34,9 @@ use yii\widgets\ActiveForm;
                 <td>
                     <select name="Category[pid]">
                         <option value="0" <?php if($pid_info==0) echo "selected='selected'" ?> >顶级分类</option>
-                        <?php foreach($data as $k => $v){ ?>
+                        <?php foreach($data as $k => $v): ?>
                         <option value="<?php echo $v['id']; ?>"   <?php if($v['id']==$pid_info['id']) echo "selected='selected'" ?>  ><?php echo str_repeat("&nbsp;&nbsp;", $v['deep']).Html::encode($v['cat_name']); ?></option>
-                        <?php } ?>
+                        <?php endforeach; ?>
                     </select>
                 </td>        
             </tr>

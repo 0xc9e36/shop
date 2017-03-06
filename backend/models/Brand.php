@@ -31,7 +31,7 @@ class Brand extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['brand_name', 'brand_link'], 'required'],
+            [['brand_name', 'brand_link', 'brand_logo'], 'required'],
             [['brand_name'] ,'unique' ],
             [['brand_link'] ,'url' ],
             [['brand_explain'], 'string'],
@@ -56,4 +56,5 @@ class Brand extends \yii\db\ActiveRecord
             'is_show' => '是否显示',
         ];
     }
+    
 }

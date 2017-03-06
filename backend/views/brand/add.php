@@ -6,6 +6,11 @@
     <link href="./Styles/general.css" rel="stylesheet" type="text/css" />
     <link href="./Styles/main.css" rel="stylesheet" type="text/css" />
     <script src="./Js/jquery.min.js"></script>
+    <style>
+        .help-block{
+            color: red;
+        }
+    </style>
 </head>
 <body>
     
@@ -53,7 +58,7 @@
             <tr>
                 <td class="label">品牌LOGO:</td>
                 <td>
-                             <span id='upload'><font color='red'>上传图片</font></span>
+                             <span id='upload'><font color='black' size="4px">上传图片</font></span>
                     <?= $form->field($model, 'brand_logo')->hiddenInput()->label("") ?> 
                 </td>
             </tr>            
@@ -127,3 +132,5 @@ Dialog::begin([
 <?php
 Dialog::end();
 ?>
+
+

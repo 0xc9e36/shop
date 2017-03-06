@@ -2,6 +2,7 @@
 
 namespace backend\models;
 
+use Yii;
 use yii\base\Model;
 use yii\web\UploadedFile;
 use yii\imagine\Image;
@@ -36,15 +37,15 @@ class UploadForm extends Model {
                //缩略图
                $smallName = time() . 'small' . rand(0, 9999) . '.' . $this->imageFile->extension;
                $url['small'] = $upDir . $smallName;
-               Image::thumbnail($url['primary'], 100, 100)->save($url['small'], ['quality' => 50]);
+               Image::thumbnail($url['primary'], Yii::$app->params['small_img_width'], Yii::$app->params['small_img_height'])->save($url['small'], ['quality' => 50]);
                //中等图
                $medianName = time() . 'median' . rand(0, 9999) . '.' . $this->imageFile->extension;
                $url['median'] = $upDir . $medianName;
-               Image::thumbnail($url['primary'], 300, 300)->save($url['median'], ['quality' => 50]);
+               Image::thumbnail($url['primary'], Yii::$app->params['median_img_width'], Yii::$app->params['median_img_height'])->save($url['median'], ['quality' => 50]);
                //大图
                $bigName = time() . 'big' . rand(0, 9999) . '.' . $this->imageFile->extension;
                $url['big'] = $upDir . $bigName;
-               Image::thumbnail($url['primary'], 600, 600)->save($url['big'], ['quality' => 50]);
+               Image::thumbnail($url['primary'], Yii::$app->params['big_img_width'], Yii::$app->params['big_img_height'])->save($url['big'], ['quality' => 50]);
                return $url;
           } else {
                return false;
