@@ -45,7 +45,8 @@ class BrandController extends AdminController
     {
         $model = new Brand();
         $model_upload = new UploadForm();
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post()) && $model->check()) {
+
              return $this->redirect(['index']);
         } else {
             $model->is_show = 1;

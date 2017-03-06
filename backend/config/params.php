@@ -1,6 +1,8 @@
 <?php
 return [
     'adminEmail' => 'admin@example.com',
+    'temp'  => 'temp/',   //临时文件目录
+    'upload'   => 'uploads/',    //上传文件目录
     'menu'  =>  array(
         '商品管理'  => array(
             '商品分类' => '/index.php?r=category/index',

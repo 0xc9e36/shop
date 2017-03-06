@@ -56,5 +56,21 @@ class Brand extends \yii\db\ActiveRecord
             'is_show' => '是否显示',
         ];
     }
-    
+
+    public function check()
+    {
+        if ($this->validate()) {
+            $upDir = Yii::$app->params['upload'].date('Ymd') . '/';
+            if (!is_dir($upDir)) {
+                mkdir($upDir, 0777);
+            }
+            $dir = $upDir.str_replace(Yii::$app->params['temp'] ,"", $this->brand_logo);
+            copy($this->brand_logo, $dir);
+            
+            $this->brand_logo = $dir;
+            return $this->save();
+        } else {
+            return false;
+        }
+    }
 }
