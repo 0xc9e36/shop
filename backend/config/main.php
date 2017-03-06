@@ -13,7 +13,7 @@ return [
     'modules' => [],
     'components' => [
         'user' => [
-            'identityClass' => 'common\models\User',
+            'identityClass' => 'backend\models\Admin',
             'enableAutoLogin' => true,
         ],
         'authManager' => [
@@ -32,7 +32,7 @@ return [
             ],
         ],
         'errorHandler' => [
-            'errorAction' => 'site/error',
+            'errorAction' => 'admin/error',
         ],
     /*
       'urlManager' => [
@@ -43,5 +43,6 @@ return [
       ],
      */
     ],
+    'defaultRoute' => 'admin/login',    //配置默认路由
     'params' => $params,
 ];

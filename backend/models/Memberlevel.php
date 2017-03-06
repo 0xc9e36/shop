@@ -15,6 +15,7 @@ use Yii;
  */
 class Memberlevel extends \yii\db\ActiveRecord
 {
+
     /**
      * @inheritdoc
      */

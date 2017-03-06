@@ -65,7 +65,6 @@ class Category extends \yii\db\ActiveRecord {
           //编辑的数据和原来数据库中的比较
           if ($this->id) {
                $cat_name = Category::findBySql("SELECT cat_name FROM shop_category WHERE id={$this->id}")->asArray()->all()[0]['cat_name'];
-
                if ($cat_name == $categoryname) {
                     return true;
                }
@@ -109,10 +108,11 @@ class Category extends \yii\db\ActiveRecord {
       */
      public function getTree($arr, $p_id, $deep = 0) {
           static $tree = array();
-          foreach ($arr as $row) {
+          foreach ($arr as $key =>  $row) {
                if ($row['pid'] == $p_id) {
                     $row['deep'] = $deep;
                     $tree[] = $row;
+                    unset($arr[$key]);  /*此元素已经查找过, 可以删除*/
                     $this->getTree($arr, $row['id'], $deep + 1);
                }
           }
@@ -136,7 +136,7 @@ class Category extends \yii\db\ActiveRecord {
       * @return type
       */
      public function getChildList($pid) {
-          $sql = "SELECT *FROM shop_category order by id asc";
+          $sql = "SELECT *FROM shop_category ORDER BY id ASC";
           $list = Category::findBySql($sql)->asArray()->all();
           return $this->getTree($list, $pid, 0);
      }

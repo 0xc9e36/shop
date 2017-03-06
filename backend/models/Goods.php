@@ -34,6 +34,7 @@ use Yii;
  */
 class Goods extends \yii\db\ActiveRecord
 {
+
     /**
      * @inheritdoc
      */
@@ -48,14 +49,14 @@ class Goods extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['goods_name','shop_price'], 'required'],
+            [['goods_name','shop_price', 'des', 'mark_price', 'count', 'warn_count', 'is_sale'], 'required'],
             [['goodscat_id', 'goods_brand', 'goodstype_id', 'level_mark', 'is_discount', 'count', 'warn_count', 'is_sale', 'post_free', 'is_delete', 'is_recycle'], 'integer'],
             [['shop_price', 'mark_price', 'sales_price'], 'number'],
             [['sales_start', 'sales_end'], 'safe'],
             [['des'], 'string'],
             [['goods_name'], 'string', 'max' => 20],
             [['primary_img', 'big_img', 'medium_img', 'small_img'], 'string', 'max' => 50],
-            [['weight'], 'string', 'max' => 10]
+            [['weight'], 'string']
         ];
     }
 

@@ -120,13 +120,11 @@
     </div>
     <div id="submenu-div">
         <ul>
-            <li><a href="#" >查看网店</a></li>
-            <li><a href="#">个人设置</a></li>
-            <li style="border-right:none"><a href="#">刷新</a></li>
+            <li style="border-right:none">当前登录用户 : <font size="3" color="black"><?=Yii::$app->user->identity->username; ?></font></li>
         </ul>
         <div id="send_info">
             <a href="#"  class="fix-submenu">清除缓存</a>
-            <a href="#" class="fix-submenu">退出</a>
+            <a href="/index.php?r=admin/logout" class="fix-submenu" target="_top">退出</a>
         </div>
     </div>
 </div>

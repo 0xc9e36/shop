@@ -5,39 +5,34 @@ namespace backend\controllers;
 use Yii;
 use backend\models\Product;
 use yii\data\ActiveDataProvider;
-use backend\controllers\PublicController;
+use backend\controllers\AdminController;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
  * ProductController implements the CRUD actions for Product model.
  */
-class ProductController extends PublicController {
+class ProductController extends AdminController {
 
      public $enableCsrfValidation = false;
-
+     public function behaviors()
+     {
+          return [
+              \backend\components\behavior\PermissionBehavior::className(),
+          ];
+     }
      /**
       * Lists all Product models.
       * @return mixed
       */
      public function actionIndex($id) {
           $connection = Yii::$app->db;
-          $sql = "SELECT "
-                  . "a.*,b.attr_type,b.attr_name "
-                  . "FROM shop_attrprice AS a "
-                  . "INNER JOIN shop_goodsattr AS b "
-                  . "ON a.attr_id=b.id WHERE a.goods_id=$id AND b.attr_type=1";
+          $sql = "SELECT a.*,b.attr_type,b.attr_name FROM shop_attrprice AS a INNER JOIN shop_goodsattr AS b  ON a.attr_id=b.id WHERE a.goods_id=$id AND b.attr_type=1";
           $command = $connection->createCommand($sql);
           $data = $command->queryAll();
-
           $sql = "SELECT * FROM shop_product WHERE goods_id=$id";
           $command = $connection->createCommand($sql);
           $product = $command->queryAll();
-////// 
-//          echo "<pre>";
-//          print_r($product);
-//          echo "</pre>";
-
           return $this->render('index', [
                       'data' => $data,
                       'id' => $id,
@@ -51,13 +46,10 @@ class ProductController extends PublicController {
       * @return mixed
       */
      public function actionAdd() {
-//                         echo "<pre>";
-//               print_r($_POST);
-//               echo "</pre>";
           $model = new Product();
           $connection = Yii::$app->db;
-          if ($_POST) {
-               $goods_id = $_POST['goods_id'];
+          if (Yii::$app->request->isPost) {
+               $goods_id = Yii::$app->request->post('goods_id');
                //删除之前的货品
                $sql = "DELETE FROM shop_product WHERE goods_id=$goods_id ";
                $command = $connection->createCommand($sql);

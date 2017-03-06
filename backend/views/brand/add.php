@@ -59,7 +59,7 @@
             </tr>            
             
              <tr>
-                 <td colspan="2" align='center'> <div id="logoimg"></div></td>
+                 <td colspan="2" align="center"> <span id="logoimg"></span></td>
             </tr>
             
             <tr>

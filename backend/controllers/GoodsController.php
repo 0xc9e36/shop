@@ -20,8 +20,14 @@ use yii\filters\VerbFilter;
 /**
  * GoodsController implements the CRUD actions for Goods model.
  */
-class GoodsController extends Controller {
+class GoodsController extends AdminController {
 
+     public function behaviors()
+     {
+          return [
+              \backend\components\behavior\PermissionBehavior::className(),
+          ];
+     }
      /**
       * Lists all Goods models.
       * @return mixed
@@ -43,13 +49,13 @@ class GoodsController extends Controller {
           $model = new Goods();
           //商品表单
           if ($model->load(Yii::$app->request->post())) {
-
+               $request = Yii::$app->request;
                //商品基本信息验证
                if ($model->validate()) {
                     //自动生成商品货号
                     $model->goods_sn = !empty($model->goods_sn) ? $model->goods_sn : time();
                     if (isset($_POST['is_sale']) && 'ok' === $_POST['is_sale']) {
-                         $model->is_discount = 1;
+                         $model->is_discount = 1; //促销
                     }
                     //添加商品
                     if ($model->save()) {
@@ -57,7 +63,7 @@ class GoodsController extends Controller {
                          $goods_id = $model->getPrimaryKey();
                          //连接数据库
                          $connection = Yii::$app->db;
-                         /*                          * ****************************商品相册表************************************ */
+                         /*****************************商品相册************************************ */
                          $simg = !empty($_POST['simg']) ? $_POST['simg'] : array();
                          $mimg = !empty($_POST['mimg']) ? $_POST['mimg'] : array();
                          $bimg = !empty($_POST['bimg']) ? $_POST['bimg'] : array();
@@ -71,7 +77,7 @@ class GoodsController extends Controller {
                               $command = $connection->createCommand($sql);
                               $command->execute();
                          }
-                         /*                          * *************************商品折扣表***************************************** */
+                         /**************************商品折扣表***************************************** */
                          $counts = !empty($_POST['sale_count'][0]) ? $_POST['sale_count'] : array();
                          $prices = !empty($_POST['sale_prices'][0]) ? $_POST['sale_prices'] : array();
 
@@ -83,7 +89,7 @@ class GoodsController extends Controller {
                               $command->execute();
                          }
 
-                         /*                          * ******************会员级别价格***************************** */
+                         /****************************会员级别价格***************************** */
                          foreach ($_POST['id'] as $k => $v) {
                               $member_level = $v;
                               $member_price = $_POST['price'][$k];
@@ -91,10 +97,9 @@ class GoodsController extends Controller {
                               $command = $connection->createCommand($sql);
                               $command->execute();
                          }
-                         /*                          * *******************************商品属性价格表************************************* */
+                         /*******************************商品属性价格表************************************* */
                          $attr_value = !empty($_POST['radio_attr_value']) ? $_POST['radio_attr_value'] : array();
                          $attr_price = !empty($_POST['radio_attr_price']) ? $_POST['radio_attr_price'] : array();
-
                          foreach ($attr_value as $k => $v) {
                               if (array_key_exists($k, $attr_price)) {
                                    foreach ($v as $k1 => $v1) {
@@ -113,8 +118,7 @@ class GoodsController extends Controller {
                               }
                          }
                     } else {
-                         var_dump($model->getErrors());
-                         echo "<script>添加商品失败</script>";
+                         $this->jump('添加商品出了点麻烦~ 错误信息 : '. $model->getErrors());
                     }
                     return $this->redirect(['index']);
                }
@@ -124,11 +128,11 @@ class GoodsController extends Controller {
                $cat_list = $cat_model->getTreeList();
 
                //商品品牌列表
-               $sql = "SELECT brand_name,id FROM shop_brand WHERE 1";
+               $sql = "SELECT brand_name,id FROM shop_brand WHERE 1 ORDER BY id";
                $brand_list = Brand::findBySql($sql)->asArray()->all();
 
                //所有会员种类
-               $sql = "SELECT id,level_name  FROM shop_memberlevel WHERE 1";
+               $sql = "SELECT id,level_name  FROM shop_memberlevel WHERE 1 ORDER BY id";
                $memberlevel_list = Memberlevel::findBySql($sql)->asArray()->all();
 
                //上传图片模型
@@ -160,7 +164,6 @@ class GoodsController extends Controller {
           $model = $this->findModel($id);
           //商品表单
           if ($model->load(Yii::$app->request->post())) {
-
                //商品基本信息验证
                if ($model->validate()) {
                     //自动生成商品货号
@@ -174,13 +177,13 @@ class GoodsController extends Controller {
 
                          //连接数据库
                          $connection = Yii::$app->db;
-                         /*                          * ****************************商品相册表************************************ */
+                         /** ***************************商品相册表************************************ */
                          $simg = !empty($_POST['simg']) ? $_POST['simg'] : array();
                          $mimg = !empty($_POST['mimg']) ? $_POST['mimg'] : array();
                          $bimg = !empty($_POST['bimg']) ? $_POST['bimg'] : array();
                          $pimg = !empty($_POST['pimg']) ? $_POST['pimg'] : array();
                          //先删除该商品所有相册
-                         $sql = "DELETE FROM shop_goodsimg WHERE goods_id=$goods_id";
+                         $sql = "DELETE FROM shop_goodsimg WHERE goods_id={$goods_id}";
                          $command = $connection->createCommand($sql);
                          $command->execute();
                          foreach ($simg as $k => $v) {
@@ -192,8 +195,7 @@ class GoodsController extends Controller {
                               $command = $connection->createCommand($sql);
                               $command->execute();
                          }
-                         /*                          * *************************商品折扣表***************************************** */
-
+                         /***************************商品折扣表***************************************** */
                          //先删除该商品所有折扣
                          $sql = "DELETE FROM shop_discount WHERE goods_id=$goods_id";
                          $command = $connection->createCommand($sql);
@@ -208,7 +210,7 @@ class GoodsController extends Controller {
                               $command->execute();
                          }
 
-                         /*                          * ******************会员级别价格***************************** */
+                         /********************会员级别价格***************************** */
                          foreach ($_POST['id'] as $k => $v) {
                               $member_level = $v;
                               $member_price = $_POST['price'][$k];
@@ -216,7 +218,7 @@ class GoodsController extends Controller {
                               $command = $connection->createCommand($sql);
                               $command->execute();
                          }
-                         /*                          * *******************************商品属性价格表************************************* */
+                         /*********************************商品属性价格表************************************* */
                          $attr_value = !empty($_POST['radio_attr_value']) ? $_POST['radio_attr_value'] : array();
                          $attr_price = !empty($_POST['radio_attr_price']) ? $_POST['radio_attr_price'] : array();
 
@@ -234,7 +236,6 @@ class GoodsController extends Controller {
                                    }
                               } else {
                                    $value = $attr_value[$k][0];
-
                                    $price = 0.00;
                                    $sql = "INSERT INTO shop_attrprice VALUES(NULL,$goods_id,$k,'$value',$price)";
                                    $command = $connection->createCommand($sql);
@@ -242,8 +243,7 @@ class GoodsController extends Controller {
                               }
                          }
                     } else {
-                         var_dump($model->getErrors());
-                         echo "<script>添加商品失败</script>";
+                         $this->jump('修改商品出了点麻烦~'.$model->getErrors());
                     }
                     return $this->redirect(['index']);
                }
@@ -253,19 +253,16 @@ class GoodsController extends Controller {
                $cat_list = $cat_model->getTreeList();
 
                //商品品牌列表
-               $sql = "SELECT brand_name,id FROM shop_brand WHERE 1";
+               $sql = "SELECT brand_name,id FROM shop_brand WHERE 1 ORDER BY id";
                $brand_list = Brand::findBySql($sql)->asArray()->all();
 
                //所有会员种类
-               $sql = "SELECT id,level_name  FROM shop_memberlevel WHERE 1";
+               $sql = "SELECT id,level_name  FROM shop_memberlevel WHERE 1 ORDER BY id";
                $memberlevel_list = Memberlevel::findBySql($sql)->asArray()->all();
 
                //取出会员价格
                $memberPriceInfo = Memberlevel::findBySql("SELECT member_level,member_price FROM shop_memberprice WHERE goods_id={$id}")->asArray()->all();
 
-//               echo "<pre>";
-//               print_r($memberPriceInfo);
-//               echo "</pre>";
                //上传图片模型
                $model_upload = new UploadForm();
 
@@ -280,9 +277,7 @@ class GoodsController extends Controller {
                //商品相册
                $sql = "SELECT * FROM shop_goodsimg WHERE goods_id={$id}";
                $imageList = Goods::findBySql($sql)->asArray()->all();
-//               echo "<pre>";
-//               print_r($imageList);
-//               echo "</pre>";
+
                return $this->renderAjax('update', [
                            'model' => $model,
                            'cat_model' => $cat_model,

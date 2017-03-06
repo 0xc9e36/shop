@@ -1,13 +1,16 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>ECSHOP 管理中心</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link href="/Styles/general.css" rel="stylesheet" type="text/css" />
-<link href="/Styles/main.css" rel="stylesheet" type="text/css" />
+    <title>ECSHOP 管理中心</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/Styles/general.css" rel="stylesheet" type="text/css" />
+    <link href="/Styles/main.css" rel="stylesheet" type="text/css" />
 </head>
 <body style="background: #278296;color:white">
-<form method="post" action=""onsubmit="return validate()">
+<?php
+use yii\widgets\ActiveForm;
+$form = ActiveForm::begin();
+?>
     <table cellspacing="0" cellpadding="0" style="margin-top:100px" align="center">
         <tr>
             <td>
@@ -16,23 +19,25 @@
             <td style="padding-left: 50px">
                 <table>
                     <tr>
-                        <td>管理员姓名：</td>
+                        <td>登录名：</td>
                         <td>
-                            <input type="text" name="username" />
+                            <?= $form->field($model, 'username')->textInput([ 'style' => 'width:120px;'])->label("") ?>
                         </td>
                     </tr>
                     <tr>
-                        <td>管理员密码：</td>
+                        <td>密码：</td>
                         <td>
-                            <input type="password" name="password" />
+                            <?= $form->field($model, 'password')->passwordInput([ 'style' => 'width:120px;'])->label("") ?>
                         </td>
                     </tr>
+                    <!--
                     <tr>
                         <td>验证码：</td>
                         <td>
-                            <input type="text" name="captcha" class="capital" />
+                            <input type="text" name="captcha" class="capital" style="width: 120px"/>
                         </td>
                     </tr>
+                    -->
                     <tr>
                         <td colspan="2" align="right">
                             <img src="" />
@@ -40,8 +45,7 @@
                     </tr>
                     <tr>
                         <td colspan="2" align="center">
-                            <input type="checkbox" value="1" name="remember" id="remember" />
-                            <label for="remember">请保存我这次的登录信息。</label>
+                            <?= $form->field($model, 'rememberMe')->checkbox() ?>
                         </td>
                     </tr>
                     <tr>
@@ -54,6 +58,7 @@
             </td>
         </tr>
     </table>
-  <input type="hidden" name="act" value="signin" />
+<?php ActiveForm::end(); ?>
+    <input type="hidden" name="act" value="signin" />
 </form>
 </body>

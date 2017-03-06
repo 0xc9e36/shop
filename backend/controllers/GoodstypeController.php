@@ -4,24 +4,27 @@ namespace backend\controllers;
 
 use Yii;
 use backend\models\Goodstype;
-use backend\controllers\PublicController;
+use backend\controllers\AdminController;
 use yii\data\ActiveDataProvider;
 use yii\web\NotFoundHttpException;
 
 /**
  * GoodstypeController implements the CRUD actions for Goodstype model.
  */
-class GoodstypeController extends PublicController {
-
+class GoodstypeController extends AdminController {
+     public function behaviors()
+     {
+          return [
+              \backend\components\behavior\PermissionBehavior::className(),
+          ];
+     }
      /**
       * Lists all Goodstype models.
       * @return mixed
       */
      public function actionIndex() {
-          $sql = "SELECT a.*,count(b.id) as num FROM shop_goodstype AS a LEFT JOIN shop_goodsattr AS b ON a.id=b.goodstype_id GROUP BY a.id";
-          
+          $sql = "SELECT type.id, type.goodstype_name ,count(attr.id) AS num FROM shop_goodstype AS type LEFT JOIN shop_goodsattr AS attr ON type.id=attr.goodstype_id GROUP BY type.id";
           $data = Goodstype::findBySql($sql)->asArray()->all();
-          
           return $this->render('index', [
                       'data' => $data
           ]);
@@ -34,7 +37,6 @@ class GoodstypeController extends PublicController {
       */
      public function actionAdd() {
           $model = new Goodstype();
-
           if ($model->load(Yii::$app->request->post()) && $model->save()) {
                return $this->redirect(['index']);
           } else {

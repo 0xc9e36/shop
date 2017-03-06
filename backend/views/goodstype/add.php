@@ -28,7 +28,7 @@ $view->params['menu']= array(
             <tr>
                 <td class="label">商品类型名称:</td>
                 <td>
-<?= $form->field($model, 'goodstype_name')->textInput([ 'style' => 'width:200px;'])->label("") ?> 
+                <?= $form->field($model, 'goodstype_name')->textInput([ 'style' => 'width:200px;'])->label("") ?>
                 </td>
             </tr>                 
         </table>
@@ -37,7 +37,6 @@ $view->params['menu']= array(
             <input type="reset" value=" 重置 " />
         </div>
 
-<?php ActiveForm::end(); ?>
-
+        <?php ActiveForm::end(); ?>
 
     </div>

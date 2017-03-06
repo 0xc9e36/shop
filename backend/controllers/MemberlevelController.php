@@ -5,15 +5,21 @@ namespace backend\controllers;
 use Yii;
 use backend\models\Memberlevel;
 use yii\data\ActiveDataProvider;
-use backend\controllers\PublicController;
+use backend\controllers\AdminController;
 use yii\web\NotFoundHttpException;
 
 /**
  * MemberlevelController implements the CRUD actions for Memberlevel model.
  */
-class MemberlevelController extends PublicController
+class MemberlevelController extends AdminController
 {
+    public function behaviors()
+    {
+        return [
+            \backend\components\behavior\PermissionBehavior::className(),
 
+        ];
+    }
     /**
      * Lists all Memberlevel models.
      * @return mixed

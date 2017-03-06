@@ -18,7 +18,7 @@ $view->params['menu']= array(
                         <th>属性可选值</th>
                         <th>操作</th>
                     </tr>
-<?php foreach ($data as $k => $v) { ?>
+            <?php foreach ($data as $k => $v): ?>
                          <tr>
                              <td class="first-cell" align='center'>
                                  <span style="align:center"><?php echo $v['id']; ?></span>
@@ -43,7 +43,7 @@ $view->params['menu']= array(
                                  <a href="index.php?r=goodsattr/delete&&id=<?php echo $v['id']; ?>&typeid=<?php echo $typeid; ?>" onclick="return confirm('确定要删除改属性吗?')">移除</a> 
                              </td>
                          </tr>
-<?php } ?>
+            <?php endforeach; ?>
                 </table>
             </div>
         </form>

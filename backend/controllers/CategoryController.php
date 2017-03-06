@@ -4,19 +4,24 @@ namespace backend\controllers;
 
 use Yii;
 use backend\models\Category;
-use backend\controllers\PublicController;
+use backend\controllers\AdminController;
+use yii\helpers\Html;
+use yii\web\NotFoundHttpException;
+use yii\helpers\MyHelper;
 
-class CategoryController extends PublicController {
+class CategoryController extends AdminController {
+
+     //public $layout = false;     false为不使用布局
+     public function behaviors()
+     {
+          return [
+              \backend\components\behavior\PermissionBehavior::className(),
+        ];
+     }
 
      public function actionIndex() {
           $model = new Category();
-          //查询树状分类数据
           $data = $model->getTreeList();
-          
-          
-//          echo "<pre>";
-//          print_r($data);
-//          echo "</pre>";
           return $this->render('index', [
                       'data' => $data
           ]);
@@ -45,12 +50,13 @@ class CategoryController extends PublicController {
      public function actionUpdate($id) {
           $id = intval($id);
           $model = $this->findModel($id);
-          if ($model->load(Yii::$app->request->post()) && $model->save()) {
+          if($model->load(Yii::$app->request->post()) && $model->save()) {
                return $this->redirect(['index']);
           } else {
                $child = $model->getChildList($id);
                $all = $model->getTreeList();
                $data = $all ;
+               /*求补集*/
                foreach ($all  as $k1 => $v1)
                {
                     foreach ($child as $k2 => $v2)
@@ -93,10 +99,10 @@ class CategoryController extends PublicController {
           }
           $ids = implode($ids, ',');
           $connection = Yii::$app->db;
-          $sql = "delete from shop_category where id in($ids)";
+          $sql = "DELETE FROM shop_category WHERE id IN($ids)";
           $command = $connection->createCommand($sql);
           if ($result = $command->execute()) {
-               echo "<script>alert('删除出错')</script>";
+               $this->jump();
           }
           return $this->redirect(['index']);
      }
@@ -112,8 +118,6 @@ class CategoryController extends PublicController {
           if (($model = Category::findOne($id)) !== null) {
                return $model;
           } else {
-               echo '对象不存在';
-               die;
                throw new NotFoundHttpException('The requested page does not exist.');
           }
      }

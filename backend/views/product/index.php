@@ -13,19 +13,19 @@ $view->params['menu'] = array(
 <div class="list-div" id="listDiv">
 
     <form action="index.php?r=product/add" method="post">
-        <input type="hidden" name="goods_id" value="<?php echo $id; ?>">
+        <input type="hidden" name="goods_id" value="<?=  $id; ?>">
         <table cellpadding="3" cellspacing="1" id="form">
             <tr>
                 <?php
                 $has = array();
                 $attrList = array();
-                foreach ($data as $k1 => $v1) {
+                foreach ($data as $k1 => $v1) :
                      $attrList[$v1['attr_id']][$v1['id']] = $v1['attr_value'];
-                          if (!key_exists($v1['attr_id'], $has)) {
+                          if (!key_exists($v1['attr_id'], $has)) :
                                echo "<th>{$v1['attr_name']}</th>";
                                $has[$v1['attr_id']] = $v1;
-                          }
-                }
+                          endif;
+                endforeach;
                 ?>
                 <th>货号</th>
                 <th colspan="2">库存</th>
@@ -37,55 +37,57 @@ $view->params['menu'] = array(
             }
             ?>
             <!------------------------------------------循环货品列表-------------------------------------------------------------------->
-            <?php  $first = false;   foreach($product as $key => $value){  
-                         if($first){
+            <?php  $first = false;
+            foreach($product as $key => $value):
+                         if($first):
                               $a = '[-]';
-                         }else{
+                         else:
                               $a = '[+]';
                               $first = true;
-                         }
+                         endif;
                  //取出货品属性值
-                 $product_attr = explode(',', $value['attr_value']);  
-                 
+                 $product_attr = explode(',', $value['attr_value']);
                  ?>
             
             <tr>
                 <?php
-                foreach ($has as $k => $v) {
+                foreach ($has as $k => $v) :
                      echo "<td><select name=\"attr_value[$k][]\"]>";
-                     foreach ($attrList[$v['attr_id']] as $k2=>$v2) {
-                          if(in_array($k2, $product_attr))
+                     foreach ($attrList[$v['attr_id']] as $k2=>$v2) :
+                          if(in_array($k2, $product_attr)) :
                                 echo "<option value={$k2} selected='selected'>{$v2}</option>";
-                          else
+                          else:
                                echo "<option value={$k2}>{$v2}</option>";
-                     }
+                          endif;
+                     endforeach;
+
                      echo "</select></td>";
-                }
+                endforeach;
                 ?>
                 <td><input type="text" size="15" class='sn' name="sn[]" value="<?php echo $value['product_sn']; ?>"></th>
                 <td><input type="text" size="5" class='num' name="num[]" value="<?php echo $value['count']; ?>"></th>
                 <td><a href="#" class="add" ><?php echo $a; ?></a></th>
             </tr>
             
-            <?php } ?>
+            <?php endforeach; ?>
             
-            <?php  if(!$product){ ?>
+            <?php  if(!$product): ?>
                         <tr>
                 <?php
-                foreach ($has as $k => $v) {
+                foreach ($has as $k => $v) :
                      echo "<td><select name=\"attr_value[$k][]\"]>";
-                     foreach ($attrList[$v['attr_id']] as $k2=>$v2) {
+                     foreach ($attrList[$v['attr_id']] as $k2=>$v2) :
                                echo "<option value={$k2}>{$v2}</option>";
-                     }
+                     endforeach;
                      echo "</select></td>";
-                }
+                endforeach;
                 ?>
                 <td><input type="text" size="15" class='sn' name="sn[]" ></th>
                 <td><input type="text" size="5" class='num' name="num[]" ></th>
                 <td><a href="#" class="add" >[+]</a></th>
             </tr>
             
-            <?php } ?>
+            <?php endif; ?>
         </table>
         <div class="button-div">
             <input type="submit" value=" 确定 " />

@@ -1,10 +1,16 @@
 <?php
 namespace backend\controllers;
-use backend\controllers\PublicController;
+use backend\controllers\AdminController;
+use backend\models\Admin;
 
-class IndexController extends PublicController
+class IndexController extends AdminController
 {
-
+     public function behaviors()
+     {
+          return [
+              \backend\components\behavior\PermissionBehavior::className(),
+          ];
+     }
      public function actionIndex()
      {
           return $this->renderPartial('index');

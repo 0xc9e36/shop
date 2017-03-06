@@ -9,8 +9,10 @@ return [
             '商品列表' => '/index.php?r=goods/index',
             '商品回收站' => '/index.php?r=goods/trashindex',
         ),
-        '会员管理'  => array(
+        '用户管理'  => array(
+            '管理员'   =>  '/index.php?r=admin/index',
+            '角色管理'   =>  '/index.php?r=role/index',
             '会员等级' => '/index.php?r=memberlevel/index',
-        ),        
+        ),
     ),
 ];

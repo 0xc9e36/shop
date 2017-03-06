@@ -4,7 +4,7 @@ namespace backend\controllers;
 
 use Yii;
 use backend\models\Brand;
-use backend\controllers\PublicController;
+use backend\controllers\AdminController;
 use yii\web\NotFoundHttpException;
 use yii\web\UploadedFile;
 use backend\models\UploadForm;
@@ -12,8 +12,14 @@ use backend\models\UploadForm;
 /**
  * BrandController implements the CRUD actions for Brand model.
  */
-class BrandController extends PublicController
+class BrandController extends AdminController
 {
+    public function behaviors()
+    {
+        return [
+            \backend\components\behavior\PermissionBehavior::className(),
+        ];
+    }
     // public $layout = false;
      /**
      * Lists all Brand models.
@@ -22,7 +28,7 @@ class BrandController extends PublicController
     public function actionIndex()
     {
            
-          $sql = "SELECT *FROM shop_brand";
+          $sql = "SELECT *FROM shop_brand WHERE 1";
           $data = Brand::findBySql( $sql)->asArray()->all();
           return $this->renderPartial('index', [
               'data'     =>   $data
@@ -122,8 +128,8 @@ class BrandController extends PublicController
                  /************/
             }
         }else{
-                 echo "<script>alert('上传错误,请重新再试')；history.go(-1);</script>";
-                 return ;
+            $this->jump('图片上传错误');
+             return ;
         }    
          
     }

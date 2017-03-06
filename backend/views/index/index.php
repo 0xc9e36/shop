@@ -9,7 +9,6 @@ if (window.top != window) {
     window.top.location.href = document.location.href;
 }
 </script>
-
 <frameset rows="76,*" framespacing="0" border="0">
     <frame src="/index.php?r=index/top" id="header-frame" name="header-frame" frameborder="no" scrolling="no">
     <frameset cols="180,*" framespacing="0" border="0" id="frame-body">

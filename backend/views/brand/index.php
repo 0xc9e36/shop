@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<htmllang="en">
     <title>ECSHOP 管理中心 - 添加品牌 </title>
     <meta name="robots" content="noindex, nofollow">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />

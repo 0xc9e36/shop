@@ -2,19 +2,26 @@
 
 namespace backend\controllers;
 
+use backend\models\Goodstype;
 use Yii;
 use backend\models\Goodsattr;
 use yii\data\ActiveDataProvider;
-use backend\controllers\PublicController;
+use backend\controllers\AdminController;
 use yii\web\NotFoundHttpException;
 
 /**
  * GoodsattrController implements the CRUD actions for Goodsattr model.
  */
-class GoodsattrController extends PublicController {
+class GoodsattrController extends AdminController {
 
-     public $enableCsrfValidation = false;
+     public $enableCsrfValidation = false;   //关闭cfrf
 
+     public function behaviors()
+     {
+          return [
+              \backend\components\behavior\PermissionBehavior::className(),
+          ];
+     }
      /**
       * Lists all Goodsattr models.
       * @return mixed
@@ -36,8 +43,9 @@ class GoodsattrController extends PublicController {
       */
      public function actionAdd($typeid) {
           $typeid = intval($typeid);
+          $command = Yii::$app->db->createCommand("SELECT id FROM shop_goodstype where id = {$typeid}");
+          $posts = $command->queryOne();
           $model = new Goodsattr();
-
           if ($model->load(Yii::$app->request->post()) && $model->save()) {
                return $this->redirect(['index', 'id' => $typeid]);
           } else {
@@ -56,11 +64,9 @@ class GoodsattrController extends PublicController {
       * @return mixed
       */
      public function actionUpdate($id, $typeid) {
-
           $id = intval($id);
           $typeid = intval($typeid);
           $model = $this->findModel($id);
-
           if ($model->load(Yii::$app->request->post()) && $model->save()) {
                return $this->redirect(['index', 'id' => $typeid]);
           } else {
@@ -101,7 +107,7 @@ class GoodsattrController extends PublicController {
 
      //添加商品时获取属性接口
      public function actionGetattr() {
-          $id = intval($_POST['id']);
+          $id = intval(Yii::$app->request->post('id'));
           $sql = "SELECT id,attr_type,attr_name,attr_value FROM shop_goodsattr WHERE goodstype_id={$id}";
           $data = Goodsattr::findBySql($sql)->asArray()->all();
           if ($data) {
@@ -118,7 +124,6 @@ class GoodsattrController extends PublicController {
      public function actionEditattr() {
           $id = intval($_POST['id']);
           $goods_id = intval($_POST['goods_id']);
-
           $sql = "SELECT id,attr_type,attr_name,attr_value FROM shop_goodsattr WHERE goodstype_id={$id}";
           $data = Goodsattr::findBySql($sql)->asArray()->all();
           $sql = "SELECT* FROM shop_attrprice WHERE goods_id={$goods_id}";
