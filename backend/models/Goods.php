@@ -81,7 +81,7 @@ class Goods extends \yii\db\ActiveRecord
             'primary_img' => '商品原图',
             'big_img' => '商品大图',
             'medium_img' => '商品中图',
-            'small_img' => '商品小图',
+            'small_img' => '商品缩略图',
             'des' => '商品描述',
             'weight' => '商品重量',
             'count' => '商品库存',

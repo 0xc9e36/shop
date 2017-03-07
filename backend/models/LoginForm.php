@@ -49,7 +49,7 @@ class LoginForm extends  \yii\base\Model
             // 这个我们下面会在UserBackend方法里增加
             if (!$user || !$user->validatePassword($this->password)) {
             // 验证失败，调用addError方法给用户提醒信息
-                $this->addError($attribute, 'Incorrect username or password.');
+                $this->addError($attribute, '用户名或者密码错误.');
             }
         }
     }

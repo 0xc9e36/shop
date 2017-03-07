@@ -45,7 +45,7 @@ class BrandController extends AdminController
     {
         $model = new Brand();
         $model_upload = new UploadForm();
-        if ($model->load(Yii::$app->request->post()) && $model->check()) {
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
 
              return $this->redirect(['index']);
         } else {
@@ -106,7 +106,6 @@ class BrandController extends AdminController
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
-    
     
     /**
      * 图片上传

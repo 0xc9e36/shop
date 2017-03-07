@@ -104,7 +104,6 @@ class GoodsattrController extends AdminController {
                throw new NotFoundHttpException('The requested page does not exist.');
           }
      }
-
      //添加商品时获取属性接口
      public function actionGetattr() {
           $id = intval(Yii::$app->request->post('id'));
@@ -112,27 +111,26 @@ class GoodsattrController extends AdminController {
           $data = Goodsattr::findBySql($sql)->asArray()->all();
           if ($data) {
                return $this->renderPartial('_attr', [
-                           'data' => $data,
+                   'data' => $data,
                ]);
           } else {
                //请求出错
                return false;
           }
      }
-
      //修改商品时获取属性接口
      public function actionEditattr() {
           $id = intval($_POST['id']);
           $goods_id = intval($_POST['goods_id']);
-          $sql = "SELECT id,attr_type,attr_name,attr_value FROM shop_goodsattr WHERE goodstype_id={$id}";
+          $sql = "SELECT id,attr_type,attr_name,attr_value FROM shop_goodsattr WHERE goodstype_id={$id} ORDER BY id";
           $data = Goodsattr::findBySql($sql)->asArray()->all();
-          $sql = "SELECT* FROM shop_attrprice WHERE goods_id={$goods_id}";
+          $sql = "SELECT* FROM shop_attrprice WHERE goods_id={$goods_id} ORDER BY id";
           $attrprice = \backend\models\Attrprice::findBySql($sql)->asArray()->all();
-          
+
           if ($data) {
                return $this->renderPartial('edit', [
-                           'data' => $data,
-                           'attrprice' => $attrprice,
+                   'data' => $data,
+                   'attrprice' => $attrprice,
                ]);
           } else {
                //请求出错

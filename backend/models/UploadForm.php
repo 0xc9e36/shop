@@ -26,8 +26,8 @@ class UploadForm extends Model {
       */
      public function upload() {
           if ($this->validate()) {
-               //$upDir = 'uploads/' . date('Ymd') . '/';
-               $upDir = Yii::$app->params['temp'];
+               $upDir = 'uploads/' . date('Ymd') . '/';
+               //$upDir = Yii::$app->params['temp'];
                if (!is_dir($upDir)) {
                     mkdir($upDir, 0777);
                }

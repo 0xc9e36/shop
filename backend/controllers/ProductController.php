@@ -27,10 +27,10 @@ class ProductController extends AdminController {
       */
      public function actionIndex($id) {
           $connection = Yii::$app->db;
-          $sql = "SELECT a.*,b.attr_type,b.attr_name FROM shop_attrprice AS a INNER JOIN shop_goodsattr AS b  ON a.attr_id=b.id WHERE a.goods_id=$id AND b.attr_type=1";
+          $sql = "SELECT a.*,b.attr_type,b.attr_name FROM shop_attrprice AS a INNER JOIN shop_goodsattr AS b  ON a.attr_id=b.id WHERE a.goods_id=$id AND b.attr_type=1" ;
           $command = $connection->createCommand($sql);
           $data = $command->queryAll();
-          $sql = "SELECT * FROM shop_product WHERE goods_id=$id";
+          $sql = "SELECT * FROM shop_product WHERE goods_id=$id ORDER BY id";
           $command = $connection->createCommand($sql);
           $product = $command->queryAll();
           return $this->render('index', [
@@ -56,12 +56,14 @@ class ProductController extends AdminController {
                $command->execute();
                $ids = array();
                foreach ($_POST['sn'] as $k => $v) {
+                    if($v == "") $v = time();
                     foreach ($_POST['attrid'] as $k1 => $v1) {
                          $ids[] = $_POST['attr_value'][$v1][$k];
                     }
                     sort($ids);
                     $str_ids = implode(',', $ids);
                     $count = $_POST['num'][$k];
+                    if($count == "") break;
                     $sql = "INSERT INTO shop_product VALUES(NULL,'$v',$goods_id,'$str_ids',$count) ";
                     $command = $connection->createCommand($sql);
                     $command->execute();

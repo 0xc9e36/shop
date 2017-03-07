@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use backend\models\Goodsattr;
 use Yii;
 use backend\models\Goods;
 use backend\models\Brand;
@@ -48,12 +49,13 @@ class GoodsController extends AdminController {
      public function actionAdd() {
           $model = new Goods();
           //商品表单
-          if ($model->load(Yii::$app->request->post())) {
-               $request = Yii::$app->request;
-               //商品基本信息验证
+          $request = Yii::$app->request;
+          if ($model->load($request->post())) {
+               //商品基本信息验证合法
                if ($model->validate()) {
                     //自动生成商品货号
                     $model->goods_sn = !empty($model->goods_sn) ? $model->goods_sn : time();
+                    //是否促销
                     if (isset($_POST['is_sale']) && 'ok' === $_POST['is_sale']) {
                          $model->is_discount = 1; //促销
                     }
@@ -64,10 +66,10 @@ class GoodsController extends AdminController {
                          //连接数据库
                          $connection = Yii::$app->db;
                          /*****************************商品相册************************************ */
-                         $simg = !empty($_POST['simg']) ? $_POST['simg'] : array();
-                         $mimg = !empty($_POST['mimg']) ? $_POST['mimg'] : array();
-                         $bimg = !empty($_POST['bimg']) ? $_POST['bimg'] : array();
-                         $pimg = !empty($_POST['pimg']) ? $_POST['pimg'] : array();
+                         $simg = !empty($request->post('simg')) ? $request->post('simg') : array();
+                         $mimg = !empty($request->post('mimg')) ? $request->post('mimg') : array();
+                         $bimg = !empty($request->post('bimg')) ? $request->post('bimg') : array();
+                         $pimg = !empty($request->post('pimg')) ? $request->post('pimg') : array();
                          foreach ($simg as $k => $v) {
                               $small_img = $v;
                               $medium_img = $mimg[$k];
@@ -163,7 +165,8 @@ class GoodsController extends AdminController {
      public function actionUpdate($id) {
           $model = $this->findModel($id);
           //商品表单
-          if ($model->load(Yii::$app->request->post())) {
+          $request = Yii::$app->request;
+          if ($model->load($request->post())) {
                //商品基本信息验证
                if ($model->validate()) {
                     //自动生成商品货号
@@ -174,7 +177,6 @@ class GoodsController extends AdminController {
                     //添加商品
                     if ($model->save()) {
                          $goods_id = $model->getPrimaryKey();
-
                          //连接数据库
                          $connection = Yii::$app->db;
                          /** ***************************商品相册表************************************ */
@@ -320,6 +322,20 @@ class GoodsController extends AdminController {
           }
      }
 
+     //添加商品时获取属性接口
+     public function actionGetattr() {
+          $id = intval(Yii::$app->request->post('id'));
+          $sql = "SELECT id,attr_type,attr_name,attr_value FROM shop_goodsattr WHERE goodstype_id={$id}";
+          $data = Goodsattr::findBySql($sql)->asArray()->all();
+          if ($data) {
+               return $this->renderPartial('_attr', [
+                   'data' => $data,
+               ]);
+          } else {
+               //请求出错
+               return false;
+          }
+     }
      /**
       * 图片上传
       * @return type
@@ -359,10 +375,6 @@ class GoodsController extends AdminController {
           if (Yii::$app->request->isPost) {
                $model_upload->imageFile = UploadedFile::getInstance($model_upload, 'imageFile');
                if ($dir = $model_upload->upload()) {
-//                    $small = $dir['small'];
-//                    $big = $dir['big'];
-//                    $medium = $dir['median'];
-//                    $primary = $dir['primary'];
                     // 文件上传成功
                     return $this->renderPartial('picture', [
                                 'dir' => $dir,

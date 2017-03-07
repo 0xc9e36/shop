@@ -137,9 +137,42 @@
                 <td class="label">商品优惠价格：</td>
                 <td id="priceArea">
                     <div  id = "box" class="box1"> <a class="changeCount">[+]</a><font color="blue" >优惠数量</font><input type="text"  class = "count" name="sale_count[]"   style="width:50px" />   <font color="blue"> 优惠价格</font><input type="text"  class="price" name="sale_prices[]" style="width:50px" /> </div>
-                    <style>
-                    </style>
                 </td>
+                <script>
+                    $('#priceArea').on('click', '.changeCount', function () {
+                        //增加
+                        if ($(this).text() == '[+]')
+                        {
+                            //查找最后id
+                            lastBox = $("#priceArea div").last();
+                            last = lastBox.attr("class");
+                            id = last.substr(3, 1);
+                            flag = true;
+                            //判断所有的输入框是否有值
+                            $("#priceArea").find('input').each(function () {
+                                if ($(this).val() === '') {
+                                    flag = false;
+                                }
+                            });
+                            if (flag)
+                            {
+                                //生成框
+                                newBox = $("#priceArea div").last().clone();
+                                id++;
+                                newClass = 'box' + id;
+                                newBox = newBox.attr('class', newClass);
+                                newBox.find('a').html('[-]');
+                                newBox.find('input').val('');
+                                $("#priceArea").append(newBox);
+                            } else {
+                                alert('输入不能为空');
+                            }
+                        } else {
+                            $(this).parent().remove();
+                            //减少
+                        }
+                    });
+                </script>
             </tr>
 
             <tr>
@@ -195,7 +228,7 @@
             <tr>
                 <td class="label">商品图片：</td>
                 <td>
-                    <div class="upload"><font color='red'>点击上传</div>
+                    <div class="upload"><font color='red'><font size="3px" color="black">点击上传</font></div>
                     <input type="hidden" name="Goods[small_img]" id='small_img'>
                     <input type="hidden" name="Goods[primary_img]" id='primary_img'>
                     <input type="hidden" name="Goods[big_img]" id='big_img'>
@@ -282,22 +315,23 @@
             </tr>
 
         </table>
-
+        <script>
+            changeTab('general-tab', 'general-table');
+        </script>
         <div class="button-div">
             <input type="submit" value=" 确定 " class="button"/>
             <input type="reset" value=" 重置 " class="button" />
         </div>
         <?php ActiveForm::end(); ?>
     </div>
-    <script>changeTab('general-tab', 'general-table');</script>
     <!----表单结束--->
 </div>
 <div id="footer">
     共执行 9 个查询，用时 0.025161 秒，Gzip 已禁用，内存占用 3.258 MB<br />
     版权所有 &copy; 2005-2012 上海商派网络科技有限公司，并保留所有权利。</div>
 </body>
-</html>
 
+</html>
 <?php
     Dialog::begin([
         'id' => 'dialog',
@@ -388,40 +422,6 @@ Dialog::end();
             $('#goods-sales_price').attr('disabled', 'disabled');
             $('#goods-sales_start').attr('disabled', 'disabled');
             $('#goods-sales_end').attr('disabled', 'disabled');
-        }
-    });
-
-    $('#priceArea').on('click', '.changeCount', function () {
-        //增加
-        if ($(this).text() == '[+]')
-        {
-            //查找最后id
-            lastBox = $("#priceArea div").last();
-            last = lastBox.attr("class");
-            id = last.substr(3, 1);
-            flag = true;
-            //判断所有的输入框是否有值
-            $("#priceArea").find('input').each(function () {
-                if ($(this).val() === '') {
-                    flag = false;
-                }
-            });
-            if (flag)
-            {
-                //生成框
-                newBox = $("#priceArea div").last().clone();
-                id++;
-                newClass = 'box' + id;
-                newBox = newBox.attr('class', newClass);
-                newBox.find('a').html('[-]');
-                newBox.find('input').val('');
-                $("#priceArea").append(newBox);
-            } else {
-                alert('输入不能为空');
-            }
-        } else {
-            $(this).parent().remove();
-            //减少
         }
     });
 

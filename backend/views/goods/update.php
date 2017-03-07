@@ -37,7 +37,7 @@
             }
         </script>
     </head>
-    <body onload="init()">
+    <body>
         <iframe  style="display:none" width="1000" height="300" name="iframe"></iframe>
         <h1>
             <span class="action-span"><a href="index.php?r=goods/index">商品列表</a>
@@ -376,14 +376,14 @@
             <input type="submit" value=" 确定 " class="button"/>
             <input type="reset" value=" 重置 " class="button" />
         </div>
+    <script>
+        //初始化tab选项卡
+        changeTab('general-tab', 'general-table');
+    </script>
         <?php ActiveForm::end(); ?>
         </div>
         <!----表单结束--->
         </div>
-        <script>
-            //初始化tab选项卡
-            changeTab('general-tab', 'general-table');
-        </script>
     <div id="footer">
         共执行 9 个查询，用时 0.025161 秒，Gzip 已禁用，内存占用 3.258 MB<br />
         版权所有 &copy; 2005-2012 上海商派网络科技有限公司，并保留所有权利。</div>
