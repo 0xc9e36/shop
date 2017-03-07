@@ -60,9 +60,9 @@
                 <td>
                          <?php
                          if(!empty($model->brand_logo)) :
-                              echo "已有图片,再次<span id='upload'><font color='black' size=\"4px\">上传图片</font></span>将会覆盖" ;
+                              echo "已有图片,再次<span id='upload' onclick=\"remove()\"><font color='black' size=\"4px\">上传图片</font></span>将会覆盖" ;
                          else:
-                              echo "<span id='upload'><font color='black' size=\"4px\">上传图片</font></span>";
+                              echo "<span id='upload' onclick=\"remove()\"><font color='black' size=\"4px\">上传图片</font></span>";
                          endif;
                          ?>
                     <?= $form->field($model, 'brand_logo')->hiddenInput()->label("") ?> 
@@ -139,3 +139,12 @@ Dialog::begin([
 <?php
 Dialog::end();
 ?>
+
+
+<script>
+    function remove(){
+        var file = jQuery('#uploadform-imagefile');
+        file.after(file.clone().val(''));
+        file.remove();
+    }
+</script>

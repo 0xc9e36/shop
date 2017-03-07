@@ -36,5 +36,6 @@ class AppAsset extends AssetBundle {
    //定义按需加载css方法，注意加载顺序在最后  
     public static function addCss($view, $cssfile) {  
         $view->registerCssFile($cssfile, [AppAsset::className(), 'depends' => 'backend\assets\AppAsset']);  
-    }*/
+    }
+    */
 }

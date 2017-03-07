@@ -1,36 +1,24 @@
+<?php
+\backend\assets\AppAsset::register($this);
+?>
+<?php $this->beginPage() ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <title>ECSHOP 管理中心 - 商品列表 </title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <?php $this->head() ?>
         <link href="./Styles/general.css" rel="stylesheet" type="text/css" />
         <link href="./Styles/main.css" rel="stylesheet" type="text/css" />
-        <style>
-            ul{  margin-left: 300px;  font-size: 12px;  }
-            ul li{
-                list-style-type: none;
-                float:left;
-                width:40px;
-                height:30px;
-                text-align:center;
-                line-height:30px;
-                /*border: 1px solid red;*/
-            }
-            .active{
-                font-weight: bold;
-                font-size: 18px;
-            }
-        </style>
     </head>
     <body>
+    <?php $this->beginBody() ?>
         <h1>
             <span class="action-span"><a href="index.php?r=goods/add">添加新商品</a></span>
             <span class="action-span1"><a href="index.php?r=index/index">ECSHOP 管理中心</a></span>
             <span id="search_id" class="action-span1"> - 商品列表 </span>
             <div style="clear:both"></div>
         </h1>
-
-
         <!-- 商品列表 -->
         <form method="post" action="" name="listForm" onsubmit="">
             <div class="list-div" id="listDiv">
@@ -70,9 +58,13 @@
                         'firstPageLabel' => '首页',
                         'lastPageLabel' => '尾页',
                         'maxButtonCount' => 8,  //最大页数
-                        'options' => ['class' => 'm-pagination'],
                     ]); ?>
                 </table>
+                <style>
+                    .pagination{
+                        margin-left: 400px;
+                    }
+                </style>
                 <!-- 分页结束 -->
             </div>
         </form>
@@ -80,5 +72,7 @@
         <div id="footer">
             共执行 7 个查询，用时 0.028849 秒，Gzip 已禁用，内存占用 3.219 MB<br />
             版权所有 &copy; 2005-2012 上海商派网络科技有限公司，并保留所有权利。</div>
+    <?php $this->endBody() ?>
     </body>
 </html>
+<?php $this->endPage() ?>

@@ -1,6 +1,11 @@
+<?php
+\backend\assets\AppAsset::register($this);
+?>
+<?php $this->beginPage() ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+    <?php $this->head() ?>
     <title>ECSHOP 管理中心 - 添加新商品 </title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link href="./Styles/general.css" rel="stylesheet" type="text/css" />
@@ -38,6 +43,7 @@
     </script>
 </head>
 <body>
+<?php $this->beginBody() ?>
     <iframe  style="display:none" width="1000" height="300" name="iframe"></iframe>
     <h1>
         <span class="action-span"><a href="index.php?r=goods/index">商品列表</a>
@@ -55,6 +61,36 @@
     /* @var $this yii\web\View */
     /* @var $model frontend\models\Country */
     /* @var $form yii\widgets\ActiveForm */
+    ?>
+
+    <?php
+    $v = 1;
+    echo yii\bootstrap\Tabs::widget([
+        'items' => [
+            [
+                'label' => '通用信息',
+                'content' => $this->render('base', ['v' => $v]),
+                'active' => true
+            ],
+            [
+                'label' => '详细描述',
+                'content' => '选项卡2',
+                'options' => ['id' => 'myveryownID'],
+            ],
+            [
+                'label' => '其他描述',
+                'content' => '选项卡2',
+            ],
+            [
+                'label' => '商品属性',
+                'content' => '选项卡2',
+            ],
+            [
+                'label' => '商品相册',
+                'content' => '选项卡2',
+            ],
+        ],
+    ]);
     ?>
 
     <?php
@@ -329,9 +365,11 @@
 <div id="footer">
     共执行 9 个查询，用时 0.025161 秒，Gzip 已禁用，内存占用 3.258 MB<br />
     版权所有 &copy; 2005-2012 上海商派网络科技有限公司，并保留所有权利。</div>
+<?php $this->endBody() ?>
 </body>
 
 </html>
+<?php $this->endPage() ?>
 <?php
     Dialog::begin([
         'id' => 'dialog',

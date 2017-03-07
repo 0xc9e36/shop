@@ -58,7 +58,7 @@
             <tr>
                 <td class="label">品牌LOGO:</td>
                 <td>
-                             <span id='upload'><font color='black' size="4px">上传图片</font></span>
+                             <span id='upload' onclick="remove()"><font color='black' size="4px">上传图片</font></span>
                     <?= $form->field($model, 'brand_logo')->hiddenInput()->label("") ?> 
                 </td>
             </tr>            
@@ -99,7 +99,8 @@
 
     <div id="footer">
         共执行 1 个查询，用时 0.018952 秒，Gzip 已禁用，内存占用 2.197 MB<br />
-        版权所有 &copy; 2005-2012 上海商派网络科技有限公司，并保留所有权利。</div>
+        版权所有 &copy; 2005-2012 上海商派网络科技有限公司，并保留所有权利。
+    </div>
 
 </body>
 </html>
@@ -133,4 +134,11 @@ Dialog::begin([
 Dialog::end();
 ?>
 
+<script>
+    function remove(){
+        var file = jQuery('#uploadform-imagefile');
+        file.after(file.clone().val(''));
+        file.remove();
+    }
+</script>
 

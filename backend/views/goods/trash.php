@@ -1,4 +1,7 @@
-<!-- $Id: goods_trash.htm 14216 2008-03-10 02:27:21Z testyang $ -->
+<?php
+\backend\assets\AppAsset::register($this);
+?>
+<?php $this->beginPage() ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -6,25 +9,11 @@
 <meta name="robots" content="noindex, nofollow">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link href="./Styles/general.css" rel="stylesheet" type="text/css" />
+    <?php $this->head() ?>
 <link href="./Styles/main.css" rel="stylesheet" type="text/css" />
-    <style>
-        ul{  margin-left: 300px;  font-size: 12px;  }
-        ul li{
-            list-style-type: none;
-            float:left;
-            width:40px;
-            height:30px;
-            text-align:center;
-            line-height:30px;
-            /*border: 1px solid red;*/
-        }
-        .active{
-            font-weight: bold;
-            font-size: 18px;
-        }
-    </style>
 </head>
 <body>
+<?php $this->beginBody() ?>
 <h1>
     <span class="action-span">
         <a href="index.php?r=goods/index">商品列表</a>
@@ -55,6 +44,7 @@
             </tr>
            <?php endforeach; ?>
         </table>
+        <!-- 分页开始 -->
         <table id="page-table" cellspacing="0">
             <?= \yii\widgets\LinkPager::widget([
                 'pagination' => $pages,
@@ -62,13 +52,20 @@
                 'prevPageLabel' => '上一页',
                 'firstPageLabel' => '首页',
                 'lastPageLabel' => '尾页',
-                'options' => ['class' => 'm-pagination'],
+                'maxButtonCount' => 8,  //最大页数
             ]); ?>
         </table>
+        <style>
+            .pagination{
+                margin-left: 400px;
+            }
+        </style>
     </div>
 </form>
 <div id="footer">
 共执行 7 个查询，用时 0.160230 秒，Gzip 已禁用，内存占用 3.197 MB<br />
 版权所有 &copy; 2005-2012 上海商派网络科技有限公司，并保留所有权利。</div>
+<?php $this->endBody() ?>
 </body>
 </html>
+<?php $this->endPage() ?>
