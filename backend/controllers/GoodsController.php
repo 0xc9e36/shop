@@ -12,6 +12,7 @@ use backend\models\Discount;
 use backend\models\Memberprice;
 use backend\models\Memberlevel;
 use yii\data\ActiveDataProvider;
+use yii\data\Pagination;
 use yii\web\UploadedFile;
 use yii\web\Controller;
 use backend\models\UploadForm;
@@ -34,10 +35,15 @@ class GoodsController extends AdminController {
       * @return mixed
       */
      public function actionIndex() {
-          $sql = "SELECT *FROM shop_goods WHERE is_recycle=0";
-          $data = Goods::findBySql($sql)->asArray()->all();
-          return $this->renderAjax('index', [
-                      'data' => $data
+          $query = Goods::find()->where(['is_recycle' => 0]);
+          $countQuery = clone $query;
+          $pages = new Pagination(['totalCount' => $countQuery->count(), 'pageSize' => '1']);
+          $models = $query->offset($pages->offset)
+              ->limit($pages->limit)
+              ->all();
+          return $this->renderPartial('index', [
+              'model' => $models,
+              'pages' => $pages,
           ]);
      }
 
@@ -399,10 +405,15 @@ class GoodsController extends AdminController {
 
      //商品回收站 首页
      public function actionTrashindex() {
-          $sql = "SELECT *FROM shop_goods WHERE is_recycle=1";
-          $data = Goods::findBySql($sql)->asArray()->all();
+          $query = Goods::find()->where(['is_recycle' => 1]);
+          $countQuery = clone $query;
+          $pages = new Pagination(['totalCount' => $countQuery->count(), 'pageSize' => '1']);
+          $models = $query->offset($pages->offset)
+              ->limit($pages->limit)
+              ->all();
           return $this->renderPartial('trash', [
-                      'data' => $data
+              'model' => $models,
+              'pages' => $pages,
           ]);
      }
 

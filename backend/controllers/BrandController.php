@@ -124,7 +124,7 @@ class BrandController extends AdminController
                echo "<script src=\"/Js/jquery.min.js\"></script>";
                echo "<script>parent.$('#brand-brand_logo').val(\"$url\");</script>";
                echo "<script>parent. $(\"#dialog\" ).dialog( \"close\" );</script>";
-               echo "<script>parent. $(\"#fileupload\" ).reset('fileupload');</script>";
+               //echo "<script>parent. $(\"#fileupload\" ).reset('fileupload');</script>";
                echo "<script>parent.document.getElementById('logoimg').innerHTML=\"$str\";</script>";
             }
         }else{

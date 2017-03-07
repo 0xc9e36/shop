@@ -124,7 +124,7 @@
         </ul>
         <div id="send_info">
             <a href="#"  class="fix-submenu">当前登录用户 : <font size="3" color="black"><?=Yii::$app->user->identity->username; ?></font></a>
-            <a href="/index.php?r=admin/logout" class="fix-submenu" target="_top">退出</a>
+            <a href="/index.php?r=admin/logout" class="fix-submenu" target="_top" onclick="return confirm('您确定要退出吗?')">退出</a>
         </div>
     </div>
 </div>
@@ -133,9 +133,6 @@
         <li class="fix-spacel">&nbsp;</li>
         <li><a href="index.php?r=index/index" target="main-frame">起始页</a></li>
         <li><a href="index.php?r=goods/index" target="main-frame">商品列表</a></li>
-        <li><a href="#" target="main-frame">订单列表</a></li>
-        <li><a href="#" target="main-frame">用户评论</a></li>
-        <li><a href="index.php?r=member/index" target="main-frame">会员列表</a></li>
         <li class="fix-spacer">&nbsp;</li>
     </ul>
     <br class="clear" />

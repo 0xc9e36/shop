@@ -78,3 +78,19 @@ use yii\widgets\ActiveForm;
 
 </div>
 </div>
+<?php
+echo \yii\bootstrap\Tabs::widget([
+    'items' => [
+        [
+            'label' => 'One',
+            'content' => 'Anim pariatur cliche...',
+            'active' => true
+        ],
+        [
+            'label' => 'Two',
+            'content' => 'Anim pariatur cliche...',
+        ]
+    ]
+])
+?>
+

@@ -4,6 +4,7 @@ use backend\controllers\AdminController;
 use Yii;
 use backend\models\Admin;
 use yii\base\Object;
+use yii\bootstrap\Tabs;
 
 class IndexController extends AdminController
 {

@@ -26,8 +26,9 @@ return [
             ],
         ],
         'errorHandler' => [
-            'errorAction' => 'site/error',
+            'errorAction' => 'index/error',
         ],
+
         /*
         'urlManager' => [
             'enablePrettyUrl' => true,
@@ -37,5 +38,6 @@ return [
         ],
         */
     ],
+    'defaultRoute' => 'index/index',    //配置默认路由
     'params' => $params,
 ];

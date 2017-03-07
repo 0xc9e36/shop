@@ -7,6 +7,22 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link href="./Styles/general.css" rel="stylesheet" type="text/css" />
 <link href="./Styles/main.css" rel="stylesheet" type="text/css" />
+    <style>
+        ul{  margin-left: 300px;  font-size: 12px;  }
+        ul li{
+            list-style-type: none;
+            float:left;
+            width:40px;
+            height:30px;
+            text-align:center;
+            line-height:30px;
+            /*border: 1px solid red;*/
+        }
+        .active{
+            font-weight: bold;
+            font-size: 18px;
+        }
+    </style>
 </head>
 <body>
 <h1>
@@ -29,7 +45,7 @@
                 <th>价格</th>
                 <th>操作</th>
             </tr>
-           <?php foreach($data as $k => $v){ ?>
+           <?php foreach($model as $k => $v): ?>
             <tr>
                 <td><?php echo $v['id'] ;?></td>
                 <td><?php echo $v['goods_name'] ;?></td>
@@ -37,7 +53,17 @@
                 <td align="right"><?php echo $v['shop_price'] ;?></td>
                 <td align="center"><a href="index.php?r=goods/trashrenew&id=<?php echo $v['id'] ?>">还原</a> | <a href="index.php?r=goods/trashdelete&id=<?php echo $v['id'] ?>">删除</a></td>
             </tr>
-           <?php } ?>
+           <?php endforeach; ?>
+        </table>
+        <table id="page-table" cellspacing="0">
+            <?= \yii\widgets\LinkPager::widget([
+                'pagination' => $pages,
+                'nextPageLabel' => '下一页',
+                'prevPageLabel' => '上一页',
+                'firstPageLabel' => '首页',
+                'lastPageLabel' => '尾页',
+                'options' => ['class' => 'm-pagination'],
+            ]); ?>
         </table>
     </div>
 </form>

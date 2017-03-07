@@ -5,6 +5,22 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <link href="./Styles/general.css" rel="stylesheet" type="text/css" />
         <link href="./Styles/main.css" rel="stylesheet" type="text/css" />
+        <style>
+            ul{  margin-left: 300px;  font-size: 12px;  }
+            ul li{
+                list-style-type: none;
+                float:left;
+                width:40px;
+                height:30px;
+                text-align:center;
+                line-height:30px;
+                /*border: 1px solid red;*/
+            }
+            .active{
+                font-weight: bold;
+                font-size: 18px;
+            }
+        </style>
     </head>
     <body>
         <h1>
@@ -28,30 +44,34 @@
                         <th>库存</th>
                         <th>操作</th>
                     </tr>
+                    <?php  foreach($model as $key=>$val) : ?>
+                        <tr>
+                            <td align="center"><?php echo $val['id']; ?></td>
+                            <td align="center" class="first-cell"><span><?php echo $val['goods_name']; ?></span></td>
+                            <td align="center"><span onclick=""><?php echo $val['goods_sn']; ?></span></td>
+                            <td align="center"><span><?php echo $val['shop_price']; ?></span></td>
+                            <td align="center"><?php echo $val['is_sale']; ?></td>
+                            <td align="center"><span><?php echo $val['count']; ?></span></td>
+                            <td align="center">
+                                <a href="index.php?r=goods/update&id=<?php echo $val['id']; ?>"  title="查看">编辑</a>
+                                <a href="index.php?r=product/index&id=<?php echo $val['id']; ?>" onclick="" title="回收站">货品列表</a>
+                                <a href="index.php?r=goods/trash&id=<?php echo $val['id']; ?>" onclick="" title="回收站">移入回收站</a></td>
+                        </tr>
+                    <?php    endforeach;?>
 
-                    <?php foreach ($data as $k => $v) { ?>
-                         <tr>
-                             <td align="center"><?php echo $v['id']; ?></td>
-                             <td align="center" class="first-cell"><span><?php echo $v['goods_name']; ?></span></td>
-                             <td align="center"><span onclick=""><?php echo $v['goods_sn']; ?></span></td>
-                             <td align="center"><span><?php echo $v['shop_price']; ?></span></td>
-                             <td align="center"><?php echo $v['is_sale']; ?></td>
-                             <td align="center"><span><?php echo $v['count']; ?></span></td>
-                             <td align="center">
-                                 <a href="index.php?r=goods/update&id=<?php echo $v['id']; ?>"  title="查看">编辑</a>
-                                 <a href="index.php?r=product/index&id=<?php echo $v['id']; ?>" onclick="" title="回收站">货品列表</a>
-                                 <a href="index.php?r=goods/trash&id=<?php echo $v['id']; ?>" onclick="" title="回收站">移入回收站</a></td>
-                         </tr>
-                    <?php } ?>
+
                 </table>
-
                 <!-- 分页开始 -->
                 <table id="page-table" cellspacing="0">
-                    <tr>
-                        <td width="80%">&nbsp;</td>
-                        <td align="center" nowrap="true">
-                        </td>
-                    </tr>
+                    <?= \yii\widgets\LinkPager::widget([
+                        'pagination' => $pages,
+                        'nextPageLabel' => '下一页',
+                        'prevPageLabel' => '上一页',
+                        'firstPageLabel' => '首页',
+                        'lastPageLabel' => '尾页',
+                        'maxButtonCount' => 8,  //最大页数
+                        'options' => ['class' => 'm-pagination'],
+                    ]); ?>
                 </table>
                 <!-- 分页结束 -->
             </div>

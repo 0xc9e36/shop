@@ -11,4 +11,8 @@ class IndexController extends Controller
      {
           return $this->renderPartial('index');
      }
+     public function actionError()
+     {
+          return $this->renderPartial('error');
+     }
 }
