@@ -8,8 +8,14 @@
         <script src="./Js/jquery.min.js"></script>
         <style>
             .help-block{  color:red;  }
-            .imgarea{  margin-left: 15px;  }
+            .imgarea{ margin-left: 15px;  }
             .changeCount{  cursor: pointer ;  }
+            .error-summary {  color: red; }
+            /*初始化*/
+            .detail{  display: none;  }
+            .other{  display: none;  }
+            .attribute{  display: none;  }
+            .image{  display: none;  }
         </style>
         <script>
             window.onload=function()//用window的onload事件，窗体加载完毕的时候
@@ -17,23 +23,21 @@
                 //促销时间初始化
                 $('#goods-sales_start').attr('disabled', 'disabled');
                 $('#goods-sales_end').attr('disabled', 'disabled');
-            }
-            //切换选项卡
-            function changeTab(id, content)
-            {
-                $('#general-table').css('display', 'none');
-                $('#detail-table').css('display', 'none');
-                $('#other-table').css('display', 'none');
-                $('#attribute-table').css('display', 'none');
-                $('#image-table').css('display', 'none');
-                $('#general-tab').attr('class', 'tab-back')
-                $('#detail-tab').attr('class', 'tab-back')
-                $('#other-tab').attr('class', 'tab-back')
-                $('#attribute-tab').attr('class', 'tab-back')
-                $('#image-tab').attr('class', 'tab-back')
 
-                $('#' + content).css('display', 'block');
-                $("#" + id).attr('class', 'tab-front');
+                title = document.getElementById('tabbar-div').getElementsByTagName('span');
+                content = document.getElementById('tabbody-div').getElementsByTagName('table');
+                if(title.length != content.length) return ;
+                for(var i = 0; i < title.length; i++){
+                    title[i].val = i;
+                    title[i].onclick = function(){
+                        for(var j = 0; j < title.length; j++){
+                            title[j].className = 'tab-back';
+                            content[j].style.display = 'none';
+                        }
+                        this.className = 'tab-front';
+                        content[this.val].style.display = 'block';
+                    }
+                }
             }
         </script>
     </head>
@@ -67,11 +71,11 @@
             <!-----选项列表--->
             <div id="tabbar-div">
                 <p>
-                    <span class="tab-back" id="general-tab" onclick="changeTab(this.id, 'general-table')">通用信息</span>
-                    <span class="tab-back" id="detail-tab" onclick="changeTab(this.id, 'detail-table')">详细描述</span>
-                    <span class="tab-back" id="other-tab" onclick="changeTab(this.id, 'other-table')">其他描述</span>
-                    <span class="tab-back" id="attribute-tab" onclick="changeTab(this.id, 'attribute-table')">商品属性</span>
-                    <span class="tab-back" id="image-tab" onclick="changeTab(this.id, 'image-table')">商品相册</span>
+                    <span class="tab-front" id="general-tab" >通用信息</span>
+                    <span class="tab-back" id="detail-tab" >详细描述</span>
+                    <span class="tab-back" id="other-tab" >其他描述</span>
+                    <span class="tab-back" id="attribute-tab" >商品属性</span>
+                    <span class="tab-back" id="image-tab" >商品相册</span>
                 </p>
             </div>
             <!-----商品表单------>
@@ -236,7 +240,7 @@
     </table>
 
     <!----详细描述---->
-    <table width="90%" id="detail-table" align="center">
+    <table width="90%" id="detail-table" class="detail" align="center">
         <tr>
             <td>
                 <?= $form->field($model, 'des')->textarea(['rows' => 20, 'cols' => 100])->label("") ?>
@@ -244,7 +248,7 @@
         </tr>
     </table>
     <!--其他信息-->
-    <table width="90%" id="other-table" align="center">
+    <table width="90%" id="other-table" class="other" align="center">
         <tr>
             <td class="label">商品库存量 : </td>
             <td>
@@ -277,7 +281,7 @@
     </table>
 
     <!--商品属性-->
-    <table width="90%" align="center" id="attribute-table">
+    <table width="90%" align="center"  class="attribute" id="attribute-table">
         <tr id="first-line">
             <td class="label">商品类型：</td>
             <td>
@@ -347,7 +351,7 @@
 </table>
 
     <!----商品相册-->
-    <table width="90%" id="image-table" align="center">
+    <table width="90%" id="image-table" class="image" align="center">
         <tr>
             <td>
                 <?php foreach ($imageList as $k => $v) { ?>
@@ -376,10 +380,6 @@
             <input type="submit" value=" 确定 " class="button"/>
             <input type="reset" value=" 重置 " class="button" />
         </div>
-    <script>
-        //初始化tab选项卡
-        changeTab('general-tab', 'general-table');
-    </script>
         <?php ActiveForm::end(); ?>
         </div>
         <!----表单结束--->
