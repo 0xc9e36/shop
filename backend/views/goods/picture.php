@@ -1,5 +1,4 @@
 <div id='small'><?php $str = "<img src={$dir['small']} />";  echo $str; ?></div>
-
 <div id='s'><?php echo $dir['small']; ?></div>
 <div id='medium'><?php echo $dir['median']; ?></div>
 <div id='big'><?php echo $dir['big']; ?></div>

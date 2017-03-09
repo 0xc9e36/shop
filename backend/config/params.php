@@ -3,6 +3,7 @@ return [
     'adminEmail' => 'admin@example.com',
     'temp'  => 'temp/',   //临时文件目录
     'upload'   => 'uploads/',    //上传文件目录
+    'pagesize'   => 8,    //每页显示条数
     'menu'  =>  array(
         '商品管理'  => array(
             '商品分类' => '/index.php?r=category/index',

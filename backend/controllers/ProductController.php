@@ -51,23 +51,24 @@ class ProductController extends AdminController {
           if (Yii::$app->request->isPost) {
                $goods_id = Yii::$app->request->post('goods_id');
                //删除之前的货品
-               $sql = "DELETE FROM shop_product WHERE goods_id=$goods_id ";
-               $command = $connection->createCommand($sql);
-               $command->execute();
-               $ids = array();
+               Yii::$app->db->createCommand()->delete('shop_product', "goods_id=$goods_id")->execute();
+               $ids = [];
                foreach ($_POST['sn'] as $k => $v) {
                     if($v == "") $v = time();
-                    foreach ($_POST['attrid'] as $k1 => $v1) {
-                         $ids[] = $_POST['attr_value'][$v1][$k];
+                    foreach (Yii::$app->request->post('attrid') as $k1 => $v1) {
+                         $ids[] = Yii::$app->request->post('attr_value')[$v1][$k];
                     }
                     sort($ids);
                     $str_ids = implode(',', $ids);
-                    $count = $_POST['num'][$k];
+                    $count = Yii::$app->request->post('num')[$k];
                     if($count == "") break;
-                    $sql = "INSERT INTO shop_product VALUES(NULL,'$v',$goods_id,'$str_ids',$count) ";
-                    $command = $connection->createCommand($sql);
-                    $command->execute();
-                    $ids = array();
+                    Yii::$app->db->createCommand()->insert('shop_product', [
+                        'product_sn' => $v,
+                        'goods_id' => $goods_id,
+                         'attr_value' => $str_ids,
+                         'count' => $count
+                    ])->execute();
+                    $ids = [];
                }
                return $this->redirect('index.php?r=goods/index');
           }

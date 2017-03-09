@@ -1,9 +1,7 @@
-
 <?php
-
 foreach ($data as $k => $v) {
      echo "<tr>";
-//唯一类型
+     //唯一类型
      if ($v['attr_type'] == 0) {
           echo "<td class=\"label\">{$v['attr_name']}：</td>";
           if ($v['attr_value'] === '') {

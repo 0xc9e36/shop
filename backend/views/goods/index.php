@@ -57,7 +57,6 @@
                         'prevPageLabel' => '上一页',
                         'firstPageLabel' => '首页',
                         'lastPageLabel' => '尾页',
-                        'maxButtonCount' => 8,  //最大页数
                     ]); ?>
                 </table>
                 <style>

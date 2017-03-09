@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use backend\models\Attrprice;
 use backend\models\Goodstype;
 use Yii;
 use backend\models\Goodsattr;
@@ -107,8 +108,8 @@ class GoodsattrController extends AdminController {
      //添加商品时获取属性接口
      public function actionGetattr() {
           $id = intval(Yii::$app->request->post('id'));
-          $sql = "SELECT id,attr_type,attr_name,attr_value FROM shop_goodsattr WHERE goodstype_id={$id}";
-          $data = Goodsattr::findBySql($sql)->asArray()->all();
+          $cond = ['goodstype_id'  => $id];
+          $data = Goodsattr::find()->where($cond)->orderBy('id')->all();
           if ($data) {
                return $this->renderPartial('_attr', [
                    'data' => $data,
@@ -120,13 +121,12 @@ class GoodsattrController extends AdminController {
      }
      //修改商品时获取属性接口
      public function actionEditattr() {
-          $id = intval($_POST['id']);
-          $goods_id = intval($_POST['goods_id']);
-          $sql = "SELECT id,attr_type,attr_name,attr_value FROM shop_goodsattr WHERE goodstype_id={$id} ORDER BY id";
-          $data = Goodsattr::findBySql($sql)->asArray()->all();
-          $sql = "SELECT* FROM shop_attrprice WHERE goods_id={$goods_id} ORDER BY id";
-          $attrprice = \backend\models\Attrprice::findBySql($sql)->asArray()->all();
-
+          $id = intval(Yii::$app->request->post('id'));
+          $goods_id = intval(Yii::$app->request->post('goods_id'));
+          $cond = ['goodstype_id'  => $id];
+          $data = Goodsattr::find()->where($cond)->orderBy('id')->all();
+          $co = ['goods_id'  => $goods_id];
+          $attrprice = Attrprice::find()->where($co)->orderBy('id')->all();
           if ($data) {
                return $this->renderPartial('edit', [
                    'data' => $data,

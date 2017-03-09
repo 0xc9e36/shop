@@ -53,7 +53,7 @@ class Goods extends \yii\db\ActiveRecord
             [['goodscat_id', 'goods_brand', 'goodstype_id', 'level_mark', 'is_discount', 'count', 'warn_count', 'is_sale', 'post_free', 'is_delete', 'is_recycle'], 'integer'],
             [['shop_price', 'mark_price', 'sales_price'], 'number'],
             [['sales_start', 'sales_end'], 'safe'],
-            [['des'], 'string'],
+            [['des', 'goods_sn'], 'string'],
             [['goods_name'], 'string', 'max' => 20],
             [['primary_img', 'big_img', 'medium_img', 'small_img'], 'string', 'max' => 50],
             [['weight'], 'string']

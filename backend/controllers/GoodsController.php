@@ -37,7 +37,7 @@ class GoodsController extends AdminController {
      public function actionIndex() {
           $query = Goods::find()->where(['is_recycle' => 0]);
           $countQuery = clone $query;
-          $pages = new Pagination(['totalCount' => $countQuery->count(), 'pageSize' => '1']);
+          $pages = new Pagination(['totalCount' => $countQuery->count(), 'pageSize' => Yii::$app->params['pagesize']]);
           $models = $query->offset($pages->offset)
               ->limit($pages->limit)
               ->all();
@@ -59,12 +59,10 @@ class GoodsController extends AdminController {
           if ($model->load($request->post())) {
                //商品基本信息验证合法
                if ($model->validate()) {
-                    //自动生成商品货号
-                    $model->goods_sn = !empty($model->goods_sn) ? $model->goods_sn : time();
+                    //如果没有商品货号自动生成
+                    $model->goods_sn = !empty($model->goods_sn) ? $model->goods_sn : (string)time();
                     //是否促销
-                    if (isset($_POST['is_sale']) && 'ok' === $_POST['is_sale']) {
-                         $model->is_discount = 1; //促销
-                    }
+                    if (isset($_POST['is_sale']) && 'ok' === $_POST['is_sale']) $model->is_discount = 1; //促销
                     //添加商品
                     if ($model->save()) {
                          //商品id
@@ -77,33 +75,40 @@ class GoodsController extends AdminController {
                          $bimg = !empty($request->post('bimg')) ? $request->post('bimg') : array();
                          $pimg = !empty($request->post('pimg')) ? $request->post('pimg') : array();
                          foreach ($simg as $k => $v) {
-                              $small_img = $v;
-                              $medium_img = $mimg[$k];
-                              $big_img = $bimg[$k];
-                              $primary_img = $pimg[$k];
-                              $sql = "INSERT INTO shop_goodsimg  VALUES(NULL,'$goods_id','$primary_img','$big_img','$medium_img','$small_img')";
-                              $command = $connection->createCommand($sql);
-                              $command->execute();
+                              Yii::$app->db->createCommand()->insert('shop_goodsimg', [
+                                  'id'           =>   null,
+                                  'goods_id'     =>   $goods_id,
+                                  'primary_img'  =>   $request->post('pimg')[$k],
+                                  'big_img'      =>   $request->post('bimg')[$k],
+                                  'medium_img'   =>   $request->post('mimg')[$k],
+                                  'small_img'    =>   $v,
+
+                              ])->execute();
                          }
                          /**************************商品折扣表***************************************** */
+
                          $counts = !empty($_POST['sale_count'][0]) ? $_POST['sale_count'] : array();
                          $prices = !empty($_POST['sale_prices'][0]) ? $_POST['sale_prices'] : array();
 
                          foreach ($counts as $k => $v) {
-                              $count = $v;
-                              $price = $prices[$k];
-                              $sql = "INSERT INTO shop_discount VALUES(NULL,$goods_id,$count,$price)";
-                              $command = $connection->createCommand($sql);
-                              $command->execute();
+                              Yii::$app->db->createCommand()->insert('shop_discount', [
+                                  'id'           =>   null,
+                                  'goods_id'     =>   $goods_id,
+                                  'count'        =>   $v,
+                                  'price'       =>   $prices[$k]
+
+                              ])->execute();
                          }
 
                          /****************************会员级别价格***************************** */
-                         foreach ($_POST['id'] as $k => $v) {
-                              $member_level = $v;
-                              $member_price = $_POST['price'][$k];
-                              $sql = "INSERT INTO shop_memberprice VALUES(NULL,$goods_id,$member_level,$member_price)";
-                              $command = $connection->createCommand($sql);
-                              $command->execute();
+                         foreach ($request->post('id') as $k => $v) {
+                              Yii::$app->db->createCommand()->insert('shop_memberprice', [
+                                  'id'           =>   null,
+                                  'goods_id'     =>   $goods_id,
+                                  'member_level' =>   $v,
+                                  'member_price' =>   $request->post('price')[$k]
+
+                              ])->execute();
                          }
                          /*******************************商品属性价格表************************************* */
                          $attr_value = !empty($_POST['radio_attr_value']) ? $_POST['radio_attr_value'] : array();
@@ -126,7 +131,9 @@ class GoodsController extends AdminController {
                               }
                          }
                     } else {
-                         $this->jump('添加商品出了点麻烦~ 错误信息 : '. $model->getErrors());
+                         var_dump($model->getErrors());
+                         die;
+                         $this->jump('添加商品出了点麻烦~ 错误信息 : ' );
                     }
                     return $this->redirect(['index']);
                }
@@ -176,7 +183,7 @@ class GoodsController extends AdminController {
                //商品基本信息验证
                if ($model->validate()) {
                     //自动生成商品货号
-                    $model->goods_sn = !empty($model->goods_sn) ? $model->goods_sn : time();
+                    $model->goods_sn = !empty($model->goods_sn) ? $model->goods_sn : (string)time();
                     if (isset($_POST['is_sale']) && 'ok' === $_POST['is_sale']) {
                          $model->is_discount = 1;
                     }
@@ -185,43 +192,44 @@ class GoodsController extends AdminController {
                          $goods_id = $model->getPrimaryKey();
                          //连接数据库
                          $connection = Yii::$app->db;
-                         /** ***************************商品相册表************************************ */
-                         $simg = !empty($_POST['simg']) ? $_POST['simg'] : array();
-                         $mimg = !empty($_POST['mimg']) ? $_POST['mimg'] : array();
-                         $bimg = !empty($_POST['bimg']) ? $_POST['bimg'] : array();
-                         $pimg = !empty($_POST['pimg']) ? $_POST['pimg'] : array();
-                         //先删除该商品所有相册
-                         $sql = "DELETE FROM shop_goodsimg WHERE goods_id={$goods_id}";
-                         $command = $connection->createCommand($sql);
-                         $command->execute();
+                         /** ***************************商品相册表*************************************/
+                         $simg = !is_null($request->post('simg')) ? $request->post('simg') : array();
+                         $mimg = !is_null($request->post('mimg')) ? $request->post('mimg') : array();
+                         $bimg = !is_null($request->post('bimg')) ? $request->post('bimg') : array();
+                         $pimg = !is_null($request->post('pimg')) ? $request->post('pimg') : array();
+                         //先清空该商品相册表
+                         Yii::$app->db->createCommand()->delete('shop_goodsimg', "goods_id = $goods_id")->execute();
+                         //循环插入
                          foreach ($simg as $k => $v) {
-                              $small_img = $v;
-                              $medium_img = $mimg[$k];
-                              $big_img = $bimg[$k];
-                              $primary_img = $pimg[$k];
-                              $sql = "INSERT INTO shop_goodsimg  VALUES(NULL,'$goods_id','$primary_img','$big_img','$medium_img','$small_img')";
-                              $command = $connection->createCommand($sql);
-                              $command->execute();
+                              Yii::$app->db->createCommand()->insert('shop_goodsimg', [
+                                  'id'           =>   null,
+                                  'goods_id'     =>   $goods_id,
+                                  'primary_img'  =>   $request->post('pimg')[$k],
+                                  'big_img'      =>   $request->post('bimg')[$k],
+                                  'medium_img'   =>   $request->post('mimg')[$k],
+                                  'small_img'    =>   $v,
+
+                              ])->execute();
                          }
                          /***************************商品折扣表***************************************** */
                          //先删除该商品所有折扣
-                         $sql = "DELETE FROM shop_discount WHERE goods_id=$goods_id";
-                         $command = $connection->createCommand($sql);
-                         $command->execute();
+                         Yii::$app->db->createCommand()->delete('shop_discount', "goods_id = $goods_id")->execute();
                          $counts = !empty($_POST['sale_count'][0]) ? $_POST['sale_count'] : array();
                          $prices = !empty($_POST['sale_prices'][0]) ? $_POST['sale_prices'] : array();
                          foreach ($counts as $k => $v) {
-                              $count = $v;
-                              $price = $prices[$k];
-                              $sql = "INSERT INTO shop_discount VALUES(NULL,$goods_id,$count,$price)";
-                              $command = $connection->createCommand($sql);
-                              $command->execute();
+                              Yii::$app->db->createCommand()->insert('shop_discount', [
+                                  'id'           =>   null,
+                                  'goods_id'     =>   $goods_id,
+                                  'count'        =>   $v,
+                                   'price'       =>   $prices[$k]
+
+                              ])->execute();
                          }
 
                          /********************会员级别价格***************************** */
-                         foreach ($_POST['id'] as $k => $v) {
+                         foreach ($request->post('id') as $k => $v) {
                               $member_level = $v;
-                              $member_price = $_POST['price'][$k];
+                              $member_price = $request->post('price')[$k];
                               $sql = "UPDATE shop_memberprice SET member_price=$member_price WHERE (goods_id=$goods_id AND member_level=$member_level)";
                               $command = $connection->createCommand($sql);
                               $command->execute();
@@ -229,10 +237,7 @@ class GoodsController extends AdminController {
                          /*********************************商品属性价格表************************************* */
                          $attr_value = !empty($_POST['radio_attr_value']) ? $_POST['radio_attr_value'] : array();
                          $attr_price = !empty($_POST['radio_attr_price']) ? $_POST['radio_attr_price'] : array();
-
-                         $sql = "DELETE FROM shop_attrprice WHERE goods_id=$goods_id";
-                         $command = $connection->createCommand($sql);
-                         $command->execute();
+                         Yii::$app->db->createCommand()->delete('shop_attrprice', "goods_id = $goods_id")->execute();
                          foreach ($attr_value as $k => $v) {
                               if (array_key_exists($k, $attr_price)) {
                                    foreach ($v as $k1 => $v1) {
@@ -251,11 +256,14 @@ class GoodsController extends AdminController {
                               }
                          }
                     } else {
-                         $this->jump('修改商品出了点麻烦~'.$model->getErrors());
+                         var_dump($model->getErrors());
+                         die;
+                         $this->jump('修改商品出了点麻烦~');
                     }
                     return $this->redirect(['index']);
                }
           } else {
+               $id = intval($id);
                //商品分类列表
                $cat_model = new Category();
                $cat_list = $cat_model->getTreeList();
@@ -279,7 +287,7 @@ class GoodsController extends AdminController {
                $goodstype_list = Goodstype::findBySql($sql)->asArray()->all();
 
                //商品优惠价格表
-               $sql = "SELECT * FROM shop_discount WHERE goods_id={$id}";
+               $sql = "SELECT * FROM shop_discount WHERE goods_id={$id} ORDER BY id";
                $discountList = Discount::findBySql($sql)->asArray()->all();
 
                //商品相册
@@ -328,20 +336,6 @@ class GoodsController extends AdminController {
           }
      }
 
-     //添加商品时获取属性接口
-     public function actionGetattr() {
-          $id = intval(Yii::$app->request->post('id'));
-          $sql = "SELECT id,attr_type,attr_name,attr_value FROM shop_goodsattr WHERE goodstype_id={$id}";
-          $data = Goodsattr::findBySql($sql)->asArray()->all();
-          if ($data) {
-               return $this->renderPartial('_attr', [
-                   'data' => $data,
-               ]);
-          } else {
-               //请求出错
-               return false;
-          }
-     }
      /**
       * 图片上传
       * @return type
@@ -372,7 +366,7 @@ class GoodsController extends AdminController {
      }
 
      /**
-      * 图片上传
+      * 相册上传
       * @return type
       */
      public function actionPicture() {
@@ -407,7 +401,7 @@ class GoodsController extends AdminController {
      public function actionTrashindex() {
           $query = Goods::find()->where(['is_recycle' => 1]);
           $countQuery = clone $query;
-          $pages = new Pagination(['totalCount' => $countQuery->count(), 'pageSize' => '1']);
+          $pages = new Pagination(['totalCount' => $countQuery->count(), 'pageSize' => Yii::$app->params['pagesize']]);
           $models = $query->offset($pages->offset)
               ->limit($pages->limit)
               ->all();
@@ -428,11 +422,8 @@ class GoodsController extends AdminController {
      public function actionTrashrenew($id) {
           $model = $this->findModel($id);
           $model->is_recycle = 0;
-          if($model->save()){
-               return $this->redirect(['trashindex']);
-          }else{
-               var_dump($model->getErrors());
-          }
+          $model->save();
+          return $this->redirect(['trashindex']);
      }
 
 }
