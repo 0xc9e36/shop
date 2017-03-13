@@ -6,6 +6,7 @@ use yii\web\Controller;
 
 class CartController extends Controller
 {
+    public $layout = "order_style.php";
      //关闭Csrf
      public $enableCsrfValidation = false;
      
@@ -16,7 +17,7 @@ class CartController extends Controller
      
      public function actionCheckorder()
      {
-          return $this->renderPartial('checkorder');
+          return $this->render('checkorder');
      }  
      
      public function actionMycart()

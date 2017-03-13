@@ -13,7 +13,7 @@ return [
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
         'user' => [
-            'identityClass' => 'common\models\User',
+            'identityClass' => 'frontend\models\User',
             'enableAutoLogin' => true,
         ],
         'log' => [
@@ -26,7 +26,7 @@ return [
             ],
         ],
         'errorHandler' => [
-            'errorAction' => 'index/error',
+            'errorAction' => 'public/error',
         ],
 
         /*

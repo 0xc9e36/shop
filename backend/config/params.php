@@ -15,6 +15,7 @@ return [
         '用户管理'  => array(
             '管理员'   =>  '/index.php?r=admin/index',
             '角色管理'   =>  '/index.php?r=role/index',
+            '会员列表' => '/index.php?r=member/index',
             '会员等级' => '/index.php?r=memberlevel/index',
         ),
     ),

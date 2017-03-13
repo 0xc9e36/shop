@@ -1,18 +1,15 @@
 <?php
 namespace frontend\controllers;
 
-//use Yii;
 use yii\web\Controller;
 
-class IndexController extends Controller
+class IndexController extends PublicController
 {
-     
+     public $layout = "home_style.php";
      public function actionIndex()
      {
-          return $this->renderPartial('index');
-     }
-     public function actionError()
-     {
-          return $this->renderPartial('error');
+         //获取分类信息
+
+          return $this->render('index');
      }
 }

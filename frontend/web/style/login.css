@@ -42,7 +42,7 @@
 .regist .login_form{width: 630px; border: 0; }
 .regist .login_btn{ background: url("../images/regist_img.png") 0 0 no-repeat;}
 .regist .login_btn:hover{background-position: 0 -34px;}
-.regist .login_form p{color: #aaa; margin-left: 60px; margin-top: 5px;}
+.regist .login_form p{color: red; margin-left: 60px; margin-top: 5px;}
 .mobile{width:260px; padding: 10px 20px; border: 1px solid #e5e5e5;}
 
 .mobile h3{width: 260px;  height: 85px; padding-bottom: 25px; background: url("../images/reg_mobile.png") center center no-repeat;  text-indent: -9999px; border-bottom: 2px solid #ededed;}
