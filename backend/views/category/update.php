@@ -1,5 +1,8 @@
-<?php          
-use yii;
+<?php
+use yii\helpers\Html;
+use yii\helpers\ArrayHelper;
+use yii\widgets\ActiveForm;
+
 $view=Yii::$app->getView();
 $view->params['title']='商品分类';
 $view->params['menu']= array(
@@ -8,14 +11,6 @@ $view->params['menu']= array(
 );
 ?>
 <div class="main-div">
- <?php
-
-use yii\helpers\Html;
-use yii\helpers\ArrayHelper;
-use yii\widgets\ActiveForm;
-
-?>
-     <!--------------->
 <div class="country-form">
 
     <?php $form = ActiveForm::begin([
@@ -35,7 +30,7 @@ use yii\widgets\ActiveForm;
                     <select name="Category[pid]">
                         <option value="0" <?php if($pid_info==0) echo "selected='selected'" ?> >顶级分类</option>
                         <?php foreach($data as $k => $v): ?>
-                        <option value="<?php echo $v['id']; ?>"   <?php if($v['id']==$pid_info['id']) echo "selected='selected'" ?>  ><?php echo str_repeat("&nbsp;&nbsp;", $v['deep']).Html::encode($v['cat_name']); ?></option>
+                        <option value="<?= $v['id']; ?>"   <?php if($v['id']==$pid_info['id']) echo "selected='selected'" ?>  ><?= str_repeat("&nbsp;&nbsp;", $v['deep']).Html::encode($v['cat_name']); ?></option>
                         <?php endforeach; ?>
                     </select>
                 </td>        

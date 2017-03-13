@@ -1,8 +1,5 @@
 <?php
-
-use yii;
 use yii\helpers\Html;
-
 $view = Yii::$app->getView();
 $view->params['title'] = '货品列表';
 $view->params['menu'] = array(
@@ -10,6 +7,8 @@ $view->params['menu'] = array(
     'url' => 'index.php?r=goods/index',
 );
 ?>
+<?php if($data) : ?>
+
 <div class="list-div" id="listDiv">
 
     <form action="index.php?r=product/add" method="post">
@@ -95,6 +94,7 @@ $view->params['menu'] = array(
         </div>
     </form>
 </div>
+<?php endif; ?>
 <script>
      $('#form').on('click', '.add', function () {
          if ($(this).html() == '[+]') {

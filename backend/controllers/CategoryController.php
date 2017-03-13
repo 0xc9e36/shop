@@ -11,7 +11,6 @@ use yii\helpers\MyHelper;
 
 class CategoryController extends AdminController {
 
-     //public $layout = false;     false为不使用布局
      public function behaviors()
      {
           return [
@@ -99,11 +98,12 @@ class CategoryController extends AdminController {
           }
           $ids = implode($ids, ',');
           $connection = Yii::$app->db;
+          //删除分类以及子分类
           $sql = "DELETE FROM shop_category WHERE id IN($ids)";
-          $command = $connection->createCommand($sql);
-          if ($result = $command->execute()) {
-               $this->jump();
-          }
+          $command = $connection->createCommand($sql)->execute();
+          //商品移动到回收站
+          $sql = "UPDATE shop_goods SET is_recycle = 1 WHERE goodscat_id IN($ids)";
+          $command = $connection->createCommand($sql)->execute();
           return $this->redirect(['index']);
      }
 

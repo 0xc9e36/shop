@@ -2,9 +2,9 @@
 
 namespace backend\controllers;
 
+use Yii;
 use backend\models\Attrprice;
 use backend\models\Goodstype;
-use Yii;
 use backend\models\Goodsattr;
 use yii\data\ActiveDataProvider;
 use backend\controllers\AdminController;
@@ -27,8 +27,8 @@ class GoodsattrController extends AdminController {
       * Lists all Goodsattr models.
       * @return mixed
       */
-     public function actionIndex($id) {
-          $id = intval($id);
+     public function actionIndex() {
+          $id = intval(Yii::$app->request->get('id'));
           $sql = "SELECT attr.* ,type.goodstype_name FROM shop_goodsattr AS attr LEFT JOIN shop_goodstype AS type ON attr.goodstype_id=type.id WHERE type.id={$id}";
           $data = Goodsattr::findBySql($sql)->asArray()->all();
           return $this->render('index', [
@@ -42,8 +42,8 @@ class GoodsattrController extends AdminController {
       * If creation is successful, the browser will be redirected to the 'view' page.
       * @return mixed
       */
-     public function actionAdd($typeid) {
-          $typeid = intval($typeid);
+     public function actionAdd() {
+          $typeid = intval(Yii::$app->request->get('typeid'));
           $command = Yii::$app->db->createCommand("SELECT id FROM shop_goodstype where id = {$typeid}");
           $posts = $command->queryOne();
           $model = new Goodsattr();
@@ -64,9 +64,9 @@ class GoodsattrController extends AdminController {
       * @param integer $id
       * @return mixed
       */
-     public function actionUpdate($id, $typeid) {
+     public function actionUpdate($id) {
           $id = intval($id);
-          $typeid = intval($typeid);
+          $typeid = intval(Yii::$app->request->get('typeid'));
           $model = $this->findModel($id);
           if ($model->load(Yii::$app->request->post()) && $model->save()) {
                return $this->redirect(['index', 'id' => $typeid]);
@@ -84,9 +84,9 @@ class GoodsattrController extends AdminController {
       * @param integer $id
       * @return mixed
       */
-     public function actionDelete($id, $typeid) {
+     public function actionDelete($id) {
           $id = intval($id);
-          $typeid = intval($typeid);
+          $typeid = intval(Yii::$app->request->post('typeid'));
           $this->findModel($id)->delete();
           return $this->redirect(['index', 'id' => $typeid]);
      }

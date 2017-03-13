@@ -8,7 +8,7 @@
 //echo "</pre>";
 //die;
 foreach ($data as $k => $v) {
-//唯一类型
+    //唯一类型
      if ($v['attr_type'] == 0) {
           //取出唯一值属性
           $value = NULL;   //初始化
@@ -39,11 +39,9 @@ foreach ($data as $k => $v) {
      } else {
           $has = array();
           foreach ($attrprice as $k2 => $v2) {
-               
                if($v2['attr_id']!=$v['id']){
                     continue;
                }
-               
                if(!in_array($v['id'], $has)){
                     $has[] = $v['id'];
                     $a = '[+]';

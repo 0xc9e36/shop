@@ -25,8 +25,9 @@ class ProductController extends AdminController {
       * Lists all Product models.
       * @return mixed
       */
-     public function actionIndex($id) {
+     public function actionIndex() {
           $connection = Yii::$app->db;
+          $id = intval(Yii::$app->request->get('id'));
           $sql = "SELECT a.*,b.attr_type,b.attr_name FROM shop_attrprice AS a INNER JOIN shop_goodsattr AS b  ON a.attr_id=b.id WHERE a.goods_id=$id AND b.attr_type=1" ;
           $command = $connection->createCommand($sql);
           $data = $command->queryAll();

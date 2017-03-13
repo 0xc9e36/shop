@@ -1,5 +1,4 @@
-<?php          
-use yii;
+<?php
 use yii\helpers\Html;
 
 $view=Yii::$app->getView();
@@ -26,7 +25,7 @@ $view->params['menu']= array(
                     <img src="Images/menu_minus.gif" width="9" height="9" border="0" style="margin-left:0em" />
                <span><a href="javascript:void(0)"><?php echo str_repeat("&nbsp;&nbsp;&nbsp;&nbsp;", $v['deep']).Html::encode($v['cat_name']) ; ?></a></span>
                 </td>
-                 <td width="15%"><?php echo $v['unit']; ?></td>
+                 <td width="15%"><?=Html::encode($v['unit']); ?></td>
                  <td width="15%">
                      <?php if($v['is_show']==1): ?>
                      <img src="/Images/yes.gif" />
@@ -34,10 +33,10 @@ $view->params['menu']= array(
                      <img src="/Images/no.gif" />
                      <?php endif; ?>
                  </td>
-                 <td width="15%"><?php echo $v['price_area']; ?></td>
+                 <td width="15%"><?= $v['price_area']; ?></td>
                 <td width="20%" align="center">
-                    <a href="/index.php?r=category/update&id=<?php echo $v['id']; ?>">编辑</a> |
-                <a href="/index.php?r=category/delete&id=<?php echo $v['id']; ?>" title="移除" onclick="return confirm('该分类下的商品也将被删除,确定要删除吗?')">移除</a>
+                    <a href="/index.php?r=category/update&id=<?=$v['id']; ?>">编辑</a> |
+                <a href="/index.php?r=category/delete&id=<?= $v['id']; ?>" title="移除" onclick="return confirm('该分类下的商品也将被删除,确定要删除吗?')">移除</a>
                 </td>
             </tr>
             <?php endforeach; ?>

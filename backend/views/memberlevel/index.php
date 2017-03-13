@@ -1,5 +1,4 @@
-<?php          
-use yii;
+<?php
 use yii\helpers\Html;
 $view=Yii::$app->getView();
 $view->params['title']='会员等级';
@@ -20,17 +19,17 @@ $view->params['menu']= array(
         <?php foreach($data as $k => $v) { ?>
          <tr>
              <td class="first-cell" align='center'>
-                <span style="align:center"><?php echo Html::encode($v['level_name']); ?></span>
+                <span style="align:center"><?= Html::encode($v['level_name']); ?></span>
                 <span></span>
             </td>
             <td align="center">
                 <a href="" target="_brank"><?php echo $v['mark_min']; ?></a>
             </td>
-             <td align="center"><?php echo $v['mark_max']; ?></td>
-            <td align="center"><span><?php echo $v['rate']; ?></span></td>
+             <td align="center"><?= $v['mark_max']; ?></td>
+            <td align="center"><span><?= $v['rate']; ?></span></td>
             <td align="center">
-                <a href="/index.php?r=memberlevel/update&id=<?php echo $v['id']; ?>" title="编辑">编辑</a> |
-            <a href="/index.php?r=memberlevel/delete&id=<?php echo $v['id']; ?>" title="编辑">移除</a> 
+                <a href="/index.php?r=memberlevel/update&id=<?= $v['id']; ?>" title="编辑">编辑</a> |
+            <a href="/index.php?r=memberlevel/delete&id=<?= $v['id']; ?>" title="编辑">移除</a>
             </td>
         </tr>
         <?php } ?>

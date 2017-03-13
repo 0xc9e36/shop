@@ -51,7 +51,6 @@
             <div style="clear:both"></div>
         </h1>
         <?php
-        use yii;
         use yii\helpers\Html;
         use yii\jui\Dialog;
         use yii\helpers\ArrayHelper;
@@ -197,7 +196,7 @@
                 DatePicker::widget([
                     'model' => $model,
                     'attribute' => 'sales_start',
-                    'language' => 'en',
+                   // 'language' => 'en',
                     'clientOptions' => [
                         'dateFormat' => 'yy-mm-dd',
                     ],
@@ -208,7 +207,7 @@
                 DatePicker::widget([
                     'model' => $model,
                     'attribute' => 'sales_end',
-                    'language' => 'en',
+                    //'language' => 'en',
                     'clientOptions' => [
                         'dateFormat' => 'yy-mm-dd',
                     ],
@@ -220,7 +219,7 @@
         <tr>
             <td class="label">商品图片：</td>
             <td>
-                <div class="upload"><font color='red'>点击上传</div>
+                <div class="upload"><font color='black' size="3px">点击上传</div>
                 <input type="hidden" name="Goods[small_img]" id='small_img' value="<?= $model->small_img; ?>">
                 <input type="hidden" name="Goods[primary_img]" id='primary_img' value="<?= $model->primary_img; ?>">
                 <input type="hidden" name="Goods[big_img]" id='big_img' value="<?= $model->big_img; ?>">
@@ -371,7 +370,7 @@
         </tr>
                 <tr>
                 <td>
-                    <span class='img_upload'><font color='red'>上传图片</font></span>
+                    <span class='img_upload'><font color='black' size="3px">上传图片</font></span>
                 </td>
             </tr>
 

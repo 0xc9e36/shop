@@ -1,5 +1,4 @@
-<?php          
-use yii;
+<?php
 $view=Yii::$app->getView();
 $view->params['title']='商品类型';
 $view->params['menu']= array(

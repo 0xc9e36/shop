@@ -1,5 +1,4 @@
 <?php
-use yii;
 use yii\helpers\Html;
 
 $view=Yii::$app->getView();

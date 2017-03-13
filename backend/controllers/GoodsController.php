@@ -390,16 +390,13 @@ class GoodsController extends AdminController {
      public function actionTrash($id) {
           $model = $this->findModel($id);
           $model->is_recycle = 1;
-          if($model->save()){
-               return $this->redirect(['index']);
-          }else{
-               var_dump($model->getErrors());
-          }
+          $model->save();
+          return $this->redirect(['index']);
      }
 
      //商品回收站 首页
      public function actionTrashindex() {
-          $query = Goods::find()->where(['is_recycle' => 1]);
+          $query = Goods::find()->where(['is_recycle' => 1, 'is_delete' => 0]);
           $countQuery = clone $query;
           $pages = new Pagination(['totalCount' => $countQuery->count(), 'pageSize' => Yii::$app->params['pagesize']]);
           $models = $query->offset($pages->offset)
@@ -413,9 +410,10 @@ class GoodsController extends AdminController {
 
      //商品回收站 删除
      public function actionTrashdelete($id) {
-          if ($this->findModel($id)->delete()) {
-               return $this->redirect(['trashindex']);
-          }
+         $model = $this->findModel($id);
+         $model->is_delete = 1;
+         $model->save();
+         return $this->redirect(['trashindex']);
      }
 
      //商品回收站　还原

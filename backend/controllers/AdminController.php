@@ -25,7 +25,18 @@ class AdminController extends Controller
             \backend\components\behavior\PermissionBehavior::className(),
         ];
     }
-
+    /**
+     * Lists all Admin models.
+     * @return mixed
+     */
+    public function actionIndex()
+    {
+        $sql = "SELECT *FROM shop_user WHERE 1";
+        $data = Admin::findBySql( $sql)->asArray()->all();
+        return $this->render('index', [
+            'users'     =>   $data,
+        ]);
+    }
     public function actionLogin()
     {
         // 判断用户是访客还是认证用户
@@ -54,18 +65,6 @@ class AdminController extends Controller
     public function actionLogout(){
         Yii::$app->user->logout();  //这里把session和cookie一起删除了
         return $this->redirect('/index.php?r=admin/login');
-    }
-    /**
-     * Lists all Admin models.
-     * @return mixed
-     */
-    public function actionIndex()
-    {
-        $sql = "SELECT *FROM shop_user WHERE 1";
-        $data = Admin::findBySql( $sql)->asArray()->all();
-        return $this->render('index', [
-            'users'     =>   $data,
-        ]);
     }
 
     /**

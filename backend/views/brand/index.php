@@ -30,18 +30,18 @@
             <?php foreach ($data as $k => $v){ ?>
              <tr>
                  <td class="first-cell" align='center'>
-                    <span style="align:center"><?php echo yii\helpers\Html::encode($v['brand_name']);?></span>
+                    <span style="align:center"><?= yii\helpers\Html::encode($v['brand_name']);?></span>
                     <span></span>
                 </td>
                 <td align="center">
-                    <a href="<?php echo $v['brand_link'];?>" target="_brank"><?php echo  $v['brand_link'];?></a>
+                    <a href="<?= $v['brand_link'];?>" target="_brank"><?php echo  $v['brand_link'];?></a>
                 </td>
-                 <td align="center"><?php echo  yii\helpers\Html::encode($v['brand_explain']); ?></td>
-                <td align="center"><span><?php echo $v['brand_sort'];?></span></td>
-                <td align="center"><?php echo $v['is_show'];?></td>
+                 <td align="center"><?=  yii\helpers\Html::encode($v['brand_explain']); ?></td>
+                <td align="center"><span><?= $v['brand_sort'];?></span></td>
+                <td align="center"><?= $v['is_show'];?></td>
                 <td align="center">
-                    <a href="/index.php?r=brand/update&id=<?php echo $v['id'];?>" title="编辑">编辑</a> |
-                <a href="index.php?r=brand/delete&id=<?php echo $v['id'];?>" title="编辑">移除</a> 
+                    <a href="/index.php?r=brand/update&id=<?= $v['id'];?>" title="编辑">编辑</a> |
+                <a href="index.php?r=brand/delete&id=<?= $v['id'];?>" title="编辑">移除</a>
                 </td>
             </tr>
             <?php } ?>

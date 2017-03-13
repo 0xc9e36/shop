@@ -1,5 +1,4 @@
 <?php
-use yii;
 use yii\helpers\Html;
 $view=Yii::$app->getView();
 $view->params['title']='管理员操作';

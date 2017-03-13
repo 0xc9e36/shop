@@ -1,5 +1,6 @@
-<?php          
-use yii;
+<?php
+use yii\widgets\ActiveForm;
+
 $view=Yii::$app->getView();
 $view->params['title']='会员等级';
 $view->params['menu']= array(
@@ -8,18 +9,6 @@ $view->params['menu']= array(
 );
 ?>
 <div class="main-div">
-<?php
-
-use yii\helpers\Html;
-use yii\jui\Dialog;
-use yii\helpers\ArrayHelper;
-use yii\widgets\ActiveForm;
-
-/* @var $this yii\web\View */
-/* @var $model frontend\models\Country */
-/* @var $form yii\widgets\ActiveForm */
-?>
-
 
 <?php
 $form = ActiveForm::begin();

@@ -1,4 +1,4 @@
-+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <?php $this->head() ?>
@@ -51,7 +51,6 @@
     <div style="clear:both"></div>
 </h1>
 <?php
-use yii;
 use yii\helpers\Html;
 use yii\jui\Dialog;
 use yii\helpers\ArrayHelper;
@@ -200,7 +199,7 @@ echo $form->errorSummary($model);
                     DatePicker::widget([
                         'model' => $model,
                         'attribute' => 'sales_start',
-                        'language' => 'en',
+                        //'language' => 'en',
                         'clientOptions' => [
                             'dateFormat' => 'yy-mm-dd',
                         ],
@@ -211,7 +210,7 @@ echo $form->errorSummary($model);
                     DatePicker::widget([
                         'model' => $model,
                         'attribute' => 'sales_end',
-                        'language' => 'en',
+                        //'language' => 'en',
                         'clientOptions' => [
                             'dateFormat' => 'yy-mm-dd',
                         ],

@@ -1,5 +1,4 @@
-<?php          
-use yii;
+<?php
 use yii\helpers\Html;
 $view=Yii::$app->getView();
 $view->params['title']='属性列表';

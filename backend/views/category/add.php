@@ -1,5 +1,8 @@
-<?php          
-use yii;
+<?php
+use yii\helpers\Html;
+use yii\helpers\ArrayHelper;
+use yii\widgets\ActiveForm;
+
 $view=Yii::$app->getView();
 $view->params['title']='商品分类';
 $view->params['menu']= array(
@@ -9,12 +12,6 @@ $view->params['menu']= array(
 ?>
 <div class="main-div">
 
-<?php
-use yii\helpers\Html;
-use yii\helpers\ArrayHelper;
-use yii\widgets\ActiveForm;
-
-?>
 <div class="country-form">
 
     <?php $form = ActiveForm::begin([

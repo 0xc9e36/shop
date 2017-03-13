@@ -23,19 +23,11 @@
     </h1>
     <div class="main-div">
         <?php
-        use yii;
         use yii\helpers\Html;
         use yii\jui\Dialog;
         use yii\helpers\ArrayHelper;
         use yii\widgets\ActiveForm;
 
-/* @var $this yii\web\View */
-        /* @var $model frontend\models\Country */
-        /* @var $form yii\widgets\ActiveForm */
-        ?>
-        
-        
-        <?php
         $form = ActiveForm::begin([
                     'options' => ['name' => 'theForm'],
         ]);

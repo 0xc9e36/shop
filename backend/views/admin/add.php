@@ -1,5 +1,4 @@
 <?php
-use yii;
 use yii\widgets\ActiveForm;
 $view=Yii::$app->getView();
 $view->params['title']='管理员列表';
