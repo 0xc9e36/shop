@@ -2,8 +2,11 @@
 namespace frontend\controllers;
 
 use Yii;
+use frontend\models\LoginForm;
 use frontend\models\User;
 use frontend\models\SignupForm;
+use yii\filters\AccessControl;
+use yii\helpers\Url;
 use yii\web\Controller;
 
 class UserController extends PublicController
@@ -33,21 +36,48 @@ class UserController extends PublicController
 
      public function actionIndex()
      {
-          return $this->render('index');
+          return $this->renderPartial('index');
      }     
      
      public function actionLogin()
      {
-          return $this->renderPartial('login');
+         // 判断用户是访客还是认证用户
+         // isGuest为真表示访客，isGuest非真表示认证用户，认证过的用户表示已经登录了，这里跳转到主页面
+         if (!Yii::$app->user->isGuest) {
+             return $this->redirect('index.php?r=user/index');
+         }
+
+         $model = new \frontend\models\LoginForm();
+         // 接收表单数据并调用LoginForm的login方法
+         if ($model->load(Yii::$app->request->post()) && $model->login()) {
+             return $this->redirect('index');
+         }
+         // 非post直接渲染登录表单
+         else {
+             return $this->render('login', [
+                 'model' => $model,
+             ]);
+         }
      }
 
      public function actionRegist()
      {
          $model = new \frontend\models\SignupForm();
-         if ($model->load(Yii::$app->request->post()) && $model->signup()) {
-             return $this->render('index');
-             //这里要邮箱激活
-             //return $this->registSuccess();
+         if ($model->load(Yii::$app->request->post()) && $user = $model->signup()) {
+             $id = $user->id;
+             $check_code = $user->check_code;
+             $url = Yii::$app->params['front'].Url::to(['user/activate']).'&id='.$id.'&code='.$check_code;
+             /*发送激活邮件*/
+             $mail = Yii::$app->mailer->compose()
+                 ->setFrom(['13873120673@163.com' => '京西商城注册'])
+                 ->setTo('qydzweb@foxmail.com')
+                 ->setSubject('京西商城账号激活')
+                 ->setHtmlBody("<br>你好, 点击以下链接即可激活你的账号！$url'")    //发布可以带html标签的文本
+                 ->send();
+             if($mail)
+             return $this->render('registSuccess', [
+                 'flag' => 'wait',
+             ]);
          }
 
          // 渲染添加新用户的表单
@@ -66,21 +96,19 @@ class UserController extends PublicController
           return $this->renderPartial('address');
      }
 
-     public function registSuccess(){
-        return $this->render('registSuccess');
-     }
-
-     public function actionSent(){
-         $mail = \Yii::$app->mailer->compose()
-             ->setFrom(['13873120673@163.com' => '京西商城注册'])
-             ->setTo('2698143402@qq.com')
-             ->setSubject('邮件发送配置')
-             //->setTextBody('Yii中文网教程真好 www.yii-china.com')   //发布纯文字文本
-             ->setHtmlBody("<br>Yii中文网教程真好！www.yii-china.com")    //发布可以带html标签的文本
-             ->send();
-         if($mail)
-             echo 'success';
-         else
-             echo 'fail';
-     }
+    public function actionActivate(){
+        $id = intval(Yii::$app->request->get('id'));
+        $code = Yii::$app->request->get('code');
+        if(!$id || !$code) return $this->jump();
+        $check = User::find()->select(['check_code', 'status'])->where(['id' => $id])->asArray()->one();
+        if(!$check) return fasle;
+        if($check['status'] === '1')   return $this->render('registSuccess', ['flag' => 'repeat',]);
+        if($code === $check['check_code'] && $check['status'] === '0'){
+            Yii::$app->db->createCommand()->update('shop_member', ['status' => 1], "id = $id")->execute();
+            return $this->render('registSuccess', [
+                'flag' => 'success',
+            ]);
+        }
+        return $this->jump();
+    }
 }

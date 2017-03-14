@@ -5,7 +5,7 @@ $params = array_merge(
 );
 
 return [
-    'language' => 'zh-CN', //设置语言
+    'language' => 'zh-CN', //设置中文
     'id' => 'app-backend',
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',

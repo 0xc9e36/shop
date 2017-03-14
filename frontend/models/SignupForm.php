@@ -74,12 +74,14 @@ class SignupForm extends Model
         $user->email = $this->email;
         $user->created_at = $this->created_at;
         $user->updated_at = $this->updated_at;
+        $user->check_code = md5(uniqid());  //邮件激活校验码
         // 设置密码，密码肯定要加密，暂时我们还没有实现，看下面我们有实现的代码
         $user->setPassword($this->password);
         // 生成 "remember me" 认证key
         $user->generateAuthKey();
         // save(false)的意思是：不调用Admin再做校验并实现数据入库操作
         // 这里这个false如果不加，save底层会调用User的rules方法再对数据进行一次校验，因为我们上面已经调用Signup的rules校验过了，这里就没必要在用User的rules校验了
-        return $user->save(false);
+        $user->save(false);
+        return $user;
     }
 }

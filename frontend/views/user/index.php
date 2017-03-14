@@ -20,7 +20,7 @@
 	<div class="topnav">
 		<div class="topnav_bd w1210 bc">
 			<div class="topnav_left">
-				
+
 			</div>
 			<div class="topnav_right fr">
 				<ul>
@@ -35,7 +35,7 @@
 		</div>
 	</div>
 	<!-- 顶部导航 end -->
-	
+
 	<div style="clear:both;"></div>
 
 	<!-- 头部 start -->
@@ -52,7 +52,7 @@
 					</form>
 					<div class="form_right fl"></div>
 				</div>
-				
+
 				<div style="clear:both;"></div>
 
 				<div class="hot_search">
@@ -124,7 +124,7 @@
 			<!-- 购物车 end -->
 		</div>
 		<!-- 头部上半部分 end -->
-		
+
 		<div style="clear:both;"></div>
 
 		<!-- 导航条部分 start -->
@@ -135,9 +135,9 @@
 					<h2>全部商品分类</h2>
 					<em></em>
 				</div>
-				
+
 				<div class="cat_bd none">
-					
+
 					<div class="cat item1">
 						<h3><a href="">图像、音像、数字商品</a> <b></b></h3>
 						<div class="cat_detail">
@@ -150,7 +150,7 @@
 									<a href="">婚恋/两性</a>
 									<a href="">文学</a>
 									<a href="">经管</a>
-									<a href="">畅读VIP</a>						
+									<a href="">畅读VIP</a>
 								</dd>
 							</dl>
 
@@ -185,7 +185,7 @@
 									<a href="">传纪</a>
 									<a href="">艺术</a>
 									<a href="">经管</a>
-									<a href="">畅读VIP</a>						
+									<a href="">畅读VIP</a>
 								</dd>
 							</dl>
 
@@ -264,7 +264,7 @@
 									<a href="">洗衣机</a>
 									<a href="">热水器</a>
 									<a href="">DVD</a>
-									<a href="">烟机/灶具</a>						
+									<a href="">烟机/灶具</a>
 								</dd>
 							</dl>
 
@@ -277,7 +277,7 @@
 									<a href="">饮水机</a>
 									<a href="">净水设备</a>
 									<a href="">吸尘器</a>
-									<a href="">电风扇</a>						
+									<a href="">电风扇</a>
 								</dd>
 							</dl>
 
@@ -290,7 +290,7 @@
 									<a href="">咖啡机</a>
 									<a href="">微波炉</a>
 									<a href="">电磁炉</a>
-									<a href="">电水壶</a>						
+									<a href="">电水壶</a>
 								</dd>
 							</dl>
 
@@ -303,7 +303,7 @@
 									<a href="">足浴盆</a>
 									<a href="">血压计</a>
 									<a href="">体温计</a>
-									<a href="">血糖仪</a>						
+									<a href="">血糖仪</a>
 								</dd>
 							</dl>
 
@@ -316,7 +316,7 @@
 									<a href="">龙头</a>
 									<a href="">门铃</a>
 									<a href="">电器开关</a>
-									<a href="">插座</a>						
+									<a href="">插座</a>
 								</dd>
 							</dl>
 						</div>
@@ -325,84 +325,84 @@
 					<div class="cat">
 						<h3><a href="">手机、数码</a><b></b></h3>
 						<div class="cat_detail none">
-							
+
 						</div>
 					</div>
 
 					<div class="cat">
 						<h3><a href="">电脑、办公</a><b></b></h3>
 						<div class="cat_detail none">
-							
+
 						</div>
 					</div>
-					
+
 					<div class="cat">
 						<h3><a href="">家局、家具、家装、厨具</a><b></b></h3>
 						<div class="cat_detail none">
-							
+
 						</div>
 					</div>
-					
+
 					<div class="cat">
 						<h3><a href="">服饰鞋帽</a><b></b></h3>
 						<div class="cat_detail none">
-							
+
 						</div>
 					</div>
-					
+
 					<div class="cat">
 						<h3><a href="">个护化妆</a><b></b></h3>
 						<div class="cat_detail none">
-							
+
 						</div>
 					</div>
-					
+
 					<div class="cat">
 						<h3><a href="">礼品箱包、钟表、珠宝</a><b></b></h3>
 						<div class="cat_detail none">
-							
+
 						</div>
 					</div>
 
 					<div class="cat">
 						<h3><a href="">运动健康</a><b></b></h3>
 						<div class="cat_detail none">
-							
+
 						</div>
 					</div>
 
 					<div class="cat">
 						<h3><a href="">汽车用品</a><b></b></h3>
 						<div class="cat_detail none">
-							
+
 						</div>
 					</div>
-					
+
 					<div class="cat">
 						<h3><a href="">母婴、玩具乐器</a><b></b></h3>
 						<div class="cat_detail none">
-							
+
 						</div>
 					</div>
 
 					<div class="cat">
 						<h3><a href="">食品饮料、保健食品</a><b></b></h3>
 						<div class="cat_detail none">
-							
+
 						</div>
 					</div>
 
 					<div class="cat">
 						<h3><a href="">彩票、旅行、充值、票务</a><b></b></h3>
 						<div class="cat_detail none">
-							
+
 						</div>
 					</div>
 
 				</div>
 
 			</div>
-			<!--  商品分类部分 end--> 
+			<!--  商品分类部分 end-->
 
 			<div class="navitems fl">
 				<ul class="fl">
@@ -420,7 +420,7 @@
 		<!-- 导航条部分 end -->
 	</div>
 	<!-- 头部 end-->
-	
+
 	<div style="clear:both;"></div>
 
 	<!-- 页面主体 start -->
@@ -428,7 +428,7 @@
 		<div class="crumb w1210">
 			<h2><strong>我的XX </strong><span>> 账户信息</span></h2>
 		</div>
-		
+
 		<!-- 左侧导航菜单 start -->
 		<div class="menu fl">
 			<h3>我的XX</h3>
@@ -512,7 +512,7 @@
 				<li><a href="">联系客服</a></li>
 			</ul>
 		</div>
-		
+
 		<div class="bnav2">
 			<h3><b></b> <em>配送方式</em></h3>
 			<ul>
@@ -524,7 +524,7 @@
 			</ul>
 		</div>
 
-		
+
 		<div class="bnav3">
 			<h3><b></b> <em>支付方式</em></h3>
 			<ul>
@@ -579,7 +579,7 @@
 			<a href="">京西论坛</a>
 		</p>
 		<p class="copyright">
-			 © 2005-2013 京东网上商城 版权所有，并保留所有权利。  ICP备案证书号:京ICP证070359号 
+			 © 2005-2013 京东网上商城 版权所有，并保留所有权利。  ICP备案证书号:京ICP证070359号
 		</p>
 		<p class="auth">
 			<a href=""><img src="images/xin.png" alt="" /></a>
