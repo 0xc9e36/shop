@@ -17,7 +17,7 @@ class CartController extends Controller
      
      public function actionCheckorder()
      {
-          return $this->render('checkorder');
+          return $this->renderPartial('checkorder');
      }  
      
      public function actionMycart()

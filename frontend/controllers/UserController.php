@@ -50,7 +50,7 @@ class UserController extends PublicController
          $model = new \frontend\models\LoginForm();
          // 接收表单数据并调用LoginForm的login方法
          if ($model->load(Yii::$app->request->post()) && $model->login()) {
-             return $this->redirect('index');
+             return $this->redirect('index.php?r=user/index');
          }
          // 非post直接渲染登录表单
          else {
@@ -59,6 +59,11 @@ class UserController extends PublicController
              ]);
          }
      }
+
+    public function actionLogout(){
+        Yii::$app->user->logout();  //这里把session和cookie一起删除了
+        return $this->redirect('/index.php');
+    }
 
      public function actionRegist()
      {
