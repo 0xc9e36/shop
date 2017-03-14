@@ -45,7 +45,7 @@ class UserController extends PublicController
      {
          $model = new \frontend\models\SignupForm();
          if ($model->load(Yii::$app->request->post()) && $model->signup()) {
-             return $this->redirect('/');
+             return $this->render('index');
              //这里要邮箱激活
              //return $this->registSuccess();
          }

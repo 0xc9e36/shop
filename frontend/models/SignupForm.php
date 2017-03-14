@@ -1,8 +1,6 @@
 <?php
 namespace frontend\models;
 use yii\base\Model;
-
-
 /**
  * Signup form
  */
@@ -13,10 +11,8 @@ class SignupForm extends Model
     public $password;
     public $verifyPassword;
     public $verifyCode;
-
     public $created_at;
     public $updated_at;
-
     /**
      * @inheritdoc
      * 对数据的校验规则
@@ -24,20 +20,11 @@ class SignupForm extends Model
     public function rules()
     {
         return [
-            // 对username的值进行两边去空格过滤
             ['username', 'filter', 'filter' => 'trim'],
-
-            // required表示必须的，也就是说表单提交过来的值必须要有, message 是username不满足required规则时给的提示消息
-            ['username', 'required', 'message' => '用户名不可以为空'],
-
-            // unique表示唯一性，targetClass表示的数据模型 这里就是说UserBackend模型对应的数据表字段username必须唯一
+            ['username', 'string', 'length' => [6,15], 'tooShort'   => '用户名长度为6-15个字符', 'tooLong'   => '用户名长度为6-15个字符'],
+            ['username', 'required'],
             ['username', 'unique', 'targetClass' => '\frontend\models\User', 'message' => '用户名已存在.'],
-
-            // string 字符串，这里我们限定的意思就是username至少包含2个字符，最多255个字符
-            ['username', 'string', 'min' => 2, 'max' => 255],
-
             // 下面的规则基本上都同上，不解释了
-
             ['email', 'filter', 'filter' => 'trim'],
             ['email', 'required', 'message' => '邮箱不可以为空'],
             ['email', 'email', 'message'    =>  '邮箱格式不对'],
@@ -50,7 +37,24 @@ class SignupForm extends Model
             // default 默认在没有数据的时候才会进行赋值
             [['created_at', 'updated_at'], 'default', 'value' => date('Y-m-d H:i:s')],
             ['verifyCode', 'captcha', 'message'=>'验证码错误', 'captchaAction'=>'/user/captcha'],//指定模块、控制器
+        ];
+    }
 
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return [
+            'id' => 'ID',
+            'username' => '用户名',
+            'auth_key' => 'Auth Key',
+            'password_hash' => 'Password Hash',
+            'password_reset_token' => 'Password Reset Token',
+            'email' => '邮箱',
+            'status' => '状态',
+            'created_at' => 'Created At',
+            'updated_at' => 'Updated At',
         ];
     }
     /**
@@ -64,7 +68,6 @@ class SignupForm extends Model
         if (!$this->validate()) {
             return null;
         }
-
         // 实现数据入库操作
         $user = new User();
         $user->username = $this->username;
@@ -73,14 +76,10 @@ class SignupForm extends Model
         $user->updated_at = $this->updated_at;
         // 设置密码，密码肯定要加密，暂时我们还没有实现，看下面我们有实现的代码
         $user->setPassword($this->password);
-
         // 生成 "remember me" 认证key
         $user->generateAuthKey();
-
-
-
         // save(false)的意思是：不调用Admin再做校验并实现数据入库操作
-        // 这里这个false如果不加，save底层会调用UserBackend的rules方法再对数据进行一次校验，因为我们上面已经调用Signup的rules校验过了，这里就没必要在用UserBackend的rules校验了
+        // 这里这个false如果不加，save底层会调用User的rules方法再对数据进行一次校验，因为我们上面已经调用Signup的rules校验过了，这里就没必要在用User的rules校验了
         return $user->save(false);
     }
 }

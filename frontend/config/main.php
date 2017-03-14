@@ -7,6 +7,7 @@ $params = array_merge(
 );
 
 return [
+    'language' => 'zh-CN', //设置语言
     'id' => 'app-frontend',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
