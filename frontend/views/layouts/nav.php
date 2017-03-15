@@ -16,7 +16,7 @@
         <?php else : ?>
         <div class="topnav_right fr">
             <ul>
-                <li>您好,&nbsp;<a href="/index.php?r=user/index" style="color: red"><?= Yii::$app->user->identity->username; ?> &nbsp;</a>欢迎来到京西！[<a href="/index.php?r=user/logout">退出登录</a>]  </li>
+                <li>您好,&nbsp;[<a href="/index.php?r=user/index" style="color: red"><?= Yii::$app->user->identity->username; ?></a>]&nbsp;欢迎来到京西！[<a href="/index.php?r=user/logout">退出登录</a>]  </li>
                 <li class="line">|</li>
                 <li>我的订单</li>
                 <li class="line">|</li>

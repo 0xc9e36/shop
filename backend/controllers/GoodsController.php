@@ -96,7 +96,6 @@ class GoodsController extends AdminController {
                                   'goods_id'     =>   $goods_id,
                                   'count'        =>   $v,
                                   'price'       =>   $prices[$k]
-
                               ])->execute();
                          }
 

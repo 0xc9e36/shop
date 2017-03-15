@@ -49,7 +49,7 @@
 						</li>
 						<li>
 							<label for="">&nbsp;</label>
-							<input type="checkbox" name="LoginForm[rememberMe]" class="chb"  /> 保存登录信息30天
+							<input type="checkbox" name="LoginForm[rememberMe]" class="chb"  value="1"/>&nbsp;保存登录信息30天
 						</li>
 						<li>
 							<label for="">&nbsp;</label>

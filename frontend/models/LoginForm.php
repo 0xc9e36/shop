@@ -22,12 +22,9 @@ class LoginForm extends Model
     public function rules()
     {
         return [
-            // username and password are both required
             ['username', 'required', 'message' => '用户名不能为空'],
             ['password', 'required', 'message' => '密码不能为空'],
-            // rememberMe must be a boolean value
             ['rememberMe', 'boolean'],
-            // password is validated by validatePassword()
             ['password', 'validatePassword'],
             ['verifyCode', 'captcha', 'message'=>'验证码错误', 'captchaAction'=>'/user/captcha'],//指定模块、控制器
         ];
@@ -48,6 +45,8 @@ class LoginForm extends Model
                 $this->addError($attribute, '用户或密码不正确.');
             }
         }
+        //检查是否已经激活
+        if( $this->getUser()->status === 0) $this->addError($attribute, '请先通过邮箱激活账号~~');
     }
 
     /**

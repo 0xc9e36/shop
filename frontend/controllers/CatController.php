@@ -7,8 +7,5 @@ use yii\web\Controller;
 class CatController extends Controller
 {
      public $layout = "home_style.php";
-     public function actionList()
-     {
-          return $this->render('list');
-     }
+
 }
