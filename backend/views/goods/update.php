@@ -130,12 +130,14 @@
             <td>
                 <?php foreach ($memberlevel_list as $k => $v) : ?>
                      <font color="blue"><?php echo $v['level_name']; ?><input type="hidden"  name="id[]" value="<?php echo $v['id']; ?>"/></font>
-                     <?php foreach ($memberPriceInfo as $k1 => $v1) : ?>
-                          <?php if ($v['id'] == $v1['member_level']) : ?>
-                               <input type="text" name="price[]"  value="<?php echo $v1['member_price']; ?>" style="width:40px" />
-                               <?php
-                                endif;
-                            endforeach;
+                      <?php if (array_key_exists($v['id'], $memberPriceInfo)) :  ?>
+                           <input type="text" name="price[]"  value="<?= $memberPriceInfo[$v['id']]; ?>" style="width:40px" />
+                           <?php
+                           else:
+                            ?>
+                            <input type="text" name="price[]"  value="-1" style="width:40px" />
+                           <?php
+                           endif;
                      endforeach;
                 ?>
                 <div>会员价格为-1时表示会员价格按会员等级折扣率计算。你也可以为每个等级指定一个固定价格</div>

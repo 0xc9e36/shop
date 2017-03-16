@@ -50,6 +50,12 @@ class UserController extends PublicController
          $model = new \frontend\models\LoginForm();
          // 接收表单数据并调用LoginForm的login方法
          if ($model->load(Yii::$app->request->post()) && $model->login()) {
+             //登录成功, 设置会员级别, 会员积分
+             $mark = Yii::$app->user->identity->rank;
+             $sql = "SELECT id, rate FROM shop_memberlevel WHERE $mark BETWEEN mark_min AND mark_max";
+             $info = Yii::$app->db->createCommand($sql)->query()->read();
+             Yii::$app->session['level_id'] = $info['id'];
+             Yii::$app->session['rate'] = $info['rate'] / 100.00;
              return $this->redirect('index.php?r=user/index');
          }
          // 非post直接渲染登录表单

@@ -1,10 +1,12 @@
 <?php
 namespace frontend\controllers;
 
+use Codeception\Lib\Generator\Helper;
 use frontend\models\Goods;
 use Yii;
 use yii\data\Pagination;
 use yii\web\Controller;
+use yii\web\NotFoundHttpException;
 
 class GoodsController extends PublicController
 {
@@ -13,58 +15,24 @@ class GoodsController extends PublicController
      public function actionDetail($id)
      {
          $id = intval($id);
-         $model = new Goods();
-         $rate = $model->getMemberPrice();
-
-         return $this->render('detail');
+         $goods = $this->findModel($id);
+         $images = (new \yii\db\Query())
+             ->select(['*'])
+             ->from('shop_goodsimg')
+             ->where(['goods_id' => $id])
+             ->all();
+         $first = null;
+         //第一张图片
+         if($images) $first = $images[0];
+         return $this->render('detail',[
+             'goods'    => $goods,
+             'first'    => $first,
+             'images'   => $images, //商品相册
+         ]);
      }
 
      public function actionCat()
      {
-         /*
-         $catid = intval(Yii::$app->request->get('id'));
-
-
-         $cur = (new \yii\db\Query())
-             ->select(['cat_name', 'id', 'pid'])
-             ->from('shop_category')
-             ->where(['id' => $catid])
-             ->one();
-         if(!$cur) return $this->jump();
-         $curInfo = $cur;
-
-         $top = $cur;
-         while($cur['pid'] != '0'){
-             $cur = (new \yii\db\Query())
-                 ->select(['id', 'pid', 'cat_name'])
-                 ->from('shop_category')
-                 ->where(['id' => $cur['pid']])
-                 ->one();
-             $top = $cur;
-         }
-         $list = (new \yii\db\Query())
-             ->select(['id', 'pid', 'cat_name'])
-             ->from('shop_category')
-             ->all();
-         if(!$list) return $this->jump();
-         $rows = $this->getTree($list, $catid, 0);
-         $ids = [];
-         $ids[] = $catid;
-         foreach($rows as $k => $v) $ids[] = $v['id'];
-         //当前分类及子分类所有商品
-         $goods = (new \yii\db\Query())
-             ->select(['id', 'goods_name', 'goodstype_id', 'shop_price', 'small_img', 'mark_price'])
-             ->from('shop_goods')
-             ->where(['is_delete' => 0, 'is_recycle' => 0, 'goodscat_id' => $ids])
-             ->orderBy('id')
-             ->all();
-
-        return $this->render('cat',[
-            'goods'  =>  $goods,
-            'top'   => $top,
-            'curInfo'   => $curInfo,
-        ]);
-         */
          $catid = intval(Yii::$app->request->get('id'));
 
 
@@ -134,4 +102,33 @@ class GoodsController extends PublicController
         }
         return $tree;
     }
+
+    //获取商品价格
+    public function actionGetpriceandnum($id, $attr){
+        $id = intval($id);
+        $model = new Goods();
+        $price = $model->getMemberPrice($id);
+        $num = $model->getGoodsNum($id, $attr);
+        $data = json_encode([
+            'price' => $price,
+            'num'   => $num,
+        ]);
+        echo $data;
+    }
+    /**
+     * Finds the Brand model based on its primary key value.
+     * If the model is not found, a 404 HTTP exception will be thrown.
+     * @param integer $id
+     * @return Brand the loaded model
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    protected function findModel($id)
+    {
+        if (($model = Goods::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+
 }

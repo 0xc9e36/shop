@@ -1,0 +1,1 @@
+var site = 'http://www.shop.com/index.php'

@@ -1,7 +1,6 @@
 <div class="topnav">
     <div class="topnav_bd w1210 bc">
         <div class="topnav_left">
-
         </div>
         <?php if(Yii::$app->user->isGuest):  ?>
         <div class="topnav_right fr">

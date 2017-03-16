@@ -101,6 +101,8 @@ class GoodsController extends AdminController {
 
                          /****************************会员级别价格***************************** */
                          foreach ($request->post('id') as $k => $v) {
+                              //不设置会员价格,根据折扣率计算
+                              if($request->post('price')[$k] == '-1') continue;
                               Yii::$app->db->createCommand()->insert('shop_memberprice', [
                                   'id'           =>   null,
                                   'goods_id'     =>   $goods_id,
@@ -224,14 +226,19 @@ class GoodsController extends AdminController {
 
                               ])->execute();
                          }
-
+                         //先删除该商品所有会员价格
+                         Yii::$app->db->createCommand()->delete('shop_memberprice', "goods_id = $goods_id")->execute();
                          /********************会员级别价格***************************** */
                          foreach ($request->post('id') as $k => $v) {
-                              $member_level = $v;
                               $member_price = $request->post('price')[$k];
-                              $sql = "UPDATE shop_memberprice SET member_price=$member_price WHERE (goods_id=$goods_id AND member_level=$member_level)";
-                              $command = $connection->createCommand($sql);
-                              $command->execute();
+                              if($member_price == -1) continue;
+                              Yii::$app->db->createCommand()->insert('shop_memberprice', [
+                                  'id'           =>   null,
+                                  'goods_id'     =>   $goods_id,
+                                  'member_level'        =>   $v,
+                                  'member_price'       =>   $member_price
+
+                              ])->execute();
                          }
                          /*********************************商品属性价格表************************************* */
                          $attr_value = !empty($_POST['radio_attr_value']) ? $_POST['radio_attr_value'] : array();
@@ -276,8 +283,11 @@ class GoodsController extends AdminController {
                $memberlevel_list = Memberlevel::findBySql($sql)->asArray()->all();
 
                //取出会员价格
+               $memberprice = [];
                $memberPriceInfo = Memberlevel::findBySql("SELECT member_level,member_price FROM shop_memberprice WHERE goods_id={$id}")->asArray()->all();
-
+               foreach ($memberPriceInfo as $k => $v){
+                    $memberprice[$v['member_level']] = $v['member_price'];
+               }
                //上传图片模型
                $model_upload = new UploadForm();
 
@@ -301,7 +311,7 @@ class GoodsController extends AdminController {
                            'memberlevel_list' => $memberlevel_list,
                            'model_upload' => $model_upload,
                            'goodstype_list' => $goodstype_list,
-                           'memberPriceInfo' => $memberPriceInfo,
+                           'memberPriceInfo' => $memberprice,
                            'discountList' => $discountList,
                            'imageList' => $imageList,
                ]);

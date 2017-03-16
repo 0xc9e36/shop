@@ -6,6 +6,10 @@
 
 	<script type="text/javascript" src="js/goods.js"></script>
 	<script type="text/javascript" src="js/jqzoom-core.js"></script>
+	<!--引入配置文件-->
+	<script type="text/javascript" src="js/config.js"></script>
+
+
 	<!-- jqzoom 效果 -->
 	<script type="text/javascript">
 		$(function(){
@@ -20,9 +24,7 @@
 	        });
 		})
 	</script>
-
-
-
+	<input type="hidden" id="goods_id" value="<?= $goods->id; ?>">
 	<!-- 商品页面主体 start -->
 	<div class="main w1210 mt10 bc">
 		<!-- 面包屑导航 start -->
@@ -148,79 +150,62 @@
 		<div class="goods_content fl mt10 ml10">
 			<!-- 商品概要信息 start -->
 			<div class="summary">
-				<h3><strong>ThinkPad X230(23063T4）12.5英寸笔记本（i5-3230M 8GB 500G HD4000 指纹蓝牙 WIN8PRC 一年质保）</strong></h3>
-				
+				<h3><strong><?= $goods->goods_name; ?></strong></h3>
 				<!-- 图片预览区域 start -->
 				<div class="preview fl">
+					<?php
+						if(!$first){
+							//无商品相册,  取商品logo显示
+							$first['small_img'] = $goods->small_img;
+							$first['medium_img'] = $goods->medium_img;
+							$first['big_img'] = $goods->big_img;
+						}
+						$small = Yii::$app->params['upload_url'].'/'.$first['small_img'];
+						$middle = Yii::$app->params['upload_url'].'/'.$first['medium_img'];
+						$big = Yii::$app->params['upload_url'].'/'.$first['big_img'];
+					?>
 					<div class="midpic">
-						<a href="images/preview_l1.jpg" class="jqzoom" rel="gal1">   <!-- 第一幅图片的大图 class 和 rel属性不能更改 -->
-							<img src="images/preview_m1.jpg" alt="" />               <!-- 第一幅图片的中图 -->
+						<a href="<?= $big; ?>" class="jqzoom" rel="gal1">   <!-- 第一幅图片的大图 class 和 rel属性不能更改 -->
+							<img src="<?= $middle; ?>" alt="" />               <!-- 第一幅图片的中图 -->
 						</a>
 					</div>
-	
 					<!--使用说明：此处的预览图效果有三种类型的图片，大图，中图，和小图，取得图片之后，分配到模板的时候，把第一幅图片分配到 上面的midpic 中，其中大图分配到 a 标签的href属性，中图分配到 img 的src上。 下面的smallpic 则表示小图区域，格式固定，在 a 标签的 rel属性中，分别指定了中图（smallimage）和大图（largeimage），img标签则显示小图，按此格式循环生成即可，但在第一个li上，要加上cur类，同时在第一个li 的a标签中，添加类 zoomThumbActive  -->
-
 					<div class="smallpic">
 						<a href="javascript:;" id="backward" class="off"></a>
 						<a href="javascript:;" id="forward" class="on"></a>
 						<div class="smallpic_wrap">
 							<ul>
-								<li class="cur">
-									<a class="zoomThumbActive" href="javascript:void(0);" rel="{gallery: 'gal1', smallimage: 'images/preview_m1.jpg',largeimage: 'images/preview_l1.jpg'}"><img src="images/preview_s1.jpg"></a>
+								<?php
+									foreach ($images as $k => $v){
+										$cur = "";
+										$class = "";
+										if($k == 0){
+											$cur = "class = 'cur'";
+											$class = "class = 'zoomThumbActive'";
+										}
+										$small = Yii::$app->params['upload_url'].'/'.$v['small_img'];
+										$middle = Yii::$app->params['upload_url'].'/'.$v['medium_img'];
+										$big= Yii::$app->params['upload_url'].'/'.$v['big_img'];
+								?>
+								<li <?= $cur ?>>
+									<a <?= $class ?>  href="javascript:void(0);" rel="{gallery: 'gal1', smallimage: '<?= $middle; ?>',largeimage: '<?= $big; ?>'}">
+									<img src="<?= $small ?>"></a>
 								</li>
-								<li>
-									<a href="javascript:void(0);" rel="{gallery: 'gal1', smallimage: 'images/preview_m2.jpg',largeimage: 'images/preview_l2.jpg'}"><img src="images/preview_s2.jpg"></a>
-								</li>
-								<li>
-									<a href="javascript:void(0);" 
-									rel="{gallery: 'gal1', smallimage: 'images/preview_m3.jpg',largeimage: 'images/preview_l3.jpg'}">  
-	    							<img src="images/preview_s3.jpg"></a>
-								</li>
-								<li>
-									<a href="javascript:void(0);" 
-									rel="{gallery: 'gal1', smallimage: 'images/preview_m4.jpg',largeimage: 'images/preview_l4.jpg'}">  
-	    							<img src="images/preview_s4.jpg"></a>
-								</li>
-								<li>
-									<a href="javascript:void(0);" 
-									rel="{gallery: 'gal1', smallimage: 'images/preview_m5.jpg',largeimage: 'images/preview_l5.jpg'}">  
-	    							<img src="images/preview_s5.jpg"></a>
-								</li>
-								<li>
-									<a href="javascript:void(0);" 
-									rel="{gallery: 'gal1', smallimage: 'images/preview_m6.jpg',largeimage: 'images/preview_l6.jpg'}">  
-	    							<img src="images/preview_s6.jpg"></a>
-								</li>
-								<li>
-									<a href="javascript:void(0);" 
-									rel="{gallery: 'gal1', smallimage: 'images/preview_m7.jpg',largeimage: 'images/preview_l7.jpg'}">  
-	    							<img src="images/preview_s7.jpg"></a>
-								</li>
-								<li>
-									<a href="javascript:void(0);" 
-									rel="{gallery: 'gal1', smallimage: 'images/preview_m8.jpg',largeimage: 'images/preview_l8.jpg'}">  
-	    							<img src="images/preview_s8.jpg"></a>
-								</li>
-								<li>
-									<a href="javascript:void(0);" 
-									rel="{gallery: 'gal1', smallimage: 'images/preview_m9.jpg',largeimage: 'images/preview_l9.jpg'}">  
-	    							<img src="images/preview_s9.jpg"></a>
-								</li>
+								<?php  } ?>
+
 							</ul>
 						</div>
-						
 					</div>
 				</div>
-				<!-- 图片预览区域 end -->
 
+				<!-- 图片预览区域 end -->
 				<!-- 商品基本信息区域 start -->
 				<div class="goodsinfo fl ml10">
 					<ul>
-						<li><span>商品编号： </span>971344</li>
-						<li class="market_price"><span>定价：</span><em>￥6399.00</em></li>
-						<li class="shop_price"><span>本店价：</span> <strong>￥6299.00</strong> <a href="">(降价通知)</a></li>
-						<li><span>上架时间：</span>2012-09-12</li>
-						<li class="star"><span>商品评分：</span> <strong></strong><a href="">(已有21人评价)</a></li> <!-- 此处的星级切换css即可 默认为5星 star4 表示4星 star3 表示3星 star2表示2星 star1表示1星 -->
+						<li><span>商品编号： </span><?= $goods->goods_sn; ?></li>
+						<li class="market_price"><span>定价：</span><em>￥<?= $goods->mark_price; ?></em></li>
+						<li class="shop_price"><span>本店价：</span> <strong id="shop_price">￥</strong> </li>
+						<li class="shop_price"><span>库存量：</span> <strong id="num">1500</strong> </li>
 					</ul>
 					<form action="/index.php?r=cart/mycart" method="post" class="choose">
 						<ul>
