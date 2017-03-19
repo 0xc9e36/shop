@@ -50,6 +50,11 @@ $(function(){
 		$(this).find("input").attr({checked:"checked"});
 		//去除虚边框
 		$(this).blur();
+		//取价格
+		getPrice();
+		//取库存
+		getNum();
+        $('.attr').val(attr);
 	});
 
 
@@ -65,15 +70,28 @@ $(function(){
 
 	//增加
 	$("#add_num").click(function(){
-		$(".amount").val(parseInt($(".amount").val()) + 1);
+		num = $("#num").text();
+		count = parseInt($(".amount").val()) + 1;
+		if (count > num){
+			alert("商品数量超过库存");
+			$(this).val(num);
+		}else{
+			$(".amount").val(count);
+		}
 	});
 
 	//直接输入
 	$(".amount").blur(function(){
+		num = $("#num").text();
+		if (parseInt($(".amount").val()) > num){
+			alert("商品数量超过库存");
+			$(this).val(num);
+		}
 		if (parseInt($(".amount").val()) < 1){
 			alert("商品数量最少为1");
 			$(this).val(1);
 		}
+
 	});
 
 	//商品详情效果

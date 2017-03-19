@@ -295,60 +295,6 @@
             </td>
         </tr>
         <tr>
-            <script>
-            (function () {
-                o = $('#good_attr').find('option:selected');
-                id = o.val();
-                goods_id = $('#goods_id').val();
-                o.select(function () {
-                $.ajax({
-                    type: "POST",
-                    url: "index.php?r=goodsattr/editattr",
-                    data: {'id': id, 'goods_id': goods_id},
-                    success: function (msg) {
-                        if (msg) {
-                         $(msg).insertAfter('#first-line');
-                        }
-                     }
-                    });
-                });
-                o.trigger('select');
-            })()
-             //商品属性
-             $('#good_attr').on('change', function () {
-                 //清空所有属性
-                 var allAttr = $("#attribute-table tr:gt(0)");
-                 allAttr.remove();
-                 id = $(this).val();
-                 goods_id = $('#goods_id').val();
-                 goodstype_id = $('#goodstype_id').val();
-                 if (id === goodstype_id) {
-                     //该商品类型下属性
-                     $.ajax({
-                         type: "POST",
-                         url: "index.php?r=goodsattr/editattr",
-                         data: {'id': id, 'goods_id': goods_id},
-                         success: function (msg) {
-                             if (msg) {
-                                 $(msg).insertAfter('#first-line');
-                             }
-                         }
-                     });
-                 } else {
-                     //非该商品类型下属性
-                     $.ajax({
-                         type: "POST",
-                         url: "index.php?r=goodsattr/getattr",
-                         data: {'id': id},
-                         success: function (msg) {
-                             if (msg) {
-                                 $(msg).insertAfter('#first-line');
-                             }
-                         }
-                     });
-                 }
-             });
-        </script>
 </table>
 
     <!----商品相册-->
@@ -390,7 +336,60 @@
         版权所有 &copy; 2005-2012 上海商派网络科技有限公司，并保留所有权利。</div>
     </body>
 </html>
-
+<script>
+    (function () {
+        o = $('#good_attr').find('option:selected');
+        id = o.val();
+        goods_id = $('#goods_id').val();
+        o.select(function () {
+            $.ajax({
+                type: "POST",
+                url: "index.php?r=goodsattr/editattr",
+                data: {'id': id, 'goods_id': goods_id},
+                success: function (msg) {
+                    if (msg) {
+                        $(msg).insertAfter('#first-line');
+                    }
+                }
+            });
+        });
+        o.trigger('select');
+    })()
+    //商品属性
+    $('#good_attr').on('change', function () {
+        //清空所有属性
+        var allAttr = $("#attribute-table tr:gt(0)");
+        allAttr.remove();
+        id = $(this).val();
+        goods_id = $('#goods_id').val();
+        goodstype_id = $('#goodstype_id').val();
+        if (id === goodstype_id) {
+            //该商品类型下属性
+            $.ajax({
+                type: "POST",
+                url: "index.php?r=goodsattr/editattr",
+                data: {'id': id, 'goods_id': goods_id},
+                success: function (msg) {
+                    if (msg) {
+                        $(msg).insertAfter('#first-line');
+                    }
+                }
+            });
+        } else {
+            //非该商品类型下属性
+            $.ajax({
+                type: "POST",
+                url: "index.php?r=goodsattr/getattr",
+                data: {'id': id},
+                success: function (msg) {
+                    if (msg) {
+                        $(msg).insertAfter('#first-line');
+                    }
+                }
+            });
+        }
+    });
+</script>
 <?php
 Dialog::begin([
 'id' => 'dialog',

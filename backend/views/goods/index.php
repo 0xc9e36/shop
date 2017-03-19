@@ -41,7 +41,7 @@
                             <td align="center"><?php echo $val['is_sale']; ?></td>
                             <td align="center"><span><?php echo $val['count']; ?></span></td>
                             <td align="center">
-                                <a href="index.php?r=goods/update&id=<?php echo $val['id']; ?>"  title="查看">编辑</a>
+                                <a href="index.php?r=goods/update&id=<?php echo $val['id']; ?>"  onclick="return confirm('修改商品后必须重新设置库存才能生效 , 确认修改 ?')" title="查看">编辑</a>
                                 <a href="index.php?r=product/index&id=<?php echo $val['id']; ?>" onclick="" title="回收站">货品列表</a>
                                 <a href="index.php?r=goods/trash&id=<?php echo $val['id']; ?>" onclick="" title="回收站">移入回收站</a></td>
                         </tr>

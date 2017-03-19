@@ -24,17 +24,52 @@ class GoodsController extends PublicController
          $first = null;
          //第一张图片
          if($images) $first = $images[0];
+         //该商品属性
+         $sql = "SELECT  a.*
+                 FROM shop_attrprice a
+                 LEFT JOIN shop_goodsattr b
+                 ON b.id = a.attr_id
+                 WHERE a.goods_id = $id";
+         $res = Yii::$app->db->createCommand($sql)->queryAll();
+         $attrs = [];
+         foreach ($res as $k => $v){
+             $attrs[$v['attr_id']][] = $v;
+         }/*
+         echo "<pre>";
+         var_dump($attrs);
+         echo "</pre>";*/
+         //该类型商品属性
+         $sql = "SELECT id, attr_name,attr_type, attr_value FROM shop_goodsattr WHERE goodstype_id = $goods->goodstype_id";
+         $allAttr = Yii::$app->db->createCommand($sql)->queryAll();
+         //相关分类
+         $sql = 'SELECT pid FROM shop_category WHERE id = (SELECT pid FROM shop_category WHERE id ='.$goods->goodscat_id.')';
+         $catPid = Yii::$app->db->createCommand($sql)->queryOne();
+         $likely = (new \yii\db\Query())
+             ->select(['*'])
+             ->from('shop_category')
+             ->where(['pid' => $catPid])
+             ->orderBy('id')
+             ->all();
+         //商品品牌
+         $brand = (new \yii\db\Query())
+             ->select(['brand_name'])
+             ->from('shop_brand')
+             ->where(['id' => $goods['goods_brand']])
+             ->one();
          return $this->render('detail',[
              'goods'    => $goods,
              'first'    => $first,
              'images'   => $images, //商品相册
+             'likely' => $likely,
+             'brand'    => $brand,
+             'attrs' => $attrs,
+             'allAttr'  => $allAttr,
          ]);
      }
 
      public function actionCat()
      {
          $catid = intval(Yii::$app->request->get('id'));
-
 
          $cur = (new \yii\db\Query())
              ->select(['cat_name', 'id', 'pid'])
@@ -74,7 +109,7 @@ class GoodsController extends PublicController
          $goods = $query->offset($pages->offset)
                         ->limit($pages->limit)
                         ->all();
-
+         setcookie('front', Yii::$app->request->url);
          return $this->render('cat',[
              'goods'  =>  $goods,
              'top'   => $top,
@@ -104,16 +139,18 @@ class GoodsController extends PublicController
     }
 
     //获取商品价格
-    public function actionGetpriceandnum($id, $attr){
+    public function actionGetprice($id, $attr){
         $id = intval($id);
         $model = new Goods();
-        $price = $model->getMemberPrice($id);
+        $price = $model->getPrice($id, $attr);
+        return  $price;
+    }
+    //获取商品库存
+    public function actionGetnum($id, $attr){
+        $id = intval($id);
+        $model = new Goods();
         $num = $model->getGoodsNum($id, $attr);
-        $data = json_encode([
-            'price' => $price,
-            'num'   => $num,
-        ]);
-        echo $data;
+        return  $num;
     }
     /**
      * Finds the Brand model based on its primary key value.

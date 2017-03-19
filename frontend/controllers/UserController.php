@@ -56,6 +56,11 @@ class UserController extends PublicController
              $info = Yii::$app->db->createCommand($sql)->query()->read();
              Yii::$app->session['level_id'] = $info['id'];
              Yii::$app->session['rate'] = $info['rate'] / 100.00;
+             /*添加cookies到购物车数据库*/
+             Yii::$app->runAction('cart/move');
+             if(isset(Yii::$app->session['return'])){
+                 return $this->redirect(Yii::$app->session['return']);
+             }
              return $this->redirect('index.php?r=user/index');
          }
          // 非post直接渲染登录表单

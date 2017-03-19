@@ -22,7 +22,7 @@ use yii\helpers\Html;
     <?php if($type === 'success'): ?>
     <div class="main">
         <div class="mat">
-            <p>操作成功  ~!<br><span id="xm"><?= $time; ?></span>秒后自动跳转</p>
+            <p><?= $msg; ?>  ~!<br><span id="xm"><?= $time; ?></span>秒后自动跳转</p>
             <div class="tit">您还可以：</div>
             <ul>
                 <li><a href="<?= $gotoUrl; ?>">立即跳转</a></li>
