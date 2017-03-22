@@ -16,31 +16,39 @@ class GoodsController extends PublicController
      {
          $id = intval($id);
          $goods = $this->findModel($id);
-         $images = (new \yii\db\Query())
-             ->select(['*'])
-             ->from('shop_goodsimg')
-             ->where(['goods_id' => $id])
-             ->all();
+         //商品相册
+         $images = (new \yii\db\Query())->select(['*'])->from('shop_goodsimg')->where(['goods_id' => $id])->all();
          $first = null;
          //第一张图片
          if($images) $first = $images[0];
-         //该商品属性
-         $sql = "SELECT  a.*
+         //找出该商品属性
+         /*$sql = "SELECT  a.id, a.goods_id, a.attr_id, a.attr_value, a.attr_price
                  FROM shop_attrprice a
                  LEFT JOIN shop_goodsattr b
                  ON b.id = a.attr_id
-                 WHERE a.goods_id = $id";
-         $res = Yii::$app->db->createCommand($sql)->queryAll();
+                 WHERE a.goods_id = {$id}
+                 ORDER BY a.id";
+         $res = Yii::$app->db->createCommand($sql)->queryAll();*/
+         $res = (new \yii\db\Query())
+             ->select('a.id, a.goods_id, a.attr_id, a.attr_value, a.attr_price')
+             ->from('shop_attrprice a')
+             ->join('LEFT JOIN', 'shop_goodsattr b',' b.id = a.attr_id' )
+             ->where(['a.goods_id' => $id])
+             ->orderBy('a.id')
+             ->all();
          $attrs = [];
          foreach ($res as $k => $v){
              $attrs[$v['attr_id']][] = $v;
-         }/*
-         echo "<pre>";
-         var_dump($attrs);
-         echo "</pre>";*/
-         //该类型商品属性
-         $sql = "SELECT id, attr_name,attr_type, attr_value FROM shop_goodsattr WHERE goodstype_id = $goods->goodstype_id";
-         $allAttr = Yii::$app->db->createCommand($sql)->queryAll();
+         }
+         //该类型商品所有属性
+        /* $sql = "SELECT id, attr_name,attr_type, attr_value FROM shop_goodsattr WHERE goodstype_id = $goods->goodstype_id";
+         $allAttr = Yii::$app->db->createCommand($sql)->queryAll();*/
+         $allAttr = (new \yii\db\Query())
+             ->select(['id', 'attr_name','attr_type', 'attr_value'])
+             ->from('shop_goodsattr')
+             ->where(['goodstype_id' => $goods->goodstype_id])
+             ->all();
+
          //相关分类
          $sql = 'SELECT pid FROM shop_category WHERE id = (SELECT pid FROM shop_category WHERE id ='.$goods->goodscat_id.')';
          $catPid = Yii::$app->db->createCommand($sql)->queryOne();
@@ -56,6 +64,8 @@ class GoodsController extends PublicController
              ->from('shop_brand')
              ->where(['id' => $goods['goods_brand']])
              ->one();
+         //热销广告
+         $hot = $this->getBest();
          return $this->render('detail',[
              'goods'    => $goods,
              'first'    => $first,
@@ -64,34 +74,24 @@ class GoodsController extends PublicController
              'brand'    => $brand,
              'attrs' => $attrs,
              'allAttr'  => $allAttr,
+             'hot'  => $hot,
          ]);
      }
 
      public function actionCat()
      {
          $catid = intval(Yii::$app->request->get('id'));
-
-         $cur = (new \yii\db\Query())
-             ->select(['cat_name', 'id', 'pid'])
-             ->from('shop_category')
-             ->where(['id' => $catid])
-             ->one();
+         $query = (new \yii\db\Query());
+         //当前分类
+         $cur = $query->select(['cat_name', 'id', 'pid'])->from('shop_category')->where(['id' => $catid])->one();
          if(!$cur) return $this->jump();
          $curInfo = $cur;
-
          $top = $cur;
          while($cur['pid'] != '0'){
-             $cur = (new \yii\db\Query())
-                 ->select(['id', 'pid', 'cat_name'])
-                 ->from('shop_category')
-                 ->where(['id' => $cur['pid']])
-                 ->one();
+             $cur = $query->select(['id', 'pid', 'cat_name'])->from('shop_category')->where(['id' => $cur['pid']])->one();
              $top = $cur;
          }
-         $list = (new \yii\db\Query())
-             ->select(['id', 'pid', 'cat_name'])
-             ->from('shop_category')
-             ->all();
+         $list = (new \yii\db\Query())->select(['id', 'pid', 'cat_name'])->from('shop_category')->all();
          if(!$list) return $this->jump();
          $rows = $this->getTree($list, $catid, 0);
          $ids = [];
@@ -110,11 +110,17 @@ class GoodsController extends PublicController
                         ->limit($pages->limit)
                         ->all();
          setcookie('front', Yii::$app->request->url);
+         //新品推荐
+         $news = $this->getNews();
+         //热卖推荐
+         $hot = $this->getBest();
          return $this->render('cat',[
              'goods'  =>  $goods,
              'top'   => $top,
              'curInfo'   => $curInfo,
              'pages' => $pages,
+             'news' => $news,
+             'hot' => $hot,
          ]);
      }
     /**

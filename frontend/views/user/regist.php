@@ -1,3 +1,8 @@
+<?php
+use yii\helpers\Html;
+use yii\captcha\Captcha;
+use yii\bootstrap\ActiveForm;
+?>
 <?php $this->beginPage() ?>
     <!DOCTYPE html>
     <html>
@@ -12,11 +17,6 @@
     </head>
     <body>
     <?php $this->beginBody() ?>
-    <?php
-    use yii\helpers\Html;
-    use yii\captcha\Captcha;
-    use yii\bootstrap\ActiveForm;
-    ?>
     <!-- 登录主体部分start -->
     <div class="login w990 bc mt10 regist">
         <div class="login_hd">
@@ -49,10 +49,6 @@
                             'captchaAction'=>'/user/captcha',
                             'template' => "<label for=''>验证码: </label><span style='margin-left: 8px; margin-right: 8px;'>{input}</span>{image}",
                         ]) ?>
-                    </li>
-                    <li>
-                        <label for="">&nbsp;</label>
-                        <input type="checkbox" class="chb" checked="checked" /> 我已阅读并同意《用户注册协议》
                     </li>
                     <li>
                         <label for="">&nbsp;</label>

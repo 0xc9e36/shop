@@ -274,6 +274,18 @@ echo $form->errorSummary($model);
                     <input type="radio" name="Goods[post_free]" value="0"/> 否
                 </td>
             </tr>
+
+            <tr>
+                <td class="label">加入推荐：</td>
+                <td>
+                    <input type="checkbox" name="Goods[is_bestsale]" value="0" onclick="this.value=(this.value==0)?1:0"/>热卖商品
+                    <input type="checkbox" name="Goods[is_crazy]" value="0" onclick="this.value=(this.value==0)?1:0"/>疯狂抢购
+                    <input type="checkbox" name="Goods[is_recomend]" value="0" onclick="this.value=(this.value==0)?1:0"/>推荐商品
+                    <input type="checkbox" name="Goods[is_new]" value="0" onclick="this.value=(this.value==0)?1:0"/>新品上架
+                    <input type="checkbox" name="Goods[is_guess]" value="0" onclick="this.value=(this.value==0)?1:0"/>猜您喜欢
+                    <input type="checkbox" name="Goods[is_first]" value="0" onclick="this.value=(this.value==0)?1:0"/>网站首发
+                </td>
+            </tr>
         </table>
 
         <!--商品属性-->

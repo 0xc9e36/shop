@@ -279,6 +279,17 @@
                 <input type="radio" name="Goods[post_free]" value="0" <?php if ($model->post_free == 0) { ?> checked="checked" <?php } ?>/> 否
             </td>
         </tr>
+        <tr>
+            <td class="label">加入推荐：</td>
+            <td>
+                <input type="checkbox" name="Goods[is_bestsale]" value="<?= $model->is_bestsale ?>" <?php if($model->is_bestsale == 1) echo "checked='checked'" ?> onclick="this.value=(this.value==0)?1:0"/>热卖商品
+                <input type="checkbox" name="Goods[is_crazy]" value="<?= $model->is_crazy ?>" <?php if($model->is_crazy == 1) echo "checked='checked'" ?> onclick="this.value=(this.value==0)?1:0"/>疯狂抢购
+                <input type="checkbox" name="Goods[is_recomend]" value="<?= $model->is_recomend ?>" <?php if($model->is_recomend == 1) echo "checked='checked'" ?> onclick="this.value=(this.value==0)?1:0"/>推荐商品
+                <input type="checkbox" name="Goods[is_new]" value="<?= $model->is_new ?>" <?php if($model->is_new == 1) echo "checked='checked'" ?> onclick="this.value=(this.value==0)?1:0"/>新品上架
+                <input type="checkbox" name="Goods[is_guess]" value="<?= $model->is_guess ?>" <?php if($model->is_guess == 1) echo "checked='checked'" ?> onclick="this.value=(this.value==0)?1:0"/>猜您喜欢
+                <input type="checkbox" name="Goods[is_first]" value="<?= $model->is_first ?>" <?php if($model->is_first == 1) echo "checked='checked'" ?> onclick="this.value=(this.value==0)?1:0"/>网站首发
+            </td>
+        </tr>
     </table>
 
     <!--商品属性-->

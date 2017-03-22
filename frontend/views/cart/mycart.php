@@ -47,8 +47,8 @@
 					<td class="col3">￥<span><?= $v['price']; ?></span></td>
 					<td class="col4">
 						<a href="javascript:;" attrstr = "<?= $v['attrstr']; ?>" goodsid="<?= $v['goodsid'] ?>" class="reduce_num"></a>
-						<input type="text" attrstr = "<?= $v['attrstr']; ?>" goodsid="<?= $v['goodsid'] ?>" name="amount" value="<?= $v['goodsnum'] ?>" class="amount"/>
-						<a href="javascript:;" attrstr = "<?= $v['attrstr']; ?>" goodsid="<?= $v['goodsid'] ?>" class="add_num"></a>
+						<input type="text"  count="<?= $v['count']; ?>" attrstr = "<?= $v['attrstr']; ?>" goodsid="<?= $v['goodsid'] ?>" name="amount" value="<?= $v['goodsnum'] ?>" class="amount"/>
+						<a href="javascript:;" count="<?= $v['count']; ?>" attrstr = "<?= $v['attrstr']; ?>" goodsid="<?= $v['goodsid'] ?>" class="add_num"></a>
 					</td>
                     <?php  $price = bcmul($v['price'] , $v['goodsnum'], 2) ?>
 					<td class="col5">￥<span class="cur"><?= $price ?></span></td>

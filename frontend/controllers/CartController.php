@@ -120,5 +120,4 @@ class CartController extends PublicController
         }
     }
 
-
 }

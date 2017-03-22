@@ -63,6 +63,12 @@ class GoodsController extends AdminController {
                     $model->goods_sn = !empty($model->goods_sn) ? $model->goods_sn : (string)time();
                     //是否促销
                     if (isset($_POST['is_sale']) && 'ok' === $_POST['is_sale']) $model->is_discount = 1; //促销
+                    $model->is_bestsale = isset($request->post('Goods')['is_bestsale']) ? $request->post('Goods')['is_bestsale'] : 0;
+                    $model->is_crazy = isset($request->post('Goods')['is_crazy']) ? $request->post('Goods')['is_crazy'] : 0;
+                    $model->is_recomend = isset($request->post('Goods')['is_recomend']) ? $request->post('Goods')['is_recomend'] : 0;
+                    $model->is_new = isset($request->post('Goods')['is_new']) ? $request->post('Goods')['is_new'] : 0;
+                    $model->is_guess = isset($request->post('Goods')['is_guess']) ? $request->post('Goods')['is_guess'] : 0;
+                    $model->is_first = isset($request->post('Goods')['is_first']) ? $request->post('Goods')['is_first'] : 0;
                     //添加商品
                     if ($model->save()) {
                          //商品id
@@ -133,7 +139,6 @@ class GoodsController extends AdminController {
                          }
                     } else {
                          var_dump($model->getErrors());
-                         die;
                          $this->jump('添加商品出了点麻烦~ 错误信息 : ' );
                     }
                     return $this->redirect(['index']);
@@ -188,6 +193,12 @@ class GoodsController extends AdminController {
                     if (isset($_POST['is_sale']) && 'ok' === $_POST['is_sale']) {
                          $model->is_discount = 1;
                     }
+                    $model->is_bestsale = isset($request->post('Goods')['is_bestsale']) ? $request->post('Goods')['is_bestsale'] : 0;
+                    $model->is_crazy = isset($request->post('Goods')['is_crazy']) ? $request->post('Goods')['is_crazy'] : 0;
+                    $model->is_recomend = isset($request->post('Goods')['is_recomend']) ? $request->post('Goods')['is_recomend'] : 0;
+                    $model->is_new = isset($request->post('Goods')['is_new']) ? $request->post('Goods')['is_new'] : 0;
+                    $model->is_guess = isset($request->post('Goods')['is_guess']) ? $request->post('Goods')['is_guess'] : 0;
+                    $model->is_first = isset($request->post('Goods')['is_first']) ? $request->post('Goods')['is_first'] : 0;
                     //添加商品
                     if ($model->save()) {
                          $goods_id = $model->getPrimaryKey();

@@ -36,7 +36,8 @@ class UserController extends PublicController
 
      public function actionIndex()
      {
-          return $this->renderPartial('index');
+         $this->layout = "home_style.php";
+          return $this->render('index');
      }     
      
      public function actionLogin()
@@ -44,7 +45,7 @@ class UserController extends PublicController
          // 判断用户是访客还是认证用户
          // isGuest为真表示访客，isGuest非真表示认证用户，认证过的用户表示已经登录了，这里跳转到主页面
          if (!Yii::$app->user->isGuest) {
-             return $this->redirect('index.php?r=user/index');
+             return $this->redirect('user/index');
          }
 
          $model = new \frontend\models\LoginForm();
@@ -104,7 +105,8 @@ class UserController extends PublicController
      
      public function actionOrder()
      {
-          return $this->renderPartial('order');
+         $this->layout = "home_style.php";
+          return $this->render('order');
      }  
      
      public function actionAddress()

@@ -24,7 +24,7 @@ class UploadForm extends Model {
       * 返回图片路径
       * @return boolean|string
       */
-     public function upload() {
+     public function upload($size = null) {
           if ($this->validate()) {
                $upDir = 'uploads/' . date('Ymd') . '/';
                //$upDir = Yii::$app->params['temp'];
@@ -42,11 +42,15 @@ class UploadForm extends Model {
                //中等图
                $medianName = time() . 'median' . rand(0, 9999) . '.' . $this->imageFile->extension;
                $url['median'] = $upDir . $medianName;
-               Image::thumbnail($url['primary'], Yii::$app->params['median_img_width'], Yii::$app->params['median_img_height'])->save($url['median'], ['quality' => 50]);
+               $middle_height = isset($size['middle']['height']) ? $size['middle']['height'] : Yii::$app->params['median_img_height'];
+               $middle_width = isset($size['middle']['width']) ? $size['middle']['width'] : Yii::$app->params['median_img_width'];
+               Image::thumbnail($url['primary'], $middle_width, $middle_height)->save($url['median'], ['quality' => 50]);
                //大图
                $bigName = time() . 'big' . rand(0, 9999) . '.' . $this->imageFile->extension;
                $url['big'] = $upDir . $bigName;
-               Image::thumbnail($url['primary'], Yii::$app->params['big_img_width'], Yii::$app->params['big_img_height'])->save($url['big'], ['quality' => 50]);
+               $big_height = isset($size['big']['height']) ? $size['big']['height'] : Yii::$app->params['big_img_height'];
+               $big_width = isset($size['big']['width']) ? $size['big']['width'] : Yii::$app->params['big_img_width'];
+               Image::thumbnail($url['primary'], $big_width, $big_height)->save($url['big'], ['quality' => 50]);
                return $url;
           } else {
                return false;

@@ -1,3 +1,6 @@
+<?php
+use \yii\helpers\Url;
+?>
 <html>
 <head>
 <link rel="stylesheet" href="style/goods.css" type="text/css">
@@ -35,10 +38,9 @@
 			<h2><strong>相关分类</strong></h2>
 			<div class="leftbar_wrap">
 				<ul>
-					<?php foreach ($likely as $k => $v){
-						echo "<li><a href='index.php?r=goods/cat&id={$v['id']}'>{$v['cat_name']}</a></li>";
-					}
-					?>
+					<?php foreach ($likely as $k => $v) : ?>
+						<li><a href="<?=Url::toRoute(['goods/detail', 'id' => $v['id']]) ?>"><?= $v['cat_name']; ?></a></li>
+                    <?php endforeach; ?>
 				</ul>
 			</div>
 		</div>
@@ -66,30 +68,15 @@
 			<h2><strong>热销商品</strong></h2>
 			<div class="leftbar_wrap">
 				<ul>
+                    <?php foreach ($hot as $k => $v): ?>
 					<li>
 						<dl>
-							<dt><a href=""><img src="images/relate_view1.jpg" alt="" /></a></dt>
-							<dd><a href="">ThinkPad E431(62771A7) 14英寸笔记本电脑 (i5-3230 4G 1TB 2G独显 蓝牙 win8)</a></dd>
-							<dd><strong>￥5199.00</strong></dd>
+							<dt><a href="<?= Url::toRoute(['goods/detail', 'id' => $v['id']]) ?>"><img src="<?= Yii::$app->params['upload_url'].'/'.$v['small_img'] ?>" alt="" /></a></dt>
+							<dd><a href="<?= Url::toRoute(['goods/detail', 'id' => $v['id']]) ?>"><?= $v['goods_name'] ?></a></dd>
+							<dd><strong>￥<?= $v['shop_price'] ?></strong></dd>
 						</dl>
 					</li>
-
-
-					<li>
-						<dl>
-							<dt><a href=""><img src="images/relate_view4.jpg" alt="" /></a></dt>
-							<dd><a href="">联想（Lenovo） Y510p 15.6英寸笔记本电脑（i5-4200M 4G 1T 2G独显 摄像头 DVD刻录 Win8）黑色</a></dd>
-							<dd><strong>￥6199.00</strong></dd>
-						</dl>
-					</li>
-
-					<li class="last">
-						<dl>
-							<dt><a href=""><img src="images/relate_view5.jpg" alt="" /></a></dt>
-							<dd><a href="">ThinkPad E530c(33662D0) 15.6英寸笔记本电脑 （i5-3210M 4G 500G NV610M 1G独显 摄像头 Win8）</a></dd>
-							<dd><strong>￥4399.00</strong></dd>
-						</dl>
-					</li>
+                    <?php endforeach; ?>
 				</ul>
 			</div>
 		</div>
@@ -195,13 +182,10 @@ eod;
 						<li class="product">
 							<dl>
 								<dt>{$v['attr_name']}：</dt>
-
 								<dd>
 eod;
 ?>
 									<?php
-									//排序输出--
-									//sort($attrs[$v['attr_id']]);
 									foreach ($attrs[$v['id']] as $k1 => $v1) {
 										if ($k1 == 0)
 											echo "<a href='javascript:void(0);' class='selected'>{$v1['attr_value']}<input class='goodsatt' name='_{$v['id']}' type='radio' checked='checked'  value='{$v1['id']}' /></a>";
@@ -254,7 +238,7 @@ eod;
 					<li class="on"><span>商品详细说明</span></li>
 				</ul>
 			</div>
-			<div class="detail_bd"><?= $goods->des; ?></div>
+			<div class="detail_bd"><?= \yii\helpers\Html::encode($goods->des); ?></div>
 		</div>
 		<!-- 商品详情 end -->
 

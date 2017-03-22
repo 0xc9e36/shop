@@ -18,5 +18,8 @@ return [
             '会员列表' => '/index.php?r=member/index',
             '会员等级' => '/index.php?r=memberlevel/index',
         ),
+        '系统设置'  => array(
+            '广告管理'   =>  '/index.php?r=adver/index',
+        ),
     ),
 ];

@@ -20,6 +20,7 @@ $(function(){
             });
         }else{
             alert('商品数量必须是整数');
+            $('.amount').val(1);
         }
     });
 })

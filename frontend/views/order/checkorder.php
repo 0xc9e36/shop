@@ -38,7 +38,6 @@ use yii\helpers\Url;
     <div class="fillin_hd">
         <h2>填写并核对订单信息</h2>
     </div>
-
     <div class="fillin_bd">
         <!-- 收货人信息  start-->
         <div class="address">
@@ -74,9 +73,9 @@ use yii\helpers\Url;
                     </thead>
                     <tbody>
                     <?php foreach ($post as $k => $v): ?>
-                            <?php if($k == 0) $checked = "checked='checked'"; else $checked = " ";  ?>
+                            <?php $checked = " ";  ?>
                     <tr>
-                        <td><input type="radio" name="Order[post_id]" <?= $checked; ?>  class="postPrice" value="<?= $k; ?>"/><?= $v['name']?></td>
+                        <td><input type="radio" name="Order[post_id]" <?= $checked; ?> price="<?= $v['price']?>" class="postPrice" value="<?= $k; ?>"/><?= $v['name']?></td>
                         <td>￥<?= $v['price']?></td>
                         <td><?= $v['desc']?>4...</td>
                     </tr>
@@ -95,7 +94,7 @@ use yii\helpers\Url;
                     <?php foreach ($pay as $k => $v): ?>
                         <?php if($k == 0) $checked = "checked='checked'"; else $checked = " ";  ?>
                     <tr>
-                        <td class="col1" ><input name="Order[pay_id]" value="<?= $k; ?>" type="radio" <?= $checked; ?> /><?= $v['name']?></td>
+                        <td class="col1" ><input name="Order[pay_id]" value="<?= $k; ?>"   type="radio" <?= $checked; ?> /><?= $v['name']?></td>
                         <td class="col2"><?= $v['desc']?></td>
                     </tr>
                     <?php endforeach; ?>
@@ -121,6 +120,7 @@ use yii\helpers\Url;
                 <?php
                     $count = 0;
                     $sum = 0.00;
+                    $total = 0.00;
                 ?>
 
                 <?php foreach ($list as $k => $v) : ?>
@@ -129,6 +129,7 @@ use yii\helpers\Url;
                     $count +=  $v['goodsnum'];
                     $s = bcmul($v['price'], $v['goodsnum'], 2);
                     $sum = bcadd($s, $sum, 2);
+                    $total = $sum;
                     ?>
                     <td class="col1"><a href="<?= Url::to(['goods/detail', 'id' => $v['goodsid']]) ?>"><img src="<?= Yii::$app->params['upload_url'].'/'.$v['logo']; ?>" alt="" /></a>  <strong><a href="<?= Url::to(['goods/detail', 'id' => $v['goodsid']]) ?>"><?= $v['goods_name']; ?></a></strong></td>
                     <td class="col2"> <?= $v['attr'] ?> </td>
@@ -147,7 +148,9 @@ use yii\helpers\Url;
                             </li>
                             <li>
                                 <span>运费：</span>
-                                <em>￥10.00</em>
+                                <input hidden="" id="mypost" name="mypost" value="0.00" />
+                                <input hidden="" id="myprice" name="myprice" value="<?= $sum; ?>" />
+                                <em id="post">0.00</em>
                             </li>
                         </ul>
                     </td>
@@ -166,8 +169,18 @@ use yii\helpers\Url;
             var form=document.getElementById("order_form");
             form.submit();
         }
+            $('.postPrice').click(function(){
+                price = $(this).attr('price');
+                sum = $("#total").attr('value');
+                $("#post").html(price);
+                total = (parseFloat(sum) + parseFloat(price)).toFixed(2);
+                $("#post").html(price);
+                $("#sum").html(total);
+                $("#mypost").attr('value', price);
+            });
         </script>
-        <p>应付总额：<strong>￥<?= $sum ?> 元</strong></p>
+        <input type="hidden" id="total" value="<?= $total; ?>">
+        <p>应付总额：<strong>￥<span id="sum"><?= $sum ?></span> 元</strong></p>
 
     </div>
 </div>

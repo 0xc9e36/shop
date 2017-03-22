@@ -1,11 +1,12 @@
 <?php
 return [
     'adminEmail' => 'admin@example.com',
-    'pagesize'  =>  10,  //商品分页展示条数
+    'pagesize'  =>  8,  //商品分页展示条数
+    'publinInfo' => '分辨真假商品, 谨防上当受骗',
     'post'  => [
         '0' => [
             'name'  => '顺丰快递',
-            'desc'  => '每张订单不满499.00元,运费40.00元, 订单',
+            'desc'  => '顺丰快递描述',
             'class' =>  'SF',
             'price' => 35,
         ],
@@ -19,12 +20,12 @@ return [
     'pay'  => [
         '0' => [
             'name'  => '支付宝',
-            'desc'  => '谁都在用......',
+            'desc'  => '支付宝接口',
             'class' =>  'Pay',
         ],
         '1' => [
         'name'  => '网银在线',
-        'desc'  => '垃圾......',
+        'desc'  => '网银在线接口',
         'class' =>  'OlinePay',
         ],
     ],

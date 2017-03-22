@@ -4,10 +4,10 @@ namespace backend\controllers;
 
 use Yii;
 use backend\models\Brand;
+use backend\models\UploadForm;
 use backend\controllers\AdminController;
 use yii\web\NotFoundHttpException;
 use yii\web\UploadedFile;
-use backend\models\UploadForm;
 
 /**
  * BrandController implements the CRUD actions for Brand model.

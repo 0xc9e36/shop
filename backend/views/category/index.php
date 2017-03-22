@@ -23,7 +23,7 @@ $view->params['menu']= array(
             <tr align="center" class="0">
                 <td align="left" class="first-cell" >
                     <img src="Images/menu_minus.gif" width="9" height="9" border="0" style="margin-left:0em" />
-               <span><a href="javascript:void(0)"><?php echo str_repeat("&nbsp;&nbsp;&nbsp;&nbsp;", $v['deep']).Html::encode($v['cat_name']) ; ?></a></span>
+               <span><a href="javascript:void(0)"><?php echo str_repeat("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;", $v['deep']).Html::encode($v['cat_name']) ; ?></a></span>
                 </td>
                  <td width="15%"><?=Html::encode($v['unit']); ?></td>
                  <td width="15%">

@@ -23,8 +23,10 @@
 
 <!---------取商品分类信息------------->
 <?php
+    use yii\helpers\Url;
+    $query = new \yii\db\Query();
     /*一级分类信息*/
-    $first = (new \yii\db\Query())
+    $first = $query
         ->select(['id', 'cat_name', 'pid'])
         ->from('shop_category')
         ->where(['pid' => '0'])
@@ -33,7 +35,7 @@
     $firstIds = [];
     foreach($first as $k => $v)  $firstIds[] = $v['id'];
     /*二级分类信息*/
-    $second = (new \yii\db\Query())
+    $second = $query
         ->select(['id', 'cat_name', 'pid'])
         ->from('shop_category')
         ->where(['pid' => $firstIds])
@@ -42,7 +44,7 @@
     $secondIds = [];
     foreach($second as $k => $v)  $secondIds[] = $v['id'];
     /*三级分类信息*/
-    $three = (new \yii\db\Query())
+    $three = $query
         ->select(['id', 'cat_name', 'pid'])
         ->from('shop_category')
         ->where(['pid' => $secondIds])
@@ -54,7 +56,7 @@
     $action = Yii::$app->controller->action->id;
 
 ?>
-<!--------  取结束-------------------->
+<!--------  分类信息结束-------------------->
 
 
 <!-- 头部 start -->
@@ -74,13 +76,6 @@
 
             <div style="clear:both;"></div>
 
-            <div class="hot_search">
-                <strong>热门搜索:</strong>
-                <a href="">D-Link无线路由</a>
-                <a href="">休闲男鞋</a>
-                <a href="">TCL空调</a>
-                <a href="">耐克篮球鞋</a>
-            </div>
         </div>
         <!-- 头部搜索 end -->
 
@@ -89,39 +84,9 @@
             <dl>
                 <dt>
                     <em></em>
-                    <a href="">用户中心</a>
+                    <a href="<?= Url::to(['user/index']) ?>">用户中心</a>
                     <b></b>
                 </dt>
-                <dd>
-                    <div class="prompt">
-                        您好，请<a href="">登录</a>
-                    </div>
-                    <div class="uclist mt10">
-                        <ul class="list1 fl">
-                            <li><a href="">用户信息></a></li>
-                            <li><a href="">我的订单></a></li>
-                            <li><a href="">收货地址></a></li>
-                            <li><a href="">我的收藏></a></li>
-                        </ul>
-
-                        <ul class="fl">
-                            <li><a href="">我的留言></a></li>
-                            <li><a href="">我的红包></a></li>
-                            <li><a href="">我的评论></a></li>
-                            <li><a href="">资金管理></a></li>
-                        </ul>
-
-                    </div>
-                    <div style="clear:both;"></div>
-                    <div class="viewlist mt10">
-                        <h3>最近浏览的商品：</h3>
-                        <ul>
-                            <li><a href=""><img src="/images/view_list1.jpg" alt="" /></a></li>
-                            <li><a href=""><img src="/images/view_list2.jpg" alt="" /></a></li>
-                            <li><a href=""><img src="/images/view_list3.jpg" alt="" /></a></li>
-                        </ul>
-                    </div>
-                </dd>
             </dl>
         </div>
         <!-- 用户中心 end-->
@@ -130,18 +95,9 @@
         <div class="cart fl">
             <dl>
                 <dt>
-                    <a href="<?= \yii\helpers\Url::to(['cart/mycart']) ?>">去购物车结算</a>
+                    <a href="<?= Url::to(['cart/mycart']) ?>">去购物车结算</a>
                     <b></b>
                 </dt>
-                <!--
-                <dd>
-
-                    <div class="prompt">
-                        购物车中还没有商品，赶紧选购吧！
-                    </div>
-
-                </dd>
-                -->
             </dl>
         </div>
         <!-- 购物车 end -->
@@ -173,16 +129,16 @@
         <?php endif; ?>
                 <?php foreach( $first as $keyFirst => $valFirst):  ?>
                 <div class="cat">
-                    <h3><a href="<?= 'index.php?r=goods/cat&id='. $valFirst['id']?> "><?= $valFirst['cat_name'] ?></a><b></b></h3>
+                    <h3><a href="<?= Url::toRoute(['goods/cat', 'id' => $valFirst['id']])  ?>" ><?= $valFirst['cat_name'] ?></a><b></b></h3>
                     <div class="cat_detail">
                     <?php foreach($second as $keySecond => $valSecond): ?>
                         <?php if($valSecond['pid'] == $valFirst['id']) :  ?>
                         <dl>
-                            <dt><a href="<?='index.php?r=goods/cat&id='. $valSecond['id']?>"><?= $valSecond['cat_name'] ?></a></dt>
+                            <dt><a href="<?= Url::toRoute(['goods/cat', 'id' => $valSecond['id']])  ?>"><?= $valSecond['cat_name'] ?></a></dt>
                             <dd>
                             <?php foreach($three as $keyThree => $valThree): ?>
                                 <?php if($valThree['pid'] == $valSecond['id']) : ?>
-                                <a href="<?='index.php?r=goods/cat&id='. $valThree['id']?>"><?= $valThree['cat_name']; ?></a>
+                                <a href="<?= Url::toRoute(['goods/cat', 'id' => $valThree['id']])  ?>"><?= $valThree['cat_name']; ?></a>
                                 <?php endif; ?>
                             <?php endforeach; ?>
                             </dd>
@@ -200,8 +156,11 @@
 
         <div class="navitems fl">
             <ul class="fl">
-                <li class="current"><a href="/">首页</a></li>
-                <li><a href="">项目介绍</a></li>
+                <?php if($controller === 'index') : $cur = "class = 'current'";  else: $cur = "";   endif; ?>
+                <li <?= $cur ?>><a href="/">首页</a></li>
+                <!--
+                <li><a href="<?= Url::toRoute(['user/index']); ?>">用户</a></li>
+                -->
             </ul>
             <div class="right_corner fl"></div>
         </div>

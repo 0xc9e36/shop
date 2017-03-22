@@ -20,7 +20,7 @@ class Goods extends \yii\db\ActiveRecord {
         $rate = Yii::$app->session['rate'];
         if(!$rate) $rate = 1;
         $level_id = (int)Yii::$app->session['level_id'];
-        //保留了两位小数
+        //保留了两位小数-----------会员折扣
         $sql = 'SELECT truncate(IFNULL(b.member_price, a.shop_price *'.$rate.'), 2) price
                 FROM shop_goods a
                 LEFT JOIN shop_memberprice b

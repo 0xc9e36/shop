@@ -13,14 +13,15 @@ class OrderController extends PublicController
     public function actionCheckorder()
     {
         $model = new Order();
-        if ($model->load(Yii::$app->request->post())) {
-            if(!$order_id = $model->submit()){
-                return $this->jump('error', '下订单失败');
-            }
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            $order_id = $model->submit();
+            if(!$order_id) return $this->jump('success', '下单失败, 请重试', 3, 'index/index');
             return $this->render('submitorder');
         }else {
             if (!Yii::$app->user->isGuest) {
                 $list = (new Cart())->getCarts();
+                if(!$list)return $this->jump('success', '购物车为空, 先购物', 3, 'index/index');
+
                 //邮递方式
                 $post = Yii::$app->params['post'];
                 //支付方式

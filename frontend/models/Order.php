@@ -54,9 +54,6 @@ class Order extends \yii\db\ActiveRecord
     public function submit()
     {
         // 调用validate方法对表单数据进行验证，验证规则参考上面的rules方法
-        if (!$this->validate()) {
-            return false;
-        }
         $request = Yii::$app->request;
         //下订单 , 失败
         if(!$sn = $this->getOrderSn()) return false;
@@ -67,9 +64,9 @@ class Order extends \yii\db\ActiveRecord
         //配送方式
         $this->post_id = intval($request->post('post_id'));
         //邮费
-        $this->postage = Yii::$app->params['post'][$this->post_id]['price'];
+        $this->postage = $request->post('mypost');
         //商品价格, 先写死, 后面算
-        $this->goods_price = 123456;
+        $this->goods_price = $request->post('myprice');
         //商品总价
         $this->total_price	= bcadd($this->goods_price, $this->postage, 2);
         $this->user_id = Yii::$app->user->identity->id;
@@ -104,8 +101,17 @@ class Order extends \yii\db\ActiveRecord
             $cartModel->clear();
         }
     }
-    /*文件锁, 下单并发*/
+    /*获取订单号*/
     public function getOrderSn(){
-        return time();
+        if(1) {
+            $sn = substr(time(), 4);
+            $maxId = (new \yii\db\Query())->select(['max(id)'])->from('shop_order')->scalar();
+            if (!$maxId) $maxId = 1;
+            $sn = $sn.$maxId;
+            //释放锁
+            return $sn;
+        }else{
+            return false;
+        }
     }
 }

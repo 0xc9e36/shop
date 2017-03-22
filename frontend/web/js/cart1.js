@@ -35,11 +35,17 @@ $(function(){
 	$(".add_num").click(function(){
 		var amount = $(this).parent().find(".amount");
         var num = parseInt($(amount).val()) + 1;
-		$(amount).val(num);
-        //价格修改
-        var id = $(this).attr('goodsid');
-        var attr = $(this).attr('attrstr');
-        updateCart(id, attr, num);
+        var max = $(this).attr('count');
+        if(num > max){
+            alert('超过库存');
+            $(amount).val(max);
+        }else{
+            $(amount).val(num);
+            //价格修改
+            var id = $(this).attr('goodsid');
+            var attr = $(this).attr('attrstr');
+            updateCart(id, attr, num);
+        }
 		//小计
 		var subtotal = parseFloat($(this).parent().parent().find(".col3 span").text()) * parseInt($(amount).val());
 		$(this).parent().parent().find(".col5 span").text(subtotal.toFixed(2));
@@ -55,10 +61,14 @@ $(function(){
 	//直接输入
 	$(".amount").blur(function(){
         var num = parseInt($(this).val())
+        var max = $(this).attr('count');
         if(/^[1-9]\d*$/.test(num)) {
             if (num < 1) {
                 alert("商品数量最少为1");
                 $(this).val(1);
+            }else if(num > max){
+                alert("商品数量超出库存量");
+                $(this).val(max);
             }
             //价格修改
             var id = $(this).attr('goodsid');
@@ -76,6 +86,7 @@ $(function(){
             $("#total").text(total.toFixed(2));
         }else{
             alert('必须是数字');
+            $(this).val(1);
         }
 	});
 

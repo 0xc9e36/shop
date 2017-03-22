@@ -103,4 +103,5 @@ class Cart extends \yii\db\ActiveRecord {
             setcookie('cart', '');
         }
     }
+    
 }
