@@ -38,11 +38,14 @@
 				</tr>
 			</thead>
 			<tbody>
-            <?php use \yii\helpers\Url; ?>
+            <?php
+              use \yii\helpers\Url;
+              use common\help\MyHelper;
+            ?>
             <?php $total = 0.00; ?>
             <?php foreach ($list as $k => $v):  ?>
 				<tr>
-					<td class="col1"><a href="<?= Url::toRoute(['goods/detail', 'id' => $v['goodsid']] ) ?>"><img src="<?= Yii::$app->params['upload_url'].'/'.$v['logo'] ?>" alt="" /></a>  <strong><a href="<?= Url::toRoute(['goods/detail', 'id' => $v['goodsid']] ) ?>"><?= $v['goods_name']; ?></a></strong></td>
+					<td class="col1"><a href="<?= Url::toRoute(['goods/detail', 'id' => $v['goodsid']] ) ?>"><img src="<?= Yii::$app->params['admin'].MyHelper::DS().$v['logo'] ?>" alt="" /></a>  <strong><a href="<?= Url::toRoute(['goods/detail', 'id' => $v['goodsid']] ) ?>"><?= $v['goods_name']; ?></a></strong></td>
 					<td class="col2"> <?= $v['attr']; ?> </td>
 					<td class="col3">￥<span><?= $v['price']; ?></span></td>
 					<td class="col4">
@@ -68,7 +71,7 @@
 		</table>
 		<div class="cart_btn w990 bc mt10">
 			<a href="<?= $front ?>" class="continue">继续购物</a>
-			<a href="/index.php?r=order/checkorder" class="checkout">结 算</a>
+			<a href="<?= Url::toRoute(['order/checkorder']) ?>" class="checkout">结 算</a>
 		</div>
 	</div>
 	<!-- 主体部分 end -->

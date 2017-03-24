@@ -29,7 +29,7 @@ class Order extends \yii\db\ActiveRecord
         return [
             [['user_name','user_address'], 'filter', 'filter' => 'trim'],
             ['user_name', 'required', 'message' => '收货人不能为空'],
-            ['user_name', 'string', 'length' => [5,25], 'tooShort'   => '收货人过短', 'tooLong'   => '收货人过长'],
+            ['user_name', 'string', 'length' => [3,25], 'tooShort'   => '收货人过短', 'tooLong'   => '收货人过长'],
             ['user_address', 'required', 'message' => '收货地址不能为空'],
             ['user_address', 'string', 'length' => [5,25], 'tooShort'   => '地址过短', 'tooLong'   => '地址人过长'],
             ['user_tel', 'required', 'message' => '手机号不能为空'],

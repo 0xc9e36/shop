@@ -34,7 +34,7 @@ class Adver extends \yii\db\ActiveRecord
             [['type_id'], 'integer'],
             [['title'], 'string', 'max' => 600],
             ['url', 'url'],
-            [['url', 'small_img', 'big_img'], 'string', 'max' => 50],
+            [['url', 'small_img', 'big_img'], 'string', 'max' => 100],
         ];
     }
 

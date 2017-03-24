@@ -1,5 +1,6 @@
 <?php
 use \yii\helpers\Url;
+use common\help\MyHelper;
 ?>
 <!-- 综合区域 start 包括幻灯展示，商城快报 -->
 <div class="colligate w1210 bc mt10">
@@ -9,7 +10,7 @@ use \yii\helpers\Url;
             <div class="slide_items">
                 <ul>
                     <?php foreach ($carousel as $k => $v): ?>
-                    <li><a href="<?= $v['url']; ?>"><img src="<?= Yii::$app->params['upload_url'].'/'.$v['big_img']; ?>" alt="" /></a></li>
+                    <li><a href="<?= $v['url']; ?>"><img src="<?= Yii::$app->params['admin'].MyHelper::DS().$v['big_img']; ?>" alt="" /></a></li>
                     <?php endforeach; ?>
                 </ul>
             </div>
@@ -29,7 +30,7 @@ use \yii\helpers\Url;
 
     <!-- 快报区域 start-->
     <div class="coll_right fl ml10">
-        <div class="ad"><a href="<?= $images['url']; ?>"><img src="<?= Yii::$app->params['upload_url'].'/'.$images['big_img']; ?>" alt="" /></a></div>
+        <div class="ad"><a href="<?= $images['url']; ?>"><img src="<?= Yii::$app->params['admin'].MyHelper::DS().$images['big_img']; ?>" alt="" /></a></div>
         <div class="news mt10">
             <h2><strong>广告商品</strong></h2>
             <ul>
@@ -68,7 +69,7 @@ use \yii\helpers\Url;
                     <?php foreach ($crazy as $k => $v) :?>
                     <li>
                         <dl>
-                            <dt><a href="<?= Url::toRoute(['goods/detail', 'id' => $v['id']])?>"><img src="<?= Yii::$app->params['upload_url'].'/'.$v['small_img']; ?>" alt="" /></a></dt>
+                            <dt><a href="<?= Url::toRoute(['goods/detail', 'id' => $v['id']])?>"><img src="<?= Yii::$app->params['admin'].MyHelper::DS().$v['small_img']; ?>" alt="" /></a></dt>
                             <dd><a href="<?= Url::toRoute(['goods/detail', 'id' => $v['id']])?>"><?= $v['goods_name'] ?></a></dd>
                             <dd><span>售价：</span><strong> ￥<?= $v['shop_price'] ?></strong></dd>
                         </dl>
@@ -76,6 +77,7 @@ use \yii\helpers\Url;
                     <?php endforeach;?>
                 </ul>
             </div>
+
             <!-- 疯狂抢购 end-->
 
             <!-- 热卖商品 start -->
@@ -84,7 +86,7 @@ use \yii\helpers\Url;
                     <?php foreach ($bestsale as $k => $v) :?>
                         <li>
                             <dl>
-                                <dt><a href="<?= Url::toRoute(['goods/detail', 'id' => $v['id']])?>"><img src="<?= Yii::$app->params['upload_url'].'/'.$v['small_img']; ?>" alt="" /></a></dt>
+                                <dt><a href="<?= Url::toRoute(['goods/detail', 'id' => $v['id']])?>"><img src="<?= Yii::$app->params['admin'].MyHelper::DS().$v['small_img']; ?>" alt="" /></a></dt>
                                 <dd><a href="<?= Url::toRoute(['goods/detail', 'id' => $v['id']])?>"><?= $v['goods_name'] ?></a></dd>
                                 <dd><span>售价：</span><strong> ￥<?= $v['shop_price'] ?></strong></dd>
                             </dl>
@@ -100,7 +102,7 @@ use \yii\helpers\Url;
                     <?php foreach ($recomend as $k => $v) :?>
                         <li>
                             <dl>
-                                <dt><a href="<?= Url::toRoute(['goods/detail', 'id' => $v['id']])?>"><img src="<?= Yii::$app->params['upload_url'].'/'.$v['small_img']; ?>" alt="" /></a></dt>
+                                <dt><a href="<?= Url::toRoute(['goods/detail', 'id' => $v['id']])?>"><img src="<?= Yii::$app->params['admin'].MyHelper::DS().$v['small_img']; ?>" alt="" /></a></dt>
                                 <dd><a href="<?= Url::toRoute(['goods/detail', 'id' => $v['id']])?>"><?= $v['goods_name'] ?></a></dd>
                                 <dd><span>售价：</span><strong> ￥<?= $v['shop_price'] ?></strong></dd>
                             </dl>
@@ -116,7 +118,7 @@ use \yii\helpers\Url;
                     <?php foreach ($new as $k => $v) :?>
                         <li>
                             <dl>
-                                <dt><a href="<?= Url::toRoute(['goods/detail', 'id' => $v['id']])?>"><img src="<?= Yii::$app->params['upload_url'].'/'.$v['small_img']; ?>" alt="" /></a></dt>
+                                <dt><a href="<?= Url::toRoute(['goods/detail', 'id' => $v['id']])?>"><img src="<?= Yii::$app->params['admin'].MyHelper::DS().$v['small_img']; ?>" alt="" /></a></dt>
                                 <dd><a href="<?= Url::toRoute(['goods/detail', 'id' => $v['id']])?>"><?= $v['goods_name'] ?></a></dd>
                                 <dd><span>售价：</span><strong> ￥<?= $v['shop_price'] ?></strong></dd>
                             </dl>
@@ -132,7 +134,7 @@ use \yii\helpers\Url;
                     <?php foreach ($guess as $k => $v) :?>
                         <li>
                             <dl>
-                                <dt><a href="<?= Url::toRoute(['goods/detail', 'id' => $v['id']])?>"><img src="<?= Yii::$app->params['upload_url'].'/'.$v['small_img']; ?>" alt="" /></a></dt>
+                                <dt><a href="<?= Url::toRoute(['goods/detail', 'id' => $v['id']])?>"><img src="<?= Yii::$app->params['admin'].MyHelper::DS().$v['small_img']; ?>" alt="" /></a></dt>
                                 <dd><a href="<?= Url::toRoute(['goods/detail', 'id' => $v['id']])?>"><?= $v['goods_name'] ?></a></dd>
                                 <dd><span>售价：</span><strong> ￥<?= $v['shop_price'] ?></strong></dd>
                             </dl>
@@ -153,9 +155,9 @@ use \yii\helpers\Url;
         <div class="sidebar_wrap">
             <?php foreach ($siteFirst as $k => $v): ?>
             <dl class="first">
-                <dt class="fl"><a href=""><img src="<?= Yii::$app->params['upload_url'].'/'.$v['small_img'] ?>" alt="" /></a></dt>
+                <dt class="fl"><a href=""><img src="<?= Yii::$app->params['admin'].MyHelper::DS().$v['small_img'] ?>" alt="" /></a></dt>
                 <dd><strong><a href="<?=  Url::toRoute(['goods/detail', 'id' => $v['id']])?>"><?= $v['goods_name']; ?></a></strong> <em>首发</em></dd>
-                <dd><?= chinesesubstr($v['des'], 0, 100) ?></dd>
+                <dd><?= \common\help\MyHelper::chinesesubstr($v['des'], 0, 100) ?></dd>
             </dl>
             <?php endforeach; ?>
         </div>
@@ -166,21 +168,5 @@ use \yii\helpers\Url;
 
 </div>
 <!-- 导购区域 end -->
-<?php
-function chinesesubstr($str,$start,$len){
-    $tmpstr = '';
-    $strlen = $len - $start;
-    for($i=0;$i<$strlen;$i++){
-        if(ord(substr($str,$i,1))>0xa0){
-            $tmpstr.=substr($str,$i,3);
-            $i+=2;
-        }else{
-            $tmpstr.=substr($str,$i,1);
-        }
-
-    }
-    return $tmpstr;
-}
-?>
 
 

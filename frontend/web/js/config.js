@@ -1,1 +1,1 @@
-var site = 'http://www.shop.com/index.php'
+var site = 'http://www.tw1996.com/index.php'

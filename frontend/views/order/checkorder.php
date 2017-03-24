@@ -31,6 +31,9 @@ use yii\helpers\Url;
 <!-- 页面头部 end -->
 
 <div style="clear:both;"></div>
+<?php
+use common\help\MyHelper;
+?>
 
 <?php $form = ActiveForm::begin(['id' => 'order_form']); ?>
 <!-- 主体部分 start -->
@@ -131,7 +134,7 @@ use yii\helpers\Url;
                     $sum = bcadd($s, $sum, 2);
                     $total = $sum;
                     ?>
-                    <td class="col1"><a href="<?= Url::to(['goods/detail', 'id' => $v['goodsid']]) ?>"><img src="<?= Yii::$app->params['upload_url'].'/'.$v['logo']; ?>" alt="" /></a>  <strong><a href="<?= Url::to(['goods/detail', 'id' => $v['goodsid']]) ?>"><?= $v['goods_name']; ?></a></strong></td>
+                    <td class="col1"><a href="<?= Url::to(['goods/detail', 'id' => $v['goodsid']]) ?>"><img src="<?= Yii::$app->params['admin'].'/'.$v['logo']; ?>" alt="" /></a>  <strong><a href="<?= Url::to(['goods/detail', 'id' => $v['goodsid']]) ?>"><?= $v['goods_name']; ?></a></strong></td>
                     <td class="col2"> <?= $v['attr'] ?> </td>
                     <td class="col3">￥<?= $v['price'] ?></td>
                     <td class="col4"> <?= $v['goodsnum'] ?></td>

@@ -37,7 +37,7 @@ CREATE TABLE `auth_assignment` (
 
 LOCK TABLES `auth_assignment` WRITE;
 /*!40000 ALTER TABLE `auth_assignment` DISABLE KEYS */;
-INSERT INTO `auth_assignment` VALUES ('goods::trashrenew','6',1488887143),('member::delete','5',1489480260),('member::index','6',1489475686),('超级管理员','3',1488765549),('超级管理员','5',1488878479),('超级管理员','6',1488878544);
+INSERT INTO `auth_assignment` VALUES ('adver::add','5',1489983549),('adver::delete','5',1490003704),('adver::index','5',1489983106),('adver::update','5',1489987493),('adver::uploadimg','5',1489984250),('goods::trashrenew','6',1488887143),('member::delete','5',1489480260),('member::index','6',1489475686),('超级管理员','3',1488765549),('超级管理员','5',1488878479),('超级管理员','6',1488878544);
 /*!40000 ALTER TABLE `auth_assignment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -69,7 +69,7 @@ CREATE TABLE `auth_item` (
 
 LOCK TABLES `auth_item` WRITE;
 /*!40000 ALTER TABLE `auth_item` DISABLE KEYS */;
-INSERT INTO `auth_item` VALUES ('admin::add',2,'创建了 admin::add 许可',NULL,NULL,1488697126,1488697126),('admin::delete',2,'创建了 admin::delete 许可',NULL,NULL,1488699924,1488699924),('admin::error',2,'创建了 admin::error 许可',NULL,NULL,1488702202,1488702202),('admin::index',2,'创建了 admin::index 许可',NULL,NULL,1488694824,1488694824),('admin::login',2,'创建了 admin::login 许可',NULL,NULL,1488694894,1488694894),('admin::logout',2,'创建了 admin::logout 许可',NULL,NULL,1488694894,1488694894),('admin::role',2,'创建了 admin::role 许可',NULL,NULL,1488694825,1488694825),('brand::add',2,'创建了 brand::add 许可',NULL,NULL,1488693889,1488693889),('brand::delete',2,'创建了 brand::delete 许可',NULL,NULL,1488703946,1488703946),('brand::index',2,'创建了 brand::index 许可',NULL,NULL,1488693888,1488693888),('brand::update',2,'创建了 brand::update 许可',NULL,NULL,1488704360,1488704360),('brand::uploadimg',2,'创建了 brand::uploadimg 许可',NULL,NULL,1488704148,1488704148),('category::add',2,'创建了 category::add 许可',NULL,NULL,1488693883,1488693883),('category::delete',2,'创建了 category::delete 许可',NULL,NULL,1488701596,1488701596),('category::index',2,'创建了 category::index 许可',NULL,NULL,1488693882,1488693882),('category::update',2,'创建了 category::update 许可',NULL,NULL,1488701586,1488701586),('goods::add',2,'创建了 goods::add 许可',NULL,NULL,1488693891,1488693891),('goods::editattr',2,'创建了 goods::editattr 许可',NULL,NULL,1488815420,1488815420),('goods::getattr',2,'创建了 goods::getattr 许可',NULL,NULL,1488814869,1488814869),('goods::index',2,'创建了 goods::index 许可',NULL,NULL,1488693890,1488693890),('goods::picture',2,'创建了 goods::picture 许可',NULL,NULL,1488711920,1488711920),('goods::trash',2,'创建了 goods::trash 许可',NULL,NULL,1488705824,1488705824),('goods::trashdelete',2,'创建了 goods::trashdelete 许可',NULL,NULL,1488850209,1488850209),('goods::trashindex',2,'创建了 goods::trashindex 许可',NULL,NULL,1488693895,1488693895),('goods::trashrenew',2,'创建了 goods::trashrenew 许可',NULL,NULL,1488887142,1488887142),('goods::update',2,'创建了 goods::update 许可',NULL,NULL,1488705830,1488705830),('goods::uploadimg',2,'创建了 goods::uploadimg 许可',NULL,NULL,1488813289,1488813289),('goodsattr::add',2,'创建了 goodsattr::add 许可',NULL,NULL,1488701992,1488701992),('goodsattr::delete',2,'创建了 goodsattr::delete 许可',NULL,NULL,1488702392,1488702392),('goodsattr::editattr',2,'创建了 goodsattr::editattr 许可',NULL,NULL,1488705830,1488705830),('goodsattr::getattr',2,'创建了 goodsattr::getattr 许可',NULL,NULL,1488713852,1488713852),('goodsattr::index',2,'创建了 goodsattr::index 许可',NULL,NULL,1488702043,1488702043),('goodsattr::update',2,'创建了 goodsattr::update 许可',NULL,NULL,1488702126,1488702126),('goodstype::add',2,'创建了 goodstype::add 许可',NULL,NULL,1488693887,1488693887),('goodstype::delete',2,'创建了 goodstype::delete 许可',NULL,NULL,1488702060,1488702060),('goodstype::index',2,'创建了 goodstype::index 许可',NULL,NULL,1488693885,1488693885),('goodstype::update',2,'创建了 goodstype::update 许可',NULL,NULL,1488702055,1488702055),('index::index',2,'创建了 index::index 许可',NULL,NULL,1488686743,1488686743),('index::main',2,'创建了 index::main 许可',NULL,NULL,1488693953,1488693953),('index::menu',2,'创建了 index::menu 许可',NULL,NULL,1488693953,1488693953),('index::top',2,'创建了 index::top 许可',NULL,NULL,1488693953,1488693953),('member::delete',2,'创建了 member::delete 许可',NULL,NULL,1489480259,1489480259),('member::index',2,'创建了 member::index 许可',NULL,NULL,1489475686,1489475686),('memberlevel::add',2,'创建了 memberlevel::add 许可',NULL,NULL,1488704737,1488704737),('memberlevel::delete',2,'创建了 memberlevel::delete 许可',NULL,NULL,1488704770,1488704770),('memberlevel::index',2,'创建了 memberlevel::index 许可',NULL,NULL,1488693779,1488693779),('memberlevel::update',2,'创建了 memberlevel::update 许可',NULL,NULL,1488704784,1488704784),('product::add',2,'创建了 product::add 许可',NULL,NULL,1488768991,1488768991),('product::index',2,'创建了 product::index 许可',NULL,NULL,1488693893,1488693893),('role::add',2,'创建了 role::add 许可',NULL,NULL,1488694831,1488694831),('role::delete',2,'创建了 role::delete 许可',NULL,NULL,1488698343,1488698343),('role::index',2,'创建了 role::index 许可',NULL,NULL,1488693774,1488693774),('role::rolenode',2,'创建了 role::rolenode 许可',NULL,NULL,1488693904,1488693904),('role::update',2,'创建了 role::update 许可',NULL,NULL,1488696863,1488696863),('超级管理员',1,'创建了 超级管理员角色、部门、权限组',NULL,NULL,1488688103,1488688103);
+INSERT INTO `auth_item` VALUES ('admin::add',2,'创建了 admin::add 许可',NULL,NULL,1488697126,1488697126),('admin::delete',2,'创建了 admin::delete 许可',NULL,NULL,1488699924,1488699924),('admin::error',2,'创建了 admin::error 许可',NULL,NULL,1488702202,1488702202),('admin::index',2,'创建了 admin::index 许可',NULL,NULL,1488694824,1488694824),('admin::login',2,'创建了 admin::login 许可',NULL,NULL,1488694894,1488694894),('admin::logout',2,'创建了 admin::logout 许可',NULL,NULL,1488694894,1488694894),('admin::role',2,'创建了 admin::role 许可',NULL,NULL,1488694825,1488694825),('adver::add',2,'创建了 adver::add 许可',NULL,NULL,1489983549,1489983549),('adver::delete',2,'创建了 adver::delete 许可',NULL,NULL,1490003704,1490003704),('adver::index',2,'创建了 adver::index 许可',NULL,NULL,1489983106,1489983106),('adver::update',2,'创建了 adver::update 许可',NULL,NULL,1489987493,1489987493),('adver::uploadimg',2,'创建了 adver::uploadimg 许可',NULL,NULL,1489984249,1489984249),('brand::add',2,'创建了 brand::add 许可',NULL,NULL,1488693889,1488693889),('brand::delete',2,'创建了 brand::delete 许可',NULL,NULL,1488703946,1488703946),('brand::index',2,'创建了 brand::index 许可',NULL,NULL,1488693888,1488693888),('brand::update',2,'创建了 brand::update 许可',NULL,NULL,1488704360,1488704360),('brand::uploadimg',2,'创建了 brand::uploadimg 许可',NULL,NULL,1488704148,1488704148),('category::add',2,'创建了 category::add 许可',NULL,NULL,1488693883,1488693883),('category::delete',2,'创建了 category::delete 许可',NULL,NULL,1488701596,1488701596),('category::index',2,'创建了 category::index 许可',NULL,NULL,1488693882,1488693882),('category::update',2,'创建了 category::update 许可',NULL,NULL,1488701586,1488701586),('goods::add',2,'创建了 goods::add 许可',NULL,NULL,1488693891,1488693891),('goods::editattr',2,'创建了 goods::editattr 许可',NULL,NULL,1488815420,1488815420),('goods::getattr',2,'创建了 goods::getattr 许可',NULL,NULL,1488814869,1488814869),('goods::index',2,'创建了 goods::index 许可',NULL,NULL,1488693890,1488693890),('goods::picture',2,'创建了 goods::picture 许可',NULL,NULL,1488711920,1488711920),('goods::trash',2,'创建了 goods::trash 许可',NULL,NULL,1488705824,1488705824),('goods::trashdelete',2,'创建了 goods::trashdelete 许可',NULL,NULL,1488850209,1488850209),('goods::trashindex',2,'创建了 goods::trashindex 许可',NULL,NULL,1488693895,1488693895),('goods::trashrenew',2,'创建了 goods::trashrenew 许可',NULL,NULL,1488887142,1488887142),('goods::update',2,'创建了 goods::update 许可',NULL,NULL,1488705830,1488705830),('goods::uploadimg',2,'创建了 goods::uploadimg 许可',NULL,NULL,1488813289,1488813289),('goodsattr::add',2,'创建了 goodsattr::add 许可',NULL,NULL,1488701992,1488701992),('goodsattr::delete',2,'创建了 goodsattr::delete 许可',NULL,NULL,1488702392,1488702392),('goodsattr::editattr',2,'创建了 goodsattr::editattr 许可',NULL,NULL,1488705830,1488705830),('goodsattr::getattr',2,'创建了 goodsattr::getattr 许可',NULL,NULL,1488713852,1488713852),('goodsattr::index',2,'创建了 goodsattr::index 许可',NULL,NULL,1488702043,1488702043),('goodsattr::update',2,'创建了 goodsattr::update 许可',NULL,NULL,1488702126,1488702126),('goodstype::add',2,'创建了 goodstype::add 许可',NULL,NULL,1488693887,1488693887),('goodstype::delete',2,'创建了 goodstype::delete 许可',NULL,NULL,1488702060,1488702060),('goodstype::index',2,'创建了 goodstype::index 许可',NULL,NULL,1488693885,1488693885),('goodstype::update',2,'创建了 goodstype::update 许可',NULL,NULL,1488702055,1488702055),('index::index',2,'创建了 index::index 许可',NULL,NULL,1488686743,1488686743),('index::main',2,'创建了 index::main 许可',NULL,NULL,1488693953,1488693953),('index::menu',2,'创建了 index::menu 许可',NULL,NULL,1488693953,1488693953),('index::top',2,'创建了 index::top 许可',NULL,NULL,1488693953,1488693953),('member::delete',2,'创建了 member::delete 许可',NULL,NULL,1489480259,1489480259),('member::index',2,'创建了 member::index 许可',NULL,NULL,1489475686,1489475686),('memberlevel::add',2,'创建了 memberlevel::add 许可',NULL,NULL,1488704737,1488704737),('memberlevel::delete',2,'创建了 memberlevel::delete 许可',NULL,NULL,1488704770,1488704770),('memberlevel::index',2,'创建了 memberlevel::index 许可',NULL,NULL,1488693779,1488693779),('memberlevel::update',2,'创建了 memberlevel::update 许可',NULL,NULL,1488704784,1488704784),('product::add',2,'创建了 product::add 许可',NULL,NULL,1488768991,1488768991),('product::index',2,'创建了 product::index 许可',NULL,NULL,1488693893,1488693893),('role::add',2,'创建了 role::add 许可',NULL,NULL,1488694831,1488694831),('role::delete',2,'创建了 role::delete 许可',NULL,NULL,1488698343,1488698343),('role::index',2,'创建了 role::index 许可',NULL,NULL,1488693774,1488693774),('role::rolenode',2,'创建了 role::rolenode 许可',NULL,NULL,1488693904,1488693904),('role::update',2,'创建了 role::update 许可',NULL,NULL,1488696863,1488696863),('超级管理员',1,'创建了 超级管理员角色、部门、权限组',NULL,NULL,1488688103,1488688103);
 /*!40000 ALTER TABLE `auth_item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -126,6 +126,34 @@ LOCK TABLES `auth_rule` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `shop_adver`
+--
+
+DROP TABLE IF EXISTS `shop_adver`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `shop_adver` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `type_id` tinyint(3) unsigned NOT NULL,
+  `title` varchar(600) NOT NULL DEFAULT '',
+  `url` varchar(100) NOT NULL DEFAULT '',
+  `small_img` varchar(50) NOT NULL DEFAULT '',
+  `big_img` varchar(50) NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `shop_adver`
+--
+
+LOCK TABLES `shop_adver` WRITE;
+/*!40000 ALTER TABLE `shop_adver` DISABLE KEYS */;
+INSERT INTO `shop_adver` VALUES (9,0,'电脑数码双11爆品抢不停','http://www.tw1996.com/index.php?r=goods/detail&id=37','',''),(10,0,'家具家装全场低至3折','http://www.tw1996.com/index.php?r=goods/detail&id=38','',''),(11,0,'享生活 疯狂周期购！','http://www.tw1996.com/index.php?r=goods/detail&id=51','',''),(12,1,'','http://www.tw1996.com/index.php?r=goods/detail&id=42','uploads/20170320/1490004671median8370.jpg','uploads/20170320/1490004671big6487.jpg'),(13,2,'','http://www.tw1996.com/index.php?r=goods/detail&id=42','uploads/20170320/1490004718median1750.jpg','uploads/20170320/1490004718big6325.jpg'),(14,2,'','http://www.tw1996.com/index.php?r=goods/detail&id=37','uploads/20170320/1490004758median2179.jpg','uploads/20170320/1490004758big8948.jpg'),(15,2,'','http://www.tw1996.com/index.php?r=goods/detail&id=37','uploads/20170320/1490004811median9172.jpg','uploads/20170320/1490004812big7076.jpg'),(16,2,'','http://www.tw1996.com/index.php?r=goods/detail&id=37','uploads/20170321/1490103946median1833.jpg','uploads/20170321/1490103946big2889.jpg'),(17,2,'','http://www.tw1996.com/index.php?r=goods/detail&id=43','uploads/20170321/1490103988median804.jpg','uploads/20170321/1490103988big5438.jpg');
+/*!40000 ALTER TABLE `shop_adver` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `shop_attrprice`
 --
 
@@ -139,7 +167,7 @@ CREATE TABLE `shop_attrprice` (
   `attr_value` varchar(10) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '属性值',
   `attr_price` decimal(10,2) DEFAULT '0.00' COMMENT '该属性价格',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=1348 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=1471 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -148,7 +176,7 @@ CREATE TABLE `shop_attrprice` (
 
 LOCK TABLES `shop_attrprice` WRITE;
 /*!40000 ALTER TABLE `shop_attrprice` DISABLE KEYS */;
-INSERT INTO `shop_attrprice` VALUES (760,41,51,'液晶',0.00),(759,41,50,'600',0.00),(758,41,49,'白色',6700.00),(838,38,51,'液晶',0.00),(837,38,50,'800',0.00),(836,38,49,'黑色',12500.00),(1339,36,51,'液晶',0.00),(755,41,48,'4G',6300.00),(756,41,48,'8G',6500.00),(757,41,49,'红色',6600.00),(835,38,48,'16G',12500.00),(986,37,51,'液晶',0.00),(985,37,50,'230',0.00),(984,37,49,'白色',5800.00),(983,37,49,'红色',5600.00),(982,37,48,'8G',7300.00),(981,37,48,'16G',8000.00),(980,37,48,'4G',5600.00),(1338,36,50,'1000',0.00),(1337,36,49,'白色',300.00),(1336,36,49,'黑色',300.00),(1335,36,48,'4G',100.00),(646,30,38,'56',0.00),(645,27,43,'电信5G',0.00),(644,27,39,'白色',6800.00),(643,27,39,'红色',6500.00),(417,24,43,'移动3G',0.00),(416,24,39,'绿色',14.00),(415,24,39,'红色',13.00),(414,24,39,'白色',12.00),(413,24,38,'45',0.00),(642,27,38,'500',0.00),(409,25,37,'1',30.00),(410,25,36,'300',0.00),(411,25,35,'青年出版社',20.00),(412,25,35,'人民出版社',30.00),(481,26,39,'红色',0.00),(480,26,38,'',0.00),(482,26,43,'移动3G',0.00),(648,30,39,'绿色',58.00),(649,30,39,'白色',67.00),(650,30,43,'联通4G',0.00),(651,31,38,'43534',0.00),(652,31,39,'红色',3453.00),(653,31,39,'白色',345.00),(654,31,43,'联通4G',0.00),(655,29,38,'1',0.00),(656,29,39,'红色',0.00),(657,29,43,'移动3G',0.00),(658,32,38,'54',0.00),(659,32,39,'红色',345.00),(660,32,39,'白色',435.00),(661,32,43,'移动3G',0.00),(662,33,38,'345',0.00),(663,33,39,'红色',345.00),(664,33,39,'白色',345.00),(665,33,43,'移动3G',0.00),(666,23,38,'200',0.00),(667,23,39,'红色',5500.00),(668,23,39,'白色',5600.00),(669,23,43,'电信5G',0.00),(670,34,38,'200',0.00),(671,34,39,'红色',5400.00),(672,34,39,'白色',6500.00),(673,34,43,'移动3G',0.00),(674,35,38,'200',0.00),(675,35,39,'红色',6200.00),(676,35,39,'白色',6500.00),(677,35,43,'联通4G',0.00),(678,35,44,'4.7寸',6300.00),(679,35,44,'6.0寸',7300.00),(680,35,44,'5.7寸',6500.00),(910,43,50,'2000',0.00),(909,43,49,'白色',300.00),(908,43,49,'红色',100.00),(907,43,48,'8G',200.00),(906,43,48,'4G',100.00),(905,44,51,'液晶',0.00),(904,44,50,'300',0.00),(903,44,49,'白色',200.00),(902,44,49,'红色',100.00),(900,44,48,'4G',100.00),(901,44,48,'8G',200.00),(911,43,51,'液晶',0.00),(1334,42,51,'液晶',0.00),(1333,42,50,'300',0.00),(1332,42,49,'白色',1000.00),(1331,42,49,'红色',0.00),(1330,42,49,'黑色',600.00),(1329,42,48,'16G',400.00),(1328,42,48,'8G',200.00),(1327,42,48,'4G',0.00);
+INSERT INTO `shop_attrprice` VALUES (760,41,51,'液晶',0.00),(759,41,50,'600',0.00),(758,41,49,'白色',6700.00),(1455,38,51,'液晶',0.00),(1454,38,50,'800',0.00),(1453,38,49,'黑色',12500.00),(1339,36,51,'液晶',0.00),(755,41,48,'4G',6300.00),(756,41,48,'8G',6500.00),(757,41,49,'红色',6600.00),(1452,38,48,'16G',12500.00),(1462,37,51,'液晶',0.00),(1461,37,50,'230',0.00),(1460,37,49,'白色',5800.00),(1459,37,49,'红色',5600.00),(1458,37,48,'8G',7300.00),(1457,37,48,'16G',8000.00),(1456,37,48,'4G',5600.00),(1338,36,50,'1000',0.00),(1337,36,49,'白色',300.00),(1336,36,49,'黑色',300.00),(1335,36,48,'4G',100.00),(646,30,38,'56',0.00),(645,27,43,'电信5G',0.00),(644,27,39,'白色',6800.00),(643,27,39,'红色',6500.00),(417,24,43,'移动3G',0.00),(416,24,39,'绿色',14.00),(415,24,39,'红色',13.00),(414,24,39,'白色',12.00),(413,24,38,'45',0.00),(642,27,38,'500',0.00),(409,25,37,'1',30.00),(410,25,36,'300',0.00),(411,25,35,'青年出版社',20.00),(412,25,35,'人民出版社',30.00),(481,26,39,'红色',0.00),(480,26,38,'',0.00),(482,26,43,'移动3G',0.00),(648,30,39,'绿色',58.00),(649,30,39,'白色',67.00),(650,30,43,'联通4G',0.00),(651,31,38,'43534',0.00),(652,31,39,'红色',3453.00),(653,31,39,'白色',345.00),(654,31,43,'联通4G',0.00),(655,29,38,'1',0.00),(656,29,39,'红色',0.00),(657,29,43,'移动3G',0.00),(658,32,38,'54',0.00),(659,32,39,'红色',345.00),(660,32,39,'白色',435.00),(661,32,43,'移动3G',0.00),(662,33,38,'345',0.00),(663,33,39,'红色',345.00),(664,33,39,'白色',345.00),(665,33,43,'移动3G',0.00),(666,23,38,'200',0.00),(667,23,39,'红色',5500.00),(668,23,39,'白色',5600.00),(669,23,43,'电信5G',0.00),(670,34,38,'200',0.00),(671,34,39,'红色',5400.00),(672,34,39,'白色',6500.00),(673,34,43,'移动3G',0.00),(674,35,38,'200',0.00),(675,35,39,'红色',6200.00),(676,35,39,'白色',6500.00),(677,35,43,'联通4G',0.00),(678,35,44,'4.7寸',6300.00),(679,35,44,'6.0寸',7300.00),(680,35,44,'5.7寸',6500.00),(1427,43,51,'液晶',0.00),(1426,43,50,'2000',0.00),(1425,43,49,'白色',300.00),(1423,43,48,'8G',200.00),(1393,44,50,'300',0.00),(1392,44,49,'白色',200.00),(1391,44,49,'红色',100.00),(1390,44,48,'8G',200.00),(1389,44,48,'4G',100.00),(1424,43,49,'红色',100.00),(1394,44,51,'液晶',0.00),(1422,43,48,'4G',100.00),(1470,42,51,'液晶',0.00),(1469,42,50,'300',0.00),(1468,42,49,'白色',1000.00),(1467,42,49,'红色',0.00),(1466,42,49,'黑色',600.00),(1465,42,48,'16G',400.00),(1464,42,48,'8G',200.00),(1463,42,48,'4G',0.00);
 /*!40000 ALTER TABLE `shop_attrprice` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -198,7 +226,7 @@ CREATE TABLE `shop_cart` (
   KEY `user_id` (`user_id`),
   KEY `goods_id` (`goods_id`),
   KEY `arrt` (`attr`)
-) ENGINE=InnoDB AUTO_INCREMENT=110 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -207,6 +235,7 @@ CREATE TABLE `shop_cart` (
 
 LOCK TABLES `shop_cart` WRITE;
 /*!40000 ALTER TABLE `shop_cart` DISABLE KEYS */;
+INSERT INTO `shop_cart` VALUES (18,27,42,'1466,1463',1),(19,27,37,'1459,1456',1);
 /*!40000 ALTER TABLE `shop_cart` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -226,7 +255,7 @@ CREATE TABLE `shop_category` (
   `price_area` tinyint(4) DEFAULT '0' COMMENT '价格区间个数',
   `des` varchar(100) DEFAULT ' ' COMMENT '分类描述',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=55 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -235,7 +264,7 @@ CREATE TABLE `shop_category` (
 
 LOCK TABLES `shop_category` WRITE;
 /*!40000 ALTER TABLE `shop_category` DISABLE KEYS */;
-INSERT INTO `shop_category` VALUES (11,'功能手机',9,'',1,0,''),(10,'智能手机',9,'',1,0,''),(9,'手机',0,'台',1,0,''),(12,'家用电器',0,'',1,0,''),(13,'大家电',12,'',1,0,''),(14,'生活电器',12,'',1,0,''),(15,'图书',0,'本',1,0,''),(17,'图像,影像,数字商品',0,'',1,0,''),(18,'电子书',17,'',1,0,''),(19,'数字音乐',17,'',1,0,''),(20,'文艺',15,'',1,0,''),(21,'生活',17,'',1,0,''),(22,'科技',17,'',1,0,''),(23,'免费',18,'',1,0,''),(24,'小说',18,'',1,0,''),(25,'励志',18,'',1,0,''),(26,'通俗流行',19,'',1,0,''),(27,'古典音乐',19,'',1,0,''),(28,'洗衣机',14,'',1,0,''),(29,'电脑',30,'',1,0,''),(30,'品牌电脑',12,'',1,0,'');
+INSERT INTO `shop_category` VALUES (11,'新鲜水果',9,'',1,0,''),(10,'蔬菜蛋类',9,'',1,0,''),(9,'食品,酒类,生鲜',0,'',1,0,''),(12,'家用电器',0,'',1,0,''),(14,'电视',12,'',1,0,''),(17,'图像,影像,数字商品',0,'',1,0,''),(18,'电子书',17,'',1,0,''),(19,'数字音乐',17,'',1,0,''),(21,'生活',17,'',1,0,''),(22,'科技',17,'',1,0,''),(23,'免费',18,'',1,0,''),(24,'小说',18,'',1,0,''),(25,'励志',18,'',1,0,''),(26,'通俗流行',19,'',1,0,''),(27,'古典音乐',19,'',1,0,''),(28,'互联网品牌',14,'',1,0,''),(29,'笔记本电脑',47,'',1,0,''),(30,'台式电脑',47,'',1,0,''),(31,'男装,女装,童装,内衣',0,'',1,0,''),(32,'女装',31,'',1,0,''),(33,'男装',31,'',1,0,''),(34,'内衣',31,'',1,0,''),(35,'商场同款',32,'',1,0,''),(36,'当季热卖',32,'',1,0,''),(37,'2017新品',32,'',1,0,''),(38,'夹克',33,'',1,0,''),(39,'卫衣',33,'',1,0,''),(40,'毛绒大衣',33,'',1,0,''),(41,'文胸',34,'',1,0,''),(42,'配饰',34,'',1,0,''),(44,'精选肉类',9,'',1,0,''),(45,'合资品牌',14,'',1,0,''),(46,'电脑,办公',0,'',1,0,''),(47,'电脑整机',46,'',1,0,''),(48,'电脑配件',46,'',1,0,''),(49,'外设产品',46,'',1,0,''),(50,'苹果',11,'',1,0,''),(51,'香蕉',11,'',1,0,''),(52,'梨子',11,'',1,0,''),(53,'蛋类',10,'',1,0,''),(54,'牛肉',44,'',1,0,'');
 /*!40000 ALTER TABLE `shop_category` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -298,8 +327,14 @@ CREATE TABLE `shop_goods` (
   `post_free` tinyint(4) DEFAULT '1' COMMENT '是否包邮',
   `is_delete` tinyint(4) DEFAULT '0' COMMENT '是否删除',
   `is_recycle` tinyint(4) DEFAULT '0' COMMENT '回收站商品',
+  `is_bestsale` tinyint(4) NOT NULL DEFAULT '0' COMMENT '是否热卖',
+  `is_crazy` tinyint(4) NOT NULL DEFAULT '0' COMMENT '疯狂抢购',
+  `is_recomend` tinyint(4) NOT NULL DEFAULT '0' COMMENT '推荐商品',
+  `is_new` tinyint(4) NOT NULL DEFAULT '0' COMMENT '新品上架',
+  `is_guess` tinyint(4) NOT NULL DEFAULT '0' COMMENT '猜您喜欢',
+  `is_first` tinyint(4) NOT NULL DEFAULT '0' COMMENT '网站首发',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=48 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=53 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -308,7 +343,7 @@ CREATE TABLE `shop_goods` (
 
 LOCK TABLES `shop_goods` WRITE;
 /*!40000 ALTER TABLE `shop_goods` DISABLE KEYS */;
-INSERT INTO `shop_goods` VALUES (40,'戴尔电脑','1489580166',29,27,19,5800.00,6300.00,-1,0,NULL,NULL,NULL,'uploads/20170315/1489580267primary6807.jpg','uploads/20170315/1489580267big9986.jpg','uploads/20170315/1489580267median1487.jpg','uploads/20170315/1489580267small5827.jpg','最便宜的电脑','',122,12,1,1,0,1),(41,'鸿基电脑','1489580232',29,27,19,5800.00,6300.00,-1,0,NULL,NULL,NULL,'uploads/20170315/1489580192primary191.jpg','uploads/20170315/1489580192big2608.jpg','uploads/20170315/1489580192median3607.jpg','uploads/20170315/1489580192small1555.jpg','最烂的电脑','',122,12,1,1,0,1),(42,'戴尔电脑','1489580395',29,28,19,5800.00,6300.00,-1,1,6000.00,'三月 2, 2017','三月 9, 2017','uploads/20170316/1489633525primary4406.jpg','uploads/20170316/1489633525big6529.jpg','uploads/20170316/1489633525median3460.jpg','uploads/20170316/1489633525small1818.jpg','荣耀官方旗舰店回复：\r\n只因为在评价中多看了您一眼，再也没能忘掉您的好评！梦想着偶然能有一天再服务，从此我开始孤单地思念：想您时您在天边；想您时您在眼前；想您时您在脑海；想您时您在心田…\r\n用了已经一个月了，很流畅，颜色也很好看，不枉我等了那么久啊。前后玻璃镜面，很大气，就是不套个手机壳感觉不安全，还有就是系统优化还不够，感觉没有我之前的荣耀6流畅，期待EMUI赶紧出开发版华为畅享6S评价晒单赢2000京豆名单公布\r\n\r\n华为畅享6s评价晒单活动符合规则1的用户评价15字以上每人奖励2000京豆 名单如下 用户pin 订单号 jd_71281a85f1386 47209179320 jd_599625660d67a 47149783057 xuyichengk 47203495032 ... 详情>>\r\n2017-02-16 13:38:54 Sammul三苗 回复（10） 赞（0）\r\n【华为畅享6S首发预约转盘抽奖】中奖名单公布\r\n\r\n华为畅享6S首发预约转盘抽奖名单如下 用户id 奖项名称 17854258424_p 移动电源 18952933346_p 蓝牙音箱 jd_6323d476d19b6 移动电源 jd_4673e4a7cf5fd 移动电源 15158169910_p 蓝牙音箱 1127... 详情>>\r\n2017-01-18 10:15:17 Sammul三苗 回复','',1000,10,1,1,0,0),(38,'苹果电脑','1489554648',29,25,19,12000.00,15000.00,-1,0,NULL,NULL,NULL,'uploads/20170315/1489554857primary9386.jpg','uploads/20170315/1489554857big187.jpg','uploads/20170315/1489554857median3002.jpg','uploads/20170315/1489554857small1743.jpg','最好的电脑了','',500,10,1,1,0,0),(39,'鸿基电脑','1489580105',29,27,19,5800.00,6300.00,-1,0,NULL,NULL,NULL,'uploads/20170315/1489580103primary8768.jpg','uploads/20170315/1489580103big5138.jpg','uploads/20170315/1489580103median2313.jpg','uploads/20170315/1489580103small3197.jpg','最烂的电脑','',122,12,1,1,0,1),(37,'联想笔记本电脑','1489554588',29,27,19,5800.00,6300.00,-1,0,NULL,NULL,NULL,'uploads/20170316/1489638794primary8523.jpg','uploads/20170316/1489638794big5221.jpg','uploads/20170316/1489638794median101.jpg','uploads/20170316/1489638794small5794.jpg','国产电脑用联想','',100,10,1,1,0,0),(36,'联想ThinkPad','1489552748',29,27,19,6800.00,7500.00,-1,0,NULL,NULL,NULL,'uploads/20170315/1489571770primary6745.jpg','uploads/20170315/1489571770big4798.jpg','uploads/20170315/1489571770median3860.jpg','uploads/20170315/1489571770small6923.jpg','联想经典款电脑','',50,5,1,1,0,0),(43,'外星人电脑','1489623814',29,25,19,5800.00,6300.00,-1,0,NULL,NULL,NULL,'uploads/20170316/1489631053primary3241.jpg','uploads/20170316/1489631053big7671.jpg','uploads/20170316/1489631053median8866.jpg','uploads/20170316/1489631053small6932.jpg','游戏电脑','',100,10,1,1,0,0),(44,'灵越','1489624702',29,0,19,12000.00,13000.00,-1,0,NULL,NULL,NULL,'uploads/20170316/1489631040primary2534.jpg','uploads/20170316/1489631040big779.jpg','uploads/20170316/1489631040median6977.jpg','uploads/20170316/1489631040small1391.jpg','s1','',23,2,1,1,0,0),(45,'神州笔记本','1489630572',29,0,0,1500.00,1800.00,-1,0,NULL,NULL,NULL,'uploads/20170316/1489631006primary9398.jpg','uploads/20170316/1489631006big1902.jpg','uploads/20170316/1489631006median5244.jpg','uploads/20170316/1489631006small7022.jpg','垃圾','',435,345,1,1,0,0),(46,'LG','1489677255',29,0,0,5800.00,6300.00,-1,0,NULL,NULL,NULL,'uploads/20170316/1489677212primary3969.jpg','uploads/20170316/1489677212big782.jpg','uploads/20170316/1489677212median7626.jpg','uploads/20170316/1489677212small5229.jpg','电脑','',123,12,1,1,0,0),(47,'苹果8','1489816127',10,25,0,5600.01,7300.00,-1,0,NULL,NULL,NULL,'uploads/20170318/1489816040primary8406.jpg','uploads/20170318/1489816040big2617.jpg','uploads/20170318/1489816040median670.jpg','uploads/20170318/1489816040small1404.jpg','最好用的手机','',500,10,1,1,0,0);
+INSERT INTO `shop_goods` VALUES (40,'戴尔电脑','1489580166',29,27,19,5800.00,6300.00,-1,0,NULL,NULL,NULL,'uploads/20170315/1489580267primary6807.jpg','uploads/20170315/1489580267big9986.jpg','uploads/20170315/1489580267median1487.jpg','uploads/20170315/1489580267small5827.jpg','最便宜的电脑','',122,12,1,1,1,1,0,0,0,0,0,0),(41,'鸿基电脑','1489580232',29,27,19,5800.00,6300.00,-1,0,NULL,NULL,NULL,'uploads/20170315/1489580192primary191.jpg','uploads/20170315/1489580192big2608.jpg','uploads/20170315/1489580192median3607.jpg','uploads/20170315/1489580192small1555.jpg','最烂的电脑','',122,12,1,1,1,1,0,0,0,0,0,0),(42,'戴尔电脑','1489580395',29,28,19,5800.00,6300.00,-1,1,6000.00,'三月 2, 2017','三月 9, 2017','uploads/20170316/1489633525primary4406.jpg','uploads/20170316/1489633525big6529.jpg','uploads/20170316/1489633525median3460.jpg','uploads/20170316/1489633525small1818.jpg','荣耀官方旗舰店回复：\r\n只因为在评价中多看了您一眼，再也没能忘掉您的好评！梦想着偶然能有一天再服务，从此我开始孤单地思念：想您时您在天边；想您时您在眼前；想您时您在脑海；想您时您在心田…\r\n用了已经一个月了，很流畅，颜色也很好看，不枉我等了那么久啊。前后玻璃镜面，很大气，就是不套个手机壳感觉不安全，还有就是系统优化还不够，感觉没有我之前的荣耀6流畅，期待EMUI赶紧出开发版华为畅享6S评价晒单赢2000京豆名单公布\r\n\r\n华为畅享6s评价晒单活动符合规则1的用户评价15字以上每人奖励2000京豆 名单如下 用户pin 订单号 jd_71281a85f1386 47209179320 jd_599625660d67a 47149783057 xuyichengk 47203495032 ... 详情>>\r\n2017-02-16 13:38:54 Sammul三苗 回复（10） 赞（0）\r\n【华为畅享6S首发预约转盘抽奖】中奖名单公布\r\n\r\n华为畅享6S首发预约转盘抽奖名单如下 用户id 奖项名称 17854258424_p 移动电源 18952933346_p 蓝牙音箱 jd_6323d476d19b6 移动电源 jd_4673e4a7cf5fd 移动电源 15158169910_p 蓝牙音箱 1127... 详情>>\r\n2017-01-18 10:15:17 Sammul三苗 回复','',1000,10,1,1,0,0,0,0,0,0,0,1),(38,'苹果电脑','1489554648',29,25,19,12000.00,15000.00,-1,0,NULL,NULL,NULL,'uploads/20170315/1489554857primary9386.jpg','uploads/20170315/1489554857big187.jpg','uploads/20170315/1489554857median3002.jpg','uploads/20170315/1489554857small1743.jpg','最好的电脑了','',500,10,1,1,0,0,0,0,0,0,0,1),(39,'鸿基电脑','1489580105',29,27,19,5800.00,6300.00,-1,0,NULL,NULL,NULL,'uploads/20170315/1489580103primary8768.jpg','uploads/20170315/1489580103big5138.jpg','uploads/20170315/1489580103median2313.jpg','uploads/20170315/1489580103small3197.jpg','最烂的电脑','',122,12,1,1,1,1,0,0,0,0,0,0),(37,'联想笔记本电脑','1489554588',29,27,19,5800.00,6300.00,-1,0,NULL,NULL,NULL,'uploads/20170316/1489638794primary8523.jpg','uploads/20170316/1489638794big5221.jpg','uploads/20170316/1489638794median101.jpg','uploads/20170316/1489638794small5794.jpg','国产电脑用联想','',100,10,1,1,0,0,1,0,0,0,0,0),(36,'联想ThinkPad','1489552748',29,27,19,6800.00,7500.00,-1,0,NULL,NULL,NULL,'uploads/20170315/1489571770primary6745.jpg','uploads/20170315/1489571770big4798.jpg','uploads/20170315/1489571770median3860.jpg','uploads/20170315/1489571770small6923.jpg','联想经典款电脑','',50,5,1,1,0,0,0,0,0,0,0,0),(43,'外星人电脑','1489623814',29,25,19,5800.00,6300.00,-1,0,NULL,NULL,NULL,'uploads/20170316/1489631053primary3241.jpg','uploads/20170316/1489631053big7671.jpg','uploads/20170316/1489631053median8866.jpg','uploads/20170316/1489631053small6932.jpg','游戏电脑','',100,10,1,1,0,0,0,0,0,1,0,0),(44,'灵越','1489624702',29,0,19,12000.00,13000.00,-1,0,NULL,NULL,NULL,'uploads/20170316/1489631040primary2534.jpg','uploads/20170316/1489631040big779.jpg','uploads/20170316/1489631040median6977.jpg','uploads/20170316/1489631040small1391.jpg','s1','',23,2,1,1,0,0,0,0,0,0,1,0),(45,'神州笔记本','1489630572',29,0,0,1500.00,1800.00,-1,0,NULL,NULL,NULL,'uploads/20170316/1489631006primary9398.jpg','uploads/20170316/1489631006big1902.jpg','uploads/20170316/1489631006median5244.jpg','uploads/20170316/1489631006small7022.jpg','垃圾','',435,345,1,1,0,0,0,0,0,0,1,0),(46,'LG','1489677255',29,0,0,5800.00,6300.00,-1,0,NULL,NULL,NULL,'uploads/20170316/1489677212primary3969.jpg','uploads/20170316/1489677212big782.jpg','uploads/20170316/1489677212median7626.jpg','uploads/20170316/1489677212small5229.jpg','电脑','',123,12,1,1,0,0,0,0,0,0,1,0),(47,'苹果8','1489816127',10,25,0,5600.01,7300.00,-1,0,NULL,NULL,NULL,'uploads/20170318/1489816040primary8406.jpg','uploads/20170318/1489816040big2617.jpg','uploads/20170318/1489816040median670.jpg','uploads/20170318/1489816040small1404.jpg','最好用的手机','',500,10,1,1,0,0,0,0,0,0,0,0),(48,'4653246','346346',52,0,0,346436.00,346.00,-1,0,NULL,NULL,NULL,'','','','','346','',346,346,1,1,1,1,0,0,0,0,0,0),(50,'35235235','235235',0,0,0,235235.00,235.00,-1,0,NULL,NULL,NULL,'','','','','235','',235,235,1,1,1,1,0,0,0,0,0,0),(51,'英特尔','1489977499',30,27,0,13150.00,15000.00,-1,0,NULL,NULL,NULL,'uploads/20170320/1489977487primary1852.jpg','uploads/20170320/1489977488big5690.jpg','uploads/20170320/1489977488median1566.jpg','uploads/20170320/1489977487small8710.jpg','234234','',234,234,1,1,0,0,0,0,0,0,1,0),(52,'235235','235235',0,0,0,235235.00,325.00,-1,0,NULL,NULL,NULL,'','','','','235','',235,235,1,1,0,1,0,0,0,0,0,1);
 /*!40000 ALTER TABLE `shop_goods` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -354,7 +389,7 @@ CREATE TABLE `shop_goodsimg` (
   `medium_img` varchar(50) NOT NULL COMMENT '商品中图',
   `small_img` varchar(50) NOT NULL COMMENT '商品小图',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=588 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=644 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -363,7 +398,7 @@ CREATE TABLE `shop_goodsimg` (
 
 LOCK TABLES `shop_goodsimg` WRITE;
 /*!40000 ALTER TABLE `shop_goodsimg` DISABLE KEYS */;
-INSERT INTO `shop_goodsimg` VALUES (586,47,'uploads/20170318/1489816126primary3398.jpg','uploads/20170318/1489816126big8244.jpg','uploads/20170318/1489816126median6328.jpg','uploads/20170318/1489816126small2408.jpg '),(587,47,'uploads/20170318/1489816120primary5960.jpg','uploads/20170318/1489816120big147.jpg','uploads/20170318/1489816120median4870.jpg','uploads/20170318/1489816120small1648.jpg '),(583,46,'uploads/20170316/1489677253primary4033.jpg','uploads/20170316/1489677253big4693.jpg','uploads/20170316/1489677253median3785.jpg','uploads/20170316/1489677253small9807.jpg '),(584,46,'uploads/20170316/1489677235primary5042.jpg','uploads/20170316/1489677235big6919.jpg','uploads/20170316/1489677235median2732.jpg','uploads/20170316/1489677235small1241.jpg '),(585,46,'uploads/20170316/1489677240primary5190.jpg','uploads/20170316/1489677240big3027.jpg','uploads/20170316/1489677240median9679.jpg','uploads/20170316/1489677240small7797.jpg '),(580,42,'uploads/20170316/1489636656primary9339.jpg','uploads/20170316/1489636656big6306.jpg','uploads/20170316/1489636656median3348.jpg','uploads/20170316/1489636656small3879.jpg          '),(579,42,'uploads/20170316/1489635278primary2594.jpg','uploads/20170316/1489635278big3215.jpg','uploads/20170316/1489635278median9423.jpg','uploads/20170316/1489635278small3237.jpg          '),(578,42,'uploads/20170316/1489637504primary1315.jpg','uploads/20170316/1489637504big5458.jpg','uploads/20170316/1489637504median95.jpg','uploads/20170316/1489637504small1880.jpg          '),(577,42,'uploads/20170316/1489635292primary7348.jpg','uploads/20170316/1489635292big1172.jpg','uploads/20170316/1489635292median3073.jpg','uploads/20170316/1489635292small6964.jpg          '),(576,42,'uploads/20170316/1489634532primary1604.jpg','uploads/20170316/1489634532big8491.jpg','uploads/20170316/1489634532median5219.jpg','uploads/20170316/1489634532small8978.jpg          ');
+INSERT INTO `shop_goodsimg` VALUES (643,47,'uploads/20170318/1489816120primary5960.jpg','uploads/20170318/1489816120big147.jpg','uploads/20170318/1489816120median4870.jpg','uploads/20170318/1489816120small1648.jpg  '),(642,47,'uploads/20170318/1489816126primary3398.jpg','uploads/20170318/1489816126big8244.jpg','uploads/20170318/1489816126median6328.jpg','uploads/20170318/1489816126small2408.jpg  '),(609,46,'uploads/20170316/1489677240primary5190.jpg','uploads/20170316/1489677240big3027.jpg','uploads/20170316/1489677240median9679.jpg','uploads/20170316/1489677240small7797.jpg    '),(610,46,'uploads/20170316/1489677253primary4033.jpg','uploads/20170316/1489677253big4693.jpg','uploads/20170316/1489677253median3785.jpg','uploads/20170316/1489677253small9807.jpg    '),(611,46,'uploads/20170316/1489677235primary5042.jpg','uploads/20170316/1489677235big6919.jpg','uploads/20170316/1489677235median2732.jpg','uploads/20170316/1489677235small1241.jpg    '),(641,42,'uploads/20170316/1489634532primary1604.jpg','uploads/20170316/1489634532big8491.jpg','uploads/20170316/1489634532median5219.jpg','uploads/20170316/1489634532small8978.jpg          '),(640,42,'uploads/20170316/1489635292primary7348.jpg','uploads/20170316/1489635292big1172.jpg','uploads/20170316/1489635292median3073.jpg','uploads/20170316/1489635292small6964.jpg          '),(639,42,'uploads/20170316/1489637504primary1315.jpg','uploads/20170316/1489637504big5458.jpg','uploads/20170316/1489637504median95.jpg','uploads/20170316/1489637504small1880.jpg          '),(638,42,'uploads/20170316/1489635278primary2594.jpg','uploads/20170316/1489635278big3215.jpg','uploads/20170316/1489635278median9423.jpg','uploads/20170316/1489635278small3237.jpg          '),(637,42,'uploads/20170316/1489636656primary9339.jpg','uploads/20170316/1489636656big6306.jpg','uploads/20170316/1489636656median3348.jpg','uploads/20170316/1489636656small3879.jpg          ');
 /*!40000 ALTER TABLE `shop_goodsimg` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -412,7 +447,7 @@ CREATE TABLE `shop_member` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -421,7 +456,7 @@ CREATE TABLE `shop_member` (
 
 LOCK TABLES `shop_member` WRITE;
 /*!40000 ALTER TABLE `shop_member` DISABLE KEYS */;
-INSERT INTO `shop_member` VALUES (26,'tw1996','Z2PpSWSPpjNP2lI3lkmDB4a6O1oiE-Uh','$2y$13$sTdu//nBPHSmO5S3KCfo3.KYwE3npn.CuuGl3Y7BDwL9PwFyxZ4Vy','2698143402@qq.com','2017-03-18 05:37:00','2017-03-18 05:37:00','f52e2cde7bbe65d02dde8204ee0ac342',1,0);
+INSERT INTO `shop_member` VALUES (28,'tw1996','Rt-SYauGqY4lhzvdjFeS9OBUPkuQ_Lzm','$2y$13$tGz03smvGsLnkwVuGZOPfegaHRUNItNBvO/ZZz96/a9ItEeD.7mMC','2698143402@qq.com','2017-03-24 05:24:09','2017-03-24 05:24:09','a2f61b8555795ba8f608dd7bb53cf469',1,0);
 /*!40000 ALTER TABLE `shop_member` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -465,7 +500,7 @@ CREATE TABLE `shop_memberprice` (
   `member_level` int(10) unsigned NOT NULL COMMENT '会员级别id',
   `member_price` decimal(10,2) DEFAULT '-1.00' COMMENT '该级别的价格,默认为-1 表示根据折扣率来算,否则直接根据价格计算',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=191 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=202 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -474,7 +509,7 @@ CREATE TABLE `shop_memberprice` (
 
 LOCK TABLES `shop_memberprice` WRITE;
 /*!40000 ALTER TABLE `shop_memberprice` DISABLE KEYS */;
-INSERT INTO `shop_memberprice` VALUES (122,44,11,16000.00),(188,42,7,5600.00),(110,41,11,-1.00),(109,41,9,-1.00),(108,41,7,-1.00),(190,47,7,5500.01);
+INSERT INTO `shop_memberprice` VALUES (194,44,11,16000.00),(200,42,7,5600.00),(110,41,11,-1.00),(109,41,9,-1.00),(108,41,7,-1.00),(201,47,7,5500.01);
 /*!40000 ALTER TABLE `shop_memberprice` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -503,7 +538,7 @@ CREATE TABLE `shop_order` (
   `addTime` datetime NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `order_sn` (`order_sn`)
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -512,7 +547,7 @@ CREATE TABLE `shop_order` (
 
 LOCK TABLES `shop_order` WRITE;
 /*!40000 ALTER TABLE `shop_order` DISABLE KEYS */;
-INSERT INTO `shop_order` VALUES (28,'1489931663',0,0,0,0,0,35.00,123456.00,123491.00,'63476347','347347','347347347',26,'2017-03-19 13:54:23'),(29,'1489932195',0,0,0,0,0,35.00,123456.00,123491.00,'346346','werwer','23rwerwer',26,'2017-03-19 14:03:15');
+INSERT INTO `shop_order` VALUES (30,'1515811',0,0,0,0,0,35.00,12600.00,12635.00,'王小明的货','13876120676','湖南工业大学',27,'2017-03-22 02:59:41'),(31,'15407830',0,0,0,0,0,35.00,22620.00,22655.00,'安慰人qwtqwt','qwtqwt','wtrqt',27,'2017-03-22 03:41:18'),(32,'15409331',0,0,0,0,0,35.00,22620.00,22655.00,'安慰人qwtqwt','qwtqwt','wtrqt',27,'2017-03-22 03:41:33'),(33,'15409632',0,0,0,0,0,35.00,22620.00,22655.00,'安慰人qwtqwt','qwtqwt','wtrqt',27,'2017-03-22 03:41:36'),(34,'15410533',0,0,0,0,0,35.00,22620.00,22655.00,'安慰人qwtqwt','qwtqwt','wtrqt',27,'2017-03-22 03:41:45'),(35,'15418634',0,0,0,0,0,0.00,16420.00,16420.00,'432634734','347347347','7347347',27,'2017-03-22 03:43:06'),(36,'15438035',0,0,0,0,0,0.00,6200.00,6200.00,'4636346','346346346','346346',27,'2017-03-22 03:46:20'),(37,'15506236',0,0,0,0,0,0.00,67080.00,67080.00,'3464367347','347347347','347347347',27,'2017-03-22 03:57:42'),(38,'33389837',0,0,0,0,0,15.00,56800.00,56815.00,'王小明','13873120673','湖南工业大学',28,'2017-03-24 05:38:18');
 /*!40000 ALTER TABLE `shop_order` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -532,7 +567,7 @@ CREATE TABLE `shop_ordergoods` (
   `goodsprice` decimal(10,2) NOT NULL,
   `attr_str` varchar(50) DEFAULT '' COMMENT '属性值',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -541,7 +576,7 @@ CREATE TABLE `shop_ordergoods` (
 
 LOCK TABLES `shop_ordergoods` WRITE;
 /*!40000 ALTER TABLE `shop_ordergoods` DISABLE KEYS */;
-INSERT INTO `shop_ordergoods` VALUES (7,29,47,'',1,5500.01,'');
+INSERT INTO `shop_ordergoods` VALUES (8,30,42,'内存 : 4G<br />颜色 : 黑色<br />',1,6200.00,'1466,1463'),(9,30,42,'内存 : 8G<br />颜色 : 黑色<br />',1,6400.00,'1466,1464'),(10,31,37,'内存 : 4G<br />颜色 : 红色<br />',1,16420.00,'1459,1456'),(11,31,42,'内存 : 4G<br />颜色 : 黑色<br />',1,6200.00,'1466,1463'),(12,35,37,'内存 : 4G<br />颜色 : 红色<br />',1,16420.00,'1459,1456'),(13,36,42,'内存 : 4G<br />颜色 : 黑色<br />',1,6200.00,'1466,1463'),(14,37,42,'内存 : 4G<br />颜色 : 黑色<br />',2,6200.00,'1466,1463'),(15,37,37,'内存 : 4G<br />颜色 : 红色<br />',3,16420.00,'1459,1456'),(16,37,43,'内存 : 4G<br />颜色 : 红色<br />',1,5420.00,'1424,1422'),(17,38,42,'内存 : 16G<br />颜色 : 白色<br />',3,7000.00,'1468,1465'),(18,38,38,'内存 : 16G<br />颜色 : 黑色<br />',1,35800.00,'1453,1452');
 /*!40000 ALTER TABLE `shop_ordergoods` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -560,7 +595,7 @@ CREATE TABLE `shop_product` (
   `count` int(11) DEFAULT '0' COMMENT '库存量',
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=212 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=217 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -569,7 +604,7 @@ CREATE TABLE `shop_product` (
 
 LOCK TABLES `shop_product` WRITE;
 /*!40000 ALTER TABLE `shop_product` DISABLE KEYS */;
-INSERT INTO `shop_product` VALUES (211,'1489816160',47,'1340,1345,1346',60),(210,'1489816160',47,'1342,1344,1347',50),(209,'1489816160',47,'1342,1345,1347',100),(205,'1489720008',36,'1335,1337',60),(208,'1489717804',42,'1329,1330',40),(207,'1489717804',42,'1328,1332',600),(206,'1489713390',42,'1329,1332',50008);
+INSERT INTO `shop_product` VALUES (211,'1489816160',47,'1340,1345,1346',60),(210,'1489816160',47,'1342,1344,1347',50),(209,'1489816160',47,'1342,1345,1347',100),(205,'1489720008',36,'1335,1337',60),(216,'1490107124',42,'1465,1467',5),(215,'1489713390',42,'1465,1468',600);
 /*!40000 ALTER TABLE `shop_product` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -613,4 +648,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-03-19 22:12:31
+-- Dump completed on 2017-03-24 17:02:34

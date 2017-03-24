@@ -1,5 +1,6 @@
 <?php
 use \yii\helpers\Url;
+use common\help\MyHelper;
 ?>
 <html>
 <head>
@@ -71,7 +72,7 @@ use \yii\helpers\Url;
                     <?php foreach ($hot as $k => $v): ?>
 					<li>
 						<dl>
-							<dt><a href="<?= Url::toRoute(['goods/detail', 'id' => $v['id']]) ?>"><img src="<?= Yii::$app->params['upload_url'].'/'.$v['small_img'] ?>" alt="" /></a></dt>
+							<dt><a href="<?= Url::toRoute(['goods/detail', 'id' => $v['id']]) ?>"><img src="<?= Yii::$app->params['admin'].MyHelper::DS().$v['small_img'] ?>" alt="" /></a></dt>
 							<dd><a href="<?= Url::toRoute(['goods/detail', 'id' => $v['id']]) ?>"><?= $v['goods_name'] ?></a></dd>
 							<dd><strong>￥<?= $v['shop_price'] ?></strong></dd>
 						</dl>
@@ -115,9 +116,9 @@ use \yii\helpers\Url;
 					$first['medium_img'] = $goods->medium_img;
 					$first['big_img'] = $goods->big_img;
 				}
-				$small = Yii::$app->params['upload_url'].'/'.$first['small_img'];
-				$middle = Yii::$app->params['upload_url'].'/'.$first['medium_img'];
-				$big = Yii::$app->params['upload_url'].'/'.$first['big_img'];
+				$small = Yii::$app->params['admin'].MyHelper::DS().$first['small_img'];
+				$middle = Yii::$app->params['admin'].MyHelper::DS().$first['medium_img'];
+				$big = Yii::$app->params['admin'].MyHelper::DS().$first['big_img'];
 				?>
 				<div class="midpic">
 					<a href="<?= $big; ?>" class="jqzoom" rel="gal1">   <!-- 第一幅图片的大图 class 和 rel属性不能更改 -->
@@ -138,9 +139,9 @@ use \yii\helpers\Url;
 									$cur = "class = 'cur'";
 									$class = "class = 'zoomThumbActive'";
 								}
-								$small = Yii::$app->params['upload_url'].'/'.$v['small_img'];
-								$middle = Yii::$app->params['upload_url'].'/'.$v['medium_img'];
-								$big= Yii::$app->params['upload_url'].'/'.$v['big_img'];
+								$small = Yii::$app->params['admin'].MyHelper::DS().$v['small_img'];
+								$middle = Yii::$app->params['admin'].MyHelper::DS().$v['medium_img'];
+								$big= Yii::$app->params['admin'].MyHelper::DS().$v['big_img'];
 								?>
 
 								<li <?= $cur ?>>

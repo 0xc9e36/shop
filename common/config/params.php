@@ -3,8 +3,8 @@ return [
     'adminEmail' => 'admin@example.com',
     'supportEmail' => 'support@example.com',
     'user.passwordResetTokenExpire' => 3600,
-    'upload_url' => 'http://www.shop.admin.com',    //后台域名
-    'front' => 'http://www.shop.com',    //前台域名
+    'admin' => 'http://admin.tw1996.com',    //后台域名
+    'front' => 'http://www.tw1996.com',    //前台域名
     'small_img_width' =>  160,    //缩略图宽
     'small_img_height' =>  160,    //缩略图高
     'median_img_width' => 350,    //中等图片宽
