@@ -18,6 +18,17 @@ class PublicController extends Controller
         return $this->renderPartial('/public/jump', ['type' => $type, 'msg' => $msg, 'time' => $time, 'gotoUrl' => Url::toRoute($gotoUrl)]);
     }
 
+
+    public function getCrazy(){
+        $crazy= (new \yii\db\Query())
+            ->select(['id', 'goods_name', 'small_img','shop_price'])
+            ->from('shop_goods')
+            ->where(['is_crazy' => '1', 'is_delete' => 0, 'is_sale' => 1, 'is_recycle' => 0])
+            ->limit(5)
+            ->all();
+        return $crazy;
+    }
+
     public function getNews(){
         $new= (new \yii\db\Query())
             ->select(['id', 'goods_name', 'small_img','shop_price'])
@@ -36,6 +47,16 @@ class PublicController extends Controller
             ->limit(5)
             ->all();
         return $bestsale;
+    }
+
+    public function getRecomend(){
+        $recomend= (new \yii\db\Query())
+            ->select(['id', 'goods_name', 'small_img','shop_price'])
+            ->from('shop_goods')
+            ->where(['is_recomend' => '1', 'is_delete' => 0, 'is_sale' => 1, 'is_recycle' => 0])
+            ->limit(5)
+            ->all();
+        return $recomend;
     }
     
 }

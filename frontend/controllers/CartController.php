@@ -21,7 +21,6 @@ class CartController extends PublicController
         if(!Yii::$app->user->isGuest){
             $query = new \yii\db\Query();
             $userid = Yii::$app->user->identity->id;
-
             if(!$attr) $attr = " ";
             $has = $query->select('id, num')->from('shop_cart')->where(['goods_id' => $goodsid, 'user_id' => $userid, 'attr' => $attr])->one();
             //存在则更新数量
@@ -43,7 +42,6 @@ class CartController extends PublicController
             //存储购物车到cookie
             setcookie('cart', serialize($cart), time() + 24 * 3600); //默认存储一天
         }
-        //return $this->jump('success', '添加成功, 3秒后自动跳转到购物车', 3, 'cart/mycart');
      }
 
     public function actionMycart(){
@@ -110,8 +108,7 @@ class CartController extends PublicController
         //已登录
         if(!Yii::$app->user->isGuest){
             $user_id = Yii::$app->user->identity->id;
-            Yii::$app->db->createCommand("UPDATE shop_cart SET num = $num WHERE user_id= $user_id AND goods_id = $goodsid AND attr = '$attr'")
-                ->execute();
+            Yii::$app->db->createCommand("UPDATE shop_cart SET num = $num WHERE user_id= $user_id AND goods_id = $goodsid AND attr = '$attr'")->execute();
         }else{
             //未登录直接清cookie
             $cart = isset($_COOKIE['cart']) ? unserialize($_COOKIE['cart']) : [];

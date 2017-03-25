@@ -1,7 +1,7 @@
 <?php
 return [
     'adminEmail' => 'admin@example.com',
-    'pagesize'  =>  8,  //商品分页展示条数
+    'pagesize'  =>  15,  //商品分页展示条数
     'publinInfo' => '分辨真假商品, 谨防上当受骗',
     'post'  => [
         '0' => [

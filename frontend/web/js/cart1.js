@@ -62,13 +62,14 @@ $(function(){
 	$(".amount").blur(function(){
         var num = parseInt($(this).val())
         var max = $(this).attr('count');
-        if(/^[1-9]\d*$/.test(num)) {
+        if( /^\+?[1-9][0-9]*$/.test(num)) {
             if (num < 1) {
                 alert("商品数量最少为1");
                 $(this).val(1);
             }else if(num > max){
                 alert("商品数量超出库存量");
                 $(this).val(max);
+                return ;
             }
             //价格修改
             var id = $(this).attr('goodsid');
@@ -124,3 +125,5 @@ function updateCart(id, attr, num){
         }
     });
 }
+
+

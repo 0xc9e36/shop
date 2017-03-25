@@ -1,14 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-    <title>商品列表页</title>
-    <link rel="stylesheet" href="style/list.css" type="text/css">
-    <link rel="stylesheet" href="style/common.css" type="text/css">
-
-    <script type="text/javascript" src="js/list.js"></script>
-</head>
-<body>
 <?php
     use common\help\MyHelper;
     /*二级分类信息*/
@@ -18,7 +7,6 @@
     /*三级分类信息*/
     $three = (new \yii\db\Query())->select(['id', 'cat_name', 'pid'])->from('shop_category')->where(['pid' => $secondIds])->orderBy('id')->all();
 ?>
-
 
 <!-- 列表主体 start -->
 <div class="list w1210 bc mt10">
@@ -72,7 +60,7 @@
                     <?php foreach ($news as $k => $v): ?>
                     <li>
                         <dl>
-                            <dt><a href="<?= \yii\helpers\Url::toRoute(['goods/detail', 'id' => $v['id']]) ?>"><img src="<?= YIi::$app->params['admin'].MyHelper::DS().$v['small_img'] ?>" alt="" /></a></dt>
+                            <dt><a href="<?= \yii\helpers\Url::toRoute(['goods/detail', 'id' => $v['id']]) ?>"><img src="<?= Yii::$app->params['admin'].MyHelper::DS().$v['small_img'] ?>" alt="" /></a></dt>
                             <dd><a href=""><?= $v['goods_name']?></a></dd>
                             <dd><strong>￥<?= $v['shop_price']?></strong></dd>
                         </dl>
@@ -123,13 +111,10 @@
                 </ul>
             </div>
             <!-- 热卖推荐 end -->
-            
         </div>
         <!-- 热卖、促销 end -->
 
         <div style="clear:both;"></div>
-
-
 
         <!-- 商品列表 start-->
         <div class="goodslist mt10">
@@ -148,7 +133,6 @@
         </div>
         <!-- 商品列表 end-->
 
-
         <div class="page mt20">
             <?= \yii\widgets\LinkPager::widget([
                 'pagination' => $pages,
@@ -157,35 +141,7 @@
                 'options' => ['class' => 'm-pagination'],
             ]); ?>
         </div>
-        <style>
-            .m-pagination{
-                margin-left: 300px;
-            }
-            .m-pagination li:hover{
-                border:1px solid #3e89fa;
-                background: #3e89fa;
-                cursor:pointer;
-            }
-            .active{
-                background: red;
-            }
-            .m-pagination li{
-                float: left;
-                width: 53px;
-                font-size: 14px;
-                margin-left: 10px;
-                height: 25px;
-                line-height: 25px;
-                text-align:center;
-                background-color: #eee;
-                border:1px solid #ccc;
-            }
-        </style>
-
     </div>
     <!-- 列表内容 end -->
 </div>
 <!-- 列表主体 end-->
-
-</body>
-</html>

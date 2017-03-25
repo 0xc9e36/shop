@@ -3,31 +3,31 @@ use \yii\helpers\Url;
 use common\help\MyHelper;
 ?>
 <html>
-<head>
-<link rel="stylesheet" href="style/goods.css" type="text/css">
-<link rel="stylesheet" href="style/common.css" type="text/css">
-<!--引入jqzoom css -->
-<link rel="stylesheet" href="style/jqzoom.css" type="text/css">
-<script type="text/javascript" src="js/goods.js"></script>
-<script type="text/javascript" src="js/jqzoom-core.js"></script>
-<!--引入配置文件-->
-<script type="text/javascript" src="js/config.js"></script>
-	<script type="text/javascript" src="js/getPriceAndNum.js"></script>
-<!-- jqzoom 效果 -->
-<script type="text/javascript">
-	$(function(){
-		$('.jqzoom').jqzoom({
-			zoomType: 'standard',
-			lens:true,
-			preloadImages: false,
-			alwaysOn:false,
-			title:false,
-			zoomWidth:400,
-			zoomHeight:400
-		});
-	})
-</script>
-</head>
+    <head>
+        <link rel="stylesheet" href="style/goods.css" type="text/css">
+        <link rel="stylesheet" href="style/common.css" type="text/css">
+        <!--引入jqzoom css -->
+        <link rel="stylesheet" href="style/jqzoom.css" type="text/css">
+        <script type="text/javascript" src="js/goods.js"></script>
+        <script type="text/javascript" src="js/jqzoom-core.js"></script>
+        <!--引入配置文件-->
+        <script type="text/javascript" src="js/config.js"></script>
+            <script type="text/javascript" src="js/getPriceAndNum.js"></script>
+        <!-- jqzoom 效果 -->
+        <script type="text/javascript">
+            $(function(){
+                $('.jqzoom').jqzoom({
+                    zoomType: 'standard',
+                    lens:true,
+                    preloadImages: false,
+                    alwaysOn:false,
+                    title:false,
+                    zoomWidth:400,
+                    zoomHeight:400
+                });
+            })
+        </script>
+    </head>
 <body>
 <input type="hidden" id="goods_id" value="<?= $goods->id; ?>">
 <!-- 商品页面主体 start -->
@@ -40,7 +40,7 @@ use common\help\MyHelper;
 			<div class="leftbar_wrap">
 				<ul>
 					<?php foreach ($likely as $k => $v) : ?>
-						<li><a href="<?=Url::toRoute(['goods/detail', 'id' => $v['id']]) ?>"><?= $v['cat_name']; ?></a></li>
+						<li><a href="<?=Url::toRoute(['goods/cat', 'id' => $v['id']]) ?>"><?= $v['cat_name']; ?></a></li>
                     <?php endforeach; ?>
 				</ul>
 			</div>
@@ -52,13 +52,7 @@ use common\help\MyHelper;
 			<h2><strong>商品品牌</strong></h2>
 			<div class="leftbar_wrap">
 				<ul>
-				<?php
-					if($brand){
-						echo $brand['brand_name'];
-					}else{
-						echo "暂未添加";
-					}
-				?>
+				<?php if($brand) echo $brand['brand_name']; ?>
 				</ul>
 			</div>
 		</div>
@@ -110,12 +104,12 @@ use common\help\MyHelper;
 			<!-- 图片预览区域 start -->
 			<div class="preview fl">
 				<?php
-				if(!$first){
+				if(!$first) :
 					//无商品相册,  取商品logo显示
 					$first['small_img'] = $goods->small_img;
 					$first['medium_img'] = $goods->medium_img;
 					$first['big_img'] = $goods->big_img;
-				}
+				endif;
 				$small = Yii::$app->params['admin'].MyHelper::DS().$first['small_img'];
 				$middle = Yii::$app->params['admin'].MyHelper::DS().$first['medium_img'];
 				$big = Yii::$app->params['admin'].MyHelper::DS().$first['big_img'];
@@ -143,12 +137,10 @@ use common\help\MyHelper;
 								$middle = Yii::$app->params['admin'].MyHelper::DS().$v['medium_img'];
 								$big= Yii::$app->params['admin'].MyHelper::DS().$v['big_img'];
 								?>
-
 								<li <?= $cur ?>>
 									<a <?= $class ?>  href="javascript:(0);" rel="{gallery: 'gal1', smallimage: '<?= $middle; ?>',largeimage: '<?= $big; ?>'}">
 										<img src="<?= $small ?>"></a>
 								</li>
-
 							<?php  } ?>
 
 
@@ -166,7 +158,7 @@ use common\help\MyHelper;
 					<li class="shop_price"><span>本店价：</span> ￥<strong id="shop_price"></strong> </li>
 					<li class="shop_price"><span>库存量：</span> <strong id="num"></strong> </li>
 					<li><span>是否包邮： </span><?= $goods->post_free == 1 ? '包邮' : '不包邮'; ?></li>
-					<li><span>积分： </span><?= $goods->level_mark == -1 ? $goods->mark_price : $goods->level_mark; ?></li>
+					<li><span>积分： </span><?= $goods->level_mark == -1 ? (int)$goods->mark_price : (int)$goods->level_mark; ?></li>
 				</ul>
 				<form action="" method="post" class="choose">
 					<input type="hidden" class="attr" name="attr" value="">

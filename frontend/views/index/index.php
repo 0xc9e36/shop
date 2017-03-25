@@ -157,7 +157,7 @@ use common\help\MyHelper;
             <dl class="first">
                 <dt class="fl"><a href=""><img src="<?= Yii::$app->params['admin'].MyHelper::DS().$v['small_img'] ?>" alt="" /></a></dt>
                 <dd><strong><a href="<?=  Url::toRoute(['goods/detail', 'id' => $v['id']])?>"><?= $v['goods_name']; ?></a></strong> <em>首发</em></dd>
-                <dd><?= \common\help\MyHelper::chinesesubstr($v['des'], 0, 100) ?></dd>
+                <dd><?= MyHelper::chinesesubstr($v['des'], 0, 100) ?></dd>
             </dl>
             <?php endforeach; ?>
         </div>

@@ -16,6 +16,7 @@ class OrderController extends PublicController
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             $order_id = $model->submit();
             if(!$order_id) return $this->jump('success', '下单失败, 请重试', 3, 'index/index');
+            /*这里下单成功后跳到支付页面, 写业务逻辑代码 | 暂时没有做 */
             return $this->render('submitorder');
         }else {
             if (!Yii::$app->user->isGuest) {
@@ -39,9 +40,5 @@ class OrderController extends PublicController
         }
     }
 
-    public function actionSubmitorder()
-    {
-
-    }
 
 }

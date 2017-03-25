@@ -10,27 +10,16 @@ class IndexController extends PublicController
      public function actionIndex()
      {
           //$key = md5('adver_info');
-          //$info = Yii::$app->cache->get($key);
-
+         // $info = Yii::$app->cache->get($key);
           //if(!$info){
                $query = new \yii\db\Query();
                /**********取前五条信息********/
                /*疯狂抢购*/
-               $crazy= $query
-                   ->select(['id', 'goods_name', 'small_img','shop_price'])
-                   ->from('shop_goods')
-                   ->where(['is_crazy' => '1', 'is_delete' => 0, 'is_sale' => 1, 'is_recycle' => 0])
-                   ->limit(5)
-                   ->all();
+               $crazy= $this->getCrazy();
                /*热卖商品*/
                $bestsale= $this->getBest();
                /*推荐商品*/
-               $recomend= $query
-                   ->select(['id', 'goods_name', 'small_img','shop_price'])
-                   ->from('shop_goods')
-                   ->where(['is_recomend' => '1', 'is_delete' => 0, 'is_sale' => 1, 'is_recycle' => 0])
-                   ->limit(5)
-                   ->all();
+               $recomend = $this->getRecomend();
                /*新品上架*/
                $new= $this->getNews();
                /*猜您喜欢*/
@@ -82,7 +71,7 @@ class IndexController extends PublicController
                $info['siteFirst'] = $siteFirst;
                //设置缓存
               // Yii::$app->cache->set($key, $info);
-          //}
+         // }
           return $this->render('index',[
                'crazy'  => $info['crazy'],
                'bestsale' => $info['bestsale'],

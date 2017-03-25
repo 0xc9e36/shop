@@ -27,7 +27,6 @@ class Goods extends \yii\db\ActiveRecord {
                 ON a.id = b.goods_id AND b.member_level ='.$level_id.
                 ' WHERE a.id ='. $id;
         $price = Yii::$app->db->createCommand($sql)->query()->read()['price'];
-
         $add = 0.00;
         //商品属性也要计算价格
         if($attr){

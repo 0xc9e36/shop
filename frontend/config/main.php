@@ -37,7 +37,7 @@ return [
             'rules' => [
             ],
         ],
-        */
+*/
     ],
     'defaultRoute' => 'index/index',    //配置默认路由
     'params' => $params,

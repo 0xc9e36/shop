@@ -3,6 +3,7 @@
 namespace frontend\models;
 
 use Yii;
+use common\help\MyHelper;
 
 /**
  * This is the model class for table "country".
@@ -29,7 +30,7 @@ class Order extends \yii\db\ActiveRecord
         return [
             [['user_name','user_address'], 'filter', 'filter' => 'trim'],
             ['user_name', 'required', 'message' => '收货人不能为空'],
-            ['user_name', 'string', 'length' => [3,25], 'tooShort'   => '收货人过短', 'tooLong'   => '收货人过长'],
+            ['user_name', 'string', 'length' => [2,25], 'tooShort'   => '收货人过短', 'tooLong'   => '收货人过长'],
             ['user_address', 'required', 'message' => '收货地址不能为空'],
             ['user_address', 'string', 'length' => [5,25], 'tooShort'   => '地址过短', 'tooLong'   => '地址人过长'],
             ['user_tel', 'required', 'message' => '手机号不能为空'],
@@ -65,7 +66,7 @@ class Order extends \yii\db\ActiveRecord
         $this->post_id = intval($request->post('post_id'));
         //邮费
         $this->postage = $request->post('mypost');
-        //商品价格, 先写死, 后面算
+        //商品价格
         $this->goods_price = $request->post('myprice');
         //商品总价
         $this->total_price	= bcadd($this->goods_price, $this->postage, 2);
@@ -103,12 +104,13 @@ class Order extends \yii\db\ActiveRecord
     }
     /*获取订单号*/
     public function getOrderSn(){
-        if(1) {
+        if(MyHelper::lock('order_sn')) {
             $sn = substr(time(), 4);
             $maxId = (new \yii\db\Query())->select(['max(id)'])->from('shop_order')->scalar();
             if (!$maxId) $maxId = 1;
             $sn = $sn.$maxId;
             //释放锁
+            MyHelper::unlock('order_sn');
             return $sn;
         }else{
             return false;

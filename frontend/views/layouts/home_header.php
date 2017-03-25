@@ -1,5 +1,5 @@
 <!DOCTYPE html >
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<html>
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <title>京西商城</title>
@@ -9,10 +9,12 @@
     <link rel="stylesheet" href="/style/index.css" type="text/css">
     <link rel="stylesheet" href="/style/bottomnav.css" type="text/css">
     <link rel="stylesheet" href="/style/footer.css" type="text/css">
-
+    <link rel="stylesheet" href="style/list.css" type="text/css">
+    <link rel="stylesheet" href="style/common.css" type="text/css">
     <script type="text/javascript" src="/js/jquery-1.8.3.min.js"></script>
     <script type="text/javascript" src="/js/header.js"></script>
     <script type="text/javascript" src="/js/index.js"></script>
+    <script type="text/javascript" src="js/list.js"></script>
 </head>
 <body>
 <!-- 顶部导航 start -->
@@ -21,42 +23,24 @@
 
 <div style="clear:both;"></div>
 
-<!---------取商品分类信息------------->
 <?php
     use yii\helpers\Url;
     $query = new \yii\db\Query();
     /*一级分类信息*/
-    $first = $query
-        ->select(['id', 'cat_name', 'pid'])
-        ->from('shop_category')
-        ->where(['pid' => '0'])
-        ->orderBy('id')
-        ->all();
+    $first = $query->select(['id', 'cat_name', 'pid'])->from('shop_category')->where(['pid' => '0'])->orderBy('id')->all();
     $firstIds = [];
     foreach($first as $k => $v)  $firstIds[] = $v['id'];
     /*二级分类信息*/
-    $second = $query
-        ->select(['id', 'cat_name', 'pid'])
-        ->from('shop_category')
-        ->where(['pid' => $firstIds])
-        ->orderBy('id')
-        ->all();
+    $second = $query->select(['id', 'cat_name', 'pid'])->from('shop_category')->where(['pid' => $firstIds])->orderBy('id')->all();
     $secondIds = [];
     foreach($second as $k => $v)  $secondIds[] = $v['id'];
     /*三级分类信息*/
-    $three = $query
-        ->select(['id', 'cat_name', 'pid'])
-        ->from('shop_category')
-        ->where(['pid' => $secondIds])
-        ->orderBy('id')
-        ->all();
-
+    $three = $query->select(['id', 'cat_name', 'pid'])->from('shop_category')->where(['pid' => $secondIds])->orderBy('id')->all();
     //当前路由
     $controller = Yii::$app->controller->id;
     $action = Yii::$app->controller->action->id;
 
 ?>
-<!--------  分类信息结束-------------------->
 
 
 <!-- 头部 start -->
@@ -73,12 +57,9 @@
                 </form>
                 <div class="form_right fl"></div>
             </div>
-
             <div style="clear:both;"></div>
-
         </div>
         <!-- 头部搜索 end -->
-
         <!-- 用户中心 start-->
         <div class="user fl">
             <dl>
@@ -90,7 +71,6 @@
             </dl>
         </div>
         <!-- 用户中心 end-->
-
         <!-- 购物车 start -->
         <div class="cart fl">
             <dl>
@@ -103,15 +83,10 @@
         <!-- 购物车 end -->
     </div>
     <!-- 头部上半部分 end -->
-
     <div style="clear:both;"></div>
-
-
-
     <!-- 导航条部分 start -->
     <div class="nav w1210 bc mt10">
         <!--  商品分类部分 start-->
-
         <?php if($controller === 'index'): ?>
         <div class="category fl"> <!-- 非首页，需要添加cat1类 -->
             <div class="cat_hd">  <!-- 注意，首页在此div上只需要添加cat_hd类，非首页，默认收缩分类时添加上off类，鼠标滑过时展开菜单则将off类换成on类 -->
@@ -148,19 +123,13 @@
                     </div>
                 </div>
                 <?php endforeach; ?>
-
             </div>
-
         </div>
         <!--  商品分类部分 end-->
-
         <div class="navitems fl">
             <ul class="fl">
                 <?php if($controller === 'index') : $cur = "class = 'current'";  else: $cur = "";   endif; ?>
                 <li <?= $cur ?>><a href="/">首页</a></li>
-                <!--
-                <li><a href="<?= Url::toRoute(['user/index']); ?>">用户</a></li>
-                -->
             </ul>
             <div class="right_corner fl"></div>
         </div>

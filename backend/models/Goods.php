@@ -54,7 +54,7 @@ class Goods extends \yii\db\ActiveRecord
             [['shop_price', 'mark_price', 'sales_price'], 'number'],
             [['sales_start', 'sales_end'], 'safe'],
             [['des', 'goods_sn'], 'string'],
-            [['goods_name'], 'string', 'max' => 20],
+            [['goods_name'], 'string', 'max' => 200],
             [['primary_img', 'big_img', 'medium_img', 'small_img'], 'string', 'max' => 50],
             [['weight'], 'string']
         ];

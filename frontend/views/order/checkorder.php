@@ -169,8 +169,23 @@ use common\help\MyHelper;
         <a style="cursor: pointer;" onclick="sent()"><span>提交订单</span></a>
         <script>
         function sent() {
-            var form=document.getElementById("order_form");
-            form.submit();
+            var radio=false;
+            for(var i=0;i<$('.postPrice').length;i++)
+            {
+
+                if($('.postPrice')[i].checked)
+                {
+                    radio=true;
+                    break;
+                }
+            }
+            if(!radio) {
+                alert('必须选择运送方式');
+                return ;
+            }else{
+                var form = document.getElementById("order_form");
+                form.submit();
+            }
         }
             $('.postPrice').click(function(){
                 price = $(this).attr('price');

@@ -22,13 +22,6 @@ class GoodsController extends PublicController
          //第一张图片
          if($images) $first = $images[0];
          //找出该商品属性
-         /*$sql = "SELECT  a.id, a.goods_id, a.attr_id, a.attr_value, a.attr_price
-                 FROM shop_attrprice a
-                 LEFT JOIN shop_goodsattr b
-                 ON b.id = a.attr_id
-                 WHERE a.goods_id = {$id}
-                 ORDER BY a.id";
-         $res = Yii::$app->db->createCommand($sql)->queryAll();*/
          $res = (new \yii\db\Query())
              ->select('a.id, a.goods_id, a.attr_id, a.attr_value, a.attr_price')
              ->from('shop_attrprice a')
@@ -41,8 +34,6 @@ class GoodsController extends PublicController
              $attrs[$v['attr_id']][] = $v;
          }
          //该类型商品所有属性
-        /* $sql = "SELECT id, attr_name,attr_type, attr_value FROM shop_goodsattr WHERE goodstype_id = $goods->goodstype_id";
-         $allAttr = Yii::$app->db->createCommand($sql)->queryAll();*/
          $allAttr = (new \yii\db\Query())
              ->select(['id', 'attr_name','attr_type', 'attr_value'])
              ->from('shop_goodsattr')
@@ -97,7 +88,6 @@ class GoodsController extends PublicController
          $ids = [];
          $ids[] = $catid;
          foreach($rows as $k => $v) $ids[] = $v['id'];
-
          //当前分类及子分类所有商品
          $query = (new \yii\db\Query())
              ->select(['id', 'goods_name', 'goodstype_id', 'shop_price', 'small_img', 'mark_price'])
