@@ -11,7 +11,12 @@
     <link rel="stylesheet" href="/style/footer.css" type="text/css">
     <link rel="stylesheet" href="style/list.css" type="text/css">
     <link rel="stylesheet" href="style/common.css" type="text/css">
+    <link rel="stylesheet" href="style/home.css" type="text/css">
+    <link rel="stylesheet" href="style/user.css" type="text/css">
+    <link rel="stylesheet" href="style/order.css" type="text/css">
+
     <script type="text/javascript" src="/js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="js/home.js"></script>
     <script type="text/javascript" src="/js/header.js"></script>
     <script type="text/javascript" src="/js/index.js"></script>
     <script type="text/javascript" src="js/list.js"></script>

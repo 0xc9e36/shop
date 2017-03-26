@@ -5,9 +5,11 @@ use Yii;
 use frontend\models\LoginForm;
 use frontend\models\User;
 use frontend\models\SignupForm;
+use yii\db\Query;
 use yii\filters\AccessControl;
 use yii\helpers\Url;
 use yii\web\Controller;
+use yii\web\NotFoundHttpException;
 
 class UserController extends PublicController
 {
@@ -39,10 +41,13 @@ class UserController extends PublicController
          // 判断用户是访客还是认证用户
          // isGuest为真表示访客，isGuest非真表示认证用户，认证过的用户表示已经登录了，这里跳转到主页面
          if (Yii::$app->user->isGuest) {
-            // return $this->jump('success', '请先登录, 3秒后自动跳转到登录页面', 3, 'user/login');
+             return $this->jump('success', '请先登录, 3秒后自动跳转到登录页面', 3, 'user/login');
          }
-         $this->layout = "home_style.php";
-         return $this->render('index');
+         $this->layout = "user_style.php";
+         $model = $this->findModel(Yii::$app->user->id);
+         return $this->render('index', [
+             'model'    =>  $model,
+         ]);
      }     
      
      public function actionLogin()
@@ -58,8 +63,9 @@ class UserController extends PublicController
          if ($model->load(Yii::$app->request->post()) && $model->login()) {
              //登录成功, 设置会员级别, 会员积分
              $mark = Yii::$app->user->identity->rank;
-             $sql = "SELECT id, rate FROM shop_memberlevel WHERE $mark BETWEEN mark_min AND mark_max";
+             $sql = "SELECT id, rate,level_name FROM shop_memberlevel WHERE $mark BETWEEN mark_min AND mark_max";
              $info = Yii::$app->db->createCommand($sql)->query()->read();
+             Yii::$app->session['level_name'] = $info['level_name'];
              Yii::$app->session['level_id'] = $info['id'];
              Yii::$app->session['rate'] = $info['rate'] / 100.00;
              /*添加cookies到购物车数据库*/
@@ -113,10 +119,20 @@ class UserController extends PublicController
          // 判断用户是访客还是认证用户
          // isGuest为真表示访客，isGuest非真表示认证用户，认证过的用户表示已经登录了，这里跳转到主页面
          if (Yii::$app->user->isGuest) {
-             // return $this->jump('success', '请先登录, 3秒后自动跳转到登录页面', 3, 'user/login');
+              return $this->jump('success', '请先登录, 3秒后自动跳转到登录页面', 3, 'user/login');
          }
-         $this->layout = "home_style.php";
-         return $this->render('order');
+         $orders = (new \yii\db\Query())
+             ->select('a.order_sn, a.user_name, a.total_price, a.addTime, a.order_status, b.goods_id, c.small_img')
+             ->from('shop_order a')
+             ->leftJoin('shop_ordergoods b',' a.id = b.order_id' )
+             ->leftJoin('shop_goods c',' b.goods_id = c.id' )
+             ->where(['a.user_id' => Yii::$app->user->id])
+             ->groupBy('b.order_id')
+             ->all();
+         $this->layout = "user_style.php";
+         return $this->render('order', [
+             'orders'  => $orders,
+         ]);
      }  
 
 
@@ -134,5 +150,14 @@ class UserController extends PublicController
             ]);
         }
         return $this->jump();
+    }
+
+    protected function findModel($id)
+    {
+        if (($model = User::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
     }
 }

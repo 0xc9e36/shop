@@ -144,4 +144,8 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     {
         return Yii::$app->security->validatePassword($password, $this->password_hash);
     }
+
+    public function change(){
+        
+    }
 }
