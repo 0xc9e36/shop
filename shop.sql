@@ -226,7 +226,7 @@ CREATE TABLE `shop_cart` (
   KEY `user_id` (`user_id`),
   KEY `goods_id` (`goods_id`),
   KEY `arrt` (`attr`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -235,7 +235,7 @@ CREATE TABLE `shop_cart` (
 
 LOCK TABLES `shop_cart` WRITE;
 /*!40000 ALTER TABLE `shop_cart` DISABLE KEYS */;
-INSERT INTO `shop_cart` VALUES (18,27,42,'1466,1463',1),(19,27,37,'1459,1456',1),(26,28,54,'1675,1677,1679,1680',1);
+INSERT INTO `shop_cart` VALUES (32,28,37,'1612,1609',3);
 /*!40000 ALTER TABLE `shop_cart` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -538,7 +538,7 @@ CREATE TABLE `shop_order` (
   `addTime` datetime NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `order_sn` (`order_sn`)
-) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -547,7 +547,7 @@ CREATE TABLE `shop_order` (
 
 LOCK TABLES `shop_order` WRITE;
 /*!40000 ALTER TABLE `shop_order` DISABLE KEYS */;
-INSERT INTO `shop_order` VALUES (30,'1515811',0,0,0,0,0,35.00,12600.00,12635.00,'王小明的货','13876120676','湖南工业大学',27,'2017-03-22 02:59:41'),(31,'15407830',0,0,0,0,0,35.00,22620.00,22655.00,'安慰人qwtqwt','qwtqwt','wtrqt',27,'2017-03-22 03:41:18'),(32,'15409331',0,0,0,0,0,35.00,22620.00,22655.00,'安慰人qwtqwt','qwtqwt','wtrqt',27,'2017-03-22 03:41:33'),(33,'15409632',0,0,0,0,0,35.00,22620.00,22655.00,'安慰人qwtqwt','qwtqwt','wtrqt',27,'2017-03-22 03:41:36'),(34,'15410533',0,0,0,0,0,35.00,22620.00,22655.00,'安慰人qwtqwt','qwtqwt','wtrqt',27,'2017-03-22 03:41:45'),(35,'15418634',0,0,0,0,0,0.00,16420.00,16420.00,'432634734','347347347','7347347',27,'2017-03-22 03:43:06'),(36,'15438035',0,0,0,0,0,0.00,6200.00,6200.00,'4636346','346346346','346346',27,'2017-03-22 03:46:20'),(37,'15506236',0,0,0,0,0,0.00,67080.00,67080.00,'3464367347','347347347','347347347',27,'2017-03-22 03:57:42'),(38,'33389837',0,0,0,0,0,15.00,56800.00,56815.00,'王小明','13873120673','湖南工业大学',28,'2017-03-24 05:38:18'),(39,'46068838',0,0,0,0,0,35.00,1375650.00,1375685.00,'色染色','346346','4356346346',28,'2017-03-25 16:51:28'),(40,'46071039',0,0,0,0,0,35.00,5220.00,5255.00,'436363','347347','47347',28,'2017-03-25 16:51:50');
+INSERT INTO `shop_order` VALUES (41,'4919801',0,0,0,0,0,35.00,24437.30,24472.30,'435346346','36346346','346346',28,'2017-03-26 01:33:00'),(42,'49259341',0,0,0,0,0,35.00,5220.00,5255.00,'23444444444444444','4234234444444444444','23444444444444444',28,'2017-03-26 01:43:13'),(43,'49259742',0,0,0,0,0,35.00,5220.00,5255.00,'23444444444444444','4234234444444444444','23444444444444444',28,'2017-03-26 01:43:16');
 /*!40000 ALTER TABLE `shop_order` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -567,7 +567,7 @@ CREATE TABLE `shop_ordergoods` (
   `goodsprice` decimal(10,2) NOT NULL,
   `attr_str` varchar(50) DEFAULT '' COMMENT '属性值',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -576,7 +576,7 @@ CREATE TABLE `shop_ordergoods` (
 
 LOCK TABLES `shop_ordergoods` WRITE;
 /*!40000 ALTER TABLE `shop_ordergoods` DISABLE KEYS */;
-INSERT INTO `shop_ordergoods` VALUES (8,30,42,'内存 : 4G<br />颜色 : 黑色<br />',1,6200.00,'1466,1463'),(9,30,42,'内存 : 8G<br />颜色 : 黑色<br />',1,6400.00,'1466,1464'),(10,31,37,'内存 : 4G<br />颜色 : 红色<br />',1,16420.00,'1459,1456'),(11,31,42,'内存 : 4G<br />颜色 : 黑色<br />',1,6200.00,'1466,1463'),(12,35,37,'内存 : 4G<br />颜色 : 红色<br />',1,16420.00,'1459,1456'),(13,36,42,'内存 : 4G<br />颜色 : 黑色<br />',1,6200.00,'1466,1463'),(14,37,42,'内存 : 4G<br />颜色 : 黑色<br />',2,6200.00,'1466,1463'),(15,37,37,'内存 : 4G<br />颜色 : 红色<br />',3,16420.00,'1459,1456'),(16,37,43,'内存 : 4G<br />颜色 : 红色<br />',1,5420.00,'1424,1422'),(17,38,42,'内存 : 16G<br />颜色 : 白色<br />',3,7000.00,'1468,1465'),(18,38,38,'内存 : 16G<br />颜色 : 黑色<br />',1,35800.00,'1453,1452'),(19,39,37,'内存 : 4G<br />颜色 : 红色<br />',5,5220.00,'1612,1609'),(20,39,54,'屏幕尺寸 : 70寸以上<br />能效等级 : 一级能效<br />观看距离 : 3.5米<br />商品产地 : 中国大陆<br />',500,2699.10,'1675,1677,1679,1680'),(21,40,37,'内存 : 4G<br />颜色 : 红色<br />',1,5220.00,'1612,1609');
+INSERT INTO `shop_ordergoods` VALUES (22,41,54,'屏幕尺寸 : 70寸以上<br />能效等级 : 一级能效<br />观看距离 : 3.5米<br />商品产地 : 中国大陆<br />',1,2699.10,'1675,1677,1679,1680'),(23,41,37,'内存 : 8G<br />颜色 : 黑色<br />',1,5420.00,'1613,1610'),(24,41,37,'内存 : 4G<br />颜色 : 红色<br />',1,5220.00,'1612,1609'),(25,41,54,'屏幕尺寸 : 60寸<br />能效等级 : 一级能效<br />观看距离 : 3.5米<br />商品产地 : 美国进口<br />',1,3199.10,'1676,1677,1679,1681'),(26,41,53,'屏幕尺寸 : 70寸以上<br />能效等级 : 一级能效<br />观看距离 : 3.5米<br />商品产地 : 中国大陆<br />',1,7899.10,'1571,1574,1577,1580'),(27,42,37,'内存 : 4G<br />颜色 : 红色<br />',1,5220.00,'1612,1609');
 /*!40000 ALTER TABLE `shop_ordergoods` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -606,6 +606,31 @@ LOCK TABLES `shop_product` WRITE;
 /*!40000 ALTER TABLE `shop_product` DISABLE KEYS */;
 INSERT INTO `shop_product` VALUES (211,'1489816160',47,'1340,1345,1346',60),(210,'1489816160',47,'1342,1344,1347',50),(209,'1489816160',47,'1342,1345,1347',100),(205,'1489720008',36,'1335,1337',60),(219,'1490454820',37,'1609,1612',5),(217,'1489713390',42,'1585,1588',600);
 /*!40000 ALTER TABLE `shop_product` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `shop_session`
+--
+
+DROP TABLE IF EXISTS `shop_session`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `shop_session` (
+  `id` char(40) NOT NULL,
+  `expire` int(11) DEFAULT NULL,
+  `data` blob,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `shop_session`
+--
+
+LOCK TABLES `shop_session` WRITE;
+/*!40000 ALTER TABLE `shop_session` DISABLE KEYS */;
+INSERT INTO `shop_session` VALUES ('f08v5m0mggfdp9vi2sdcev9sc2',1490495702,'__flash|a:0:{}'),('nfllh4en67ukkdekm74qmpo1q6',1490495777,'__flash|a:0:{}return|s:31:\"/index.php?r=order%2Fcheckorder\";__captcha/user/captcha|s:6:\"rehuqe\";__captcha/user/captchacount|i:1;__id|i:28;level_id|s:1:\"7\";rate|d:0.90000000000000002;');
+/*!40000 ALTER TABLE `shop_session` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -648,4 +673,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-03-26  0:54:47
+-- Dump completed on 2017-03-26 10:43:29
